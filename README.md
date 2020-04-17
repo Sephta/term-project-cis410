@@ -1,2 +1,12 @@
 # term-project-cis410
-This repo will house the source code for my Team's term wide game dev project for the CIS 410: Intro to Game Programming course at the University of Oregon.
+For this project we will be building a 3D zelda-like reminiscent of the Link's Awakening remake the launched in 2019.
+
+## Team Members
+  * Seth Tal
+  * Zack Johnson
+  * Brennan Holmes
+
+## Features
+   1. test1
+   2. test2
+   3. test3
