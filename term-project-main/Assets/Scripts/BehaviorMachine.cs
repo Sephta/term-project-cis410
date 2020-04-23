@@ -17,7 +17,8 @@ public class BehaviorMachine : MonoBehaviour
     public enum PlayerBehavior {
         idle,
         walking,
-        running
+        running,
+        jumping
     }
 
     public PlayerBehavior currentBehavior;
@@ -44,18 +45,19 @@ public class BehaviorMachine : MonoBehaviour
 
     void UpdateMovementBehavior()
     {
-        if (input.InputAxis.magnitude > 0) {
+        if (input.InputAxis.magnitude > 0 && currentBehavior != PlayerBehavior.jumping) {
             /* Terniary operation 
             * ChangeBehavior takes a PlayerBehavior as an arguement
             * If the run key (left shift) if being pressed then the currentBehavior gets
             * changed to the running behavior, else the walking behavior */
             ChangeBehavior((input.runKey) ? PlayerBehavior.running : PlayerBehavior.walking);
         }
-        if (input.InputAxis.magnitude == 0) {
+        if (input.InputAxis.magnitude == 0 && currentBehavior != PlayerBehavior.jumping) {
             ChangeBehavior(PlayerBehavior.idle);
         }
         // if space bar is pressed and player is grounded
         if (input.jumpKey && CheckGround()) {
+            ChangeBehavior(PlayerBehavior.jumping);
             canJump = true;
         } else {
             canJump = false;
@@ -75,12 +77,19 @@ public class BehaviorMachine : MonoBehaviour
         currentBehavior = behavior;
     }
 
+    public void DetermineNewBehavior()
+    {
+        PlayerBehavior toBehavior = PlayerBehavior.idle;
+
+        currentBehavior = toBehavior;
+    }
+
     public bool CheckGround()
     {
         Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.down));
         RaycastHit hitData;
         // Physics.Raycast(ray, out hitData, 10);
-        if (Physics.Raycast(ray, out hitData, 0.5f)) {
+        if (Physics.Raycast(ray, out hitData, 0.55f)) {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hitData.distance, Color.red);
             // Debug.Log("distance: " + hitData.distance);
             grounded = true;

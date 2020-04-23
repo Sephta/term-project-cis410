@@ -24,6 +24,9 @@ public class BehaviorExecutor : MonoBehaviour
     public float jumpVelocity = 0f;
     public float gravity = 9.8f;
 
+    [SerializeField]
+    bool jumpPeakReached = false;
+
     public Vector3 directionVector = Vector3.zero;
 
 
@@ -38,9 +41,6 @@ public class BehaviorExecutor : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (behaviorMachine.canJump) {
-            ExecuteJump();
-        }
 
         switch(behaviorMachine.currentBehavior)
         {
@@ -54,6 +54,9 @@ public class BehaviorExecutor : MonoBehaviour
             case BehaviorMachine.PlayerBehavior.running:
                 ExecuteMove(behaviorMachine.input.runKey);
                 break;
+            case BehaviorMachine.PlayerBehavior.jumping:
+                ExecuteJump(behaviorMachine.canJump);
+                break;
         }
     }
 
@@ -62,17 +65,34 @@ public class BehaviorExecutor : MonoBehaviour
     /*                         Executor Methods                         */
     /* ---------------------------------------------------------------- */
 
-    public void ExecuteJump()
+    public void ExecuteJump(bool jumpCheck)
     {
-        // The bellow equations were used to derive the velocity value 'v'
+        // The bellow equations were used to derive the velocity equation used to calculate max velocity before impact
+        // this means that the value of jumpVelocity should be the velocity needed to obtain a jump of height -> jumpHeight
         // float PE = gravity * rb.mass * (float)height;  // This is potential energy (PE = mgh)
-        // float KE = (((1/2)*rb.mass)*(v*v)); // This is Kinetic Energy (KE = ((1/2)m)*(V)^2)
-
-        // height = 10.0f;                        // Height of the jump
-        jumpVelocity = Mathf.Sqrt(2 * gravity * jumpHeight);  // in physics this represents velecotity just before impact
-
-        rb.AddForce(transform.up * jumpVelocity, ForceMode.VelocityChange);
-        // rb.AddForce(directionVector * 2.0f, ForceMode.VelocityChange);
+        // float KE = (((1/2)*rb.mass)*(v*v));            // This is Kinetic Energy (KE = ((1/2)m)*(V)^2)
+        
+        jumpVelocity = Mathf.Sqrt(2 * gravity * jumpHeight);  // in physics this represents velocity just before impact
+        // rb.AddForce(transform.up * jumpVelocity, ForceMode.VelocityChange);
+        if (transform.position.y < transform.position.y + jumpHeight) {
+            if (behaviorMachine.input.runKey)
+                transform.position += new Vector3(
+                    directionVector.x * runSpeed * Time.deltaTime,
+                    jumpVelocity * Time.deltaTime,
+                    directionVector.z * runSpeed * Time.deltaTime);
+            else
+                transform.position += new Vector3(
+                    directionVector.x * walkSpeed * Time.deltaTime,
+                    jumpVelocity * Time.deltaTime,
+                    directionVector.z * walkSpeed * Time.deltaTime);
+        } else {
+            jumpPeakReached = true;
+        }
+        
+        if (behaviorMachine.CheckGround()) {
+            // behaviorMachine.DetermineNewBehavior();
+            behaviorMachine.currentBehavior = BehaviorMachine.PlayerBehavior.idle;
+        }
     }
 
     public void ExecuteMove(bool moveFlag)
