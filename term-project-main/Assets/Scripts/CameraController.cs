@@ -25,7 +25,7 @@ public class CameraController : MonoBehaviour
     // Quaternion rotation;
     // Vector3 offset = new Vector3(0f, 0f, -5.0f);
 
-    void Update()
+    void Start()
     {
         if (cameraMode) {
             isometric.depth = -1;
@@ -36,6 +36,10 @@ public class CameraController : MonoBehaviour
             topDown.depth = -1;
             mainCamera = topDown;
         }
+    }
+
+    void Update()
+    {
 
         // currentX += Input.GetAxis("Mouse X");
         // currentY -= Input.GetAxis("Mouse Y");
@@ -46,8 +50,13 @@ public class CameraController : MonoBehaviour
         // yaw = Mathf.Clamp(yaw, -35f, 35f);
         // pitch = Mathf.Clamp(pitch, 25f, 45f);
 
-        mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, player.transform.position + cameraOffset - new Vector3(0f, 1f, 0f), offsetSmoothing * Time.deltaTime);
+        
         // mainCamera.transform.eulerAngles = new Vector3(pitch, yaw, 0f);
+    }
+
+    void FixedUpdate()
+    {
+        mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, player.transform.position + cameraOffset - new Vector3(0f, 1f, 0f), offsetSmoothing * Time.deltaTime);
     }
 
     // void LateUpdate()

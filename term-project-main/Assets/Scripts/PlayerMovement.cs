@@ -15,13 +15,12 @@ public class PlayerMovement : MonoBehaviour
     public PlayerState currentState;
 
     [SerializeField]
-    Vector3 directionVector = Vector2.zero;
+    Vector3 directionVector = Vector3.zero;
     public float movementSpeed;
     public float walkSpeed;
     public float runSpeed;
     // [SerializeField] float t = 0f;
     // public float t_acc; // walk -> run acceleration
-    public float jumpForce;
     public float height;
     public float playerVelocity = 0.0f;
 
@@ -42,10 +41,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         HandleOtherInput();
+    }
 
+    void FixedUpdate()
+    {
         // Move player's position given inputed direction * speed * amount of time passed
-        // rb.MovePosition(transform.position + (directionVector * movementSpeed * Time.deltaTime));
-        transform.position += directionVector * movementSpeed * Time.deltaTime;
+        rb.MovePosition(transform.position + (directionVector * movementSpeed * Time.deltaTime));
+        // transform.position += directionVector * movementSpeed * Time.deltaTime;
 
         // Applies constant gravity to the player of about 9.8 (m/s)^2
         rb.AddForce(-transform.up * gravity, ForceMode.Acceleration);
@@ -120,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Jumping if on ground
         if (Input.GetKeyDown(KeyCode.Space) && currentState == PlayerState.grounded) {
-            PerformJump(jumpForce);
+            PerformJump();
         }
 
         // Running logic
@@ -134,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void PerformJump(float velocity)
+    void PerformJump()
     {
         // The bellow equations were used to derive the velocity value 'v'
         // float PE = gravity * rb.mass * (float)height;  // This is potential energy (PE = mgh)
@@ -144,6 +146,7 @@ public class PlayerMovement : MonoBehaviour
         playerVelocity = Mathf.Sqrt(2 * gravity * height);  // in physics this represents velecotity just before impact
 
         rb.AddForce(transform.up * playerVelocity, ForceMode.VelocityChange);
+        // rb.AddForce(directionVector * 2.0f, ForceMode.VelocityChange);
     }
 
     void OnCollisionEnter(Collision other)
