@@ -40,7 +40,6 @@ public class BehaviorMachine : MonoBehaviour
     void Update()
     {
         UpdateMovementBehavior();
-        CheckGround();
     }
 
     void UpdateMovementBehavior()

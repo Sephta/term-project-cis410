@@ -14,6 +14,7 @@ public class PlayerInput : MonoBehaviour
 
     // Public Vars -------------------------------------------------------
 
+    // ? Look up "Get" and "Set" C# keywords to see how this works
     public Vector2 InputAxis {
         get {
             Vector2 input = Vector2.zero;

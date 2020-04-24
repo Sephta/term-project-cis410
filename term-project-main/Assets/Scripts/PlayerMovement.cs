@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// ! THIS SCRIPT IS OUTDATED AND IS ONLY BEING KEPT FOR REFFERENCE OR FALLBACk
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     // public float t_acc; // walk -> run acceleration
     public float height;
     public float playerVelocity = 0.0f;
+
 
     float gravity = 9.8f;
 

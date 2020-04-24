@@ -10,25 +10,20 @@ public class BehaviorExecutor : MonoBehaviour
 {
     public BehaviorMachine behaviorMachine;
     public Rigidbody rb;
-    // public GameObject player;
 
 
     /* ---------------------------------------------------------------- */
     /*                         Any Related Vars                         */
     /* ---------------------------------------------------------------- */
 
-    public float currentSpeed = 0f;
     public float walkSpeed = 0f;
     public float runSpeed = 0f;
     public float jumpHeight = 0f;
     public float jumpVelocity = 0f;
     public float gravity = 9.8f;
 
-    [SerializeField]
-    bool jumpPeakReached = false;
-
-    public Vector3 directionVector = Vector3.zero;
-
+    [SerializeField] Vector3 directionVector = Vector3.zero;
+    [SerializeField] float currentSpeed = 0f;
 
     /* ---------------------------------------------------------------- */
     /*                              Updates                             */
@@ -73,24 +68,19 @@ public class BehaviorExecutor : MonoBehaviour
         // float KE = (((1/2)*rb.mass)*(v*v));            // This is Kinetic Energy (KE = ((1/2)m)*(V)^2)
         
         jumpVelocity = Mathf.Sqrt(2 * gravity * jumpHeight);  // in physics this represents velocity just before impact
-        // rb.AddForce(transform.up * jumpVelocity, ForceMode.VelocityChange);
-        if (transform.position.y < transform.position.y + jumpHeight) {
-            if (behaviorMachine.input.runKey)
-                transform.position += new Vector3(
-                    directionVector.x * runSpeed * Time.deltaTime,
-                    jumpVelocity * Time.deltaTime,
-                    directionVector.z * runSpeed * Time.deltaTime);
-            else
-                transform.position += new Vector3(
-                    directionVector.x * walkSpeed * Time.deltaTime,
-                    jumpVelocity * Time.deltaTime,
-                    directionVector.z * walkSpeed * Time.deltaTime);
-        } else {
-            jumpPeakReached = true;
-        }
+
+        if (behaviorMachine.input.runKey)
+            transform.position += new Vector3(
+                directionVector.x * runSpeed * Time.deltaTime,
+                jumpVelocity * Time.deltaTime,
+                directionVector.z * runSpeed * Time.deltaTime);
+        else
+            transform.position += new Vector3(
+                directionVector.x * walkSpeed * Time.deltaTime,
+                jumpVelocity * Time.deltaTime,
+                directionVector.z * walkSpeed * Time.deltaTime);
         
         if (behaviorMachine.CheckGround()) {
-            // behaviorMachine.DetermineNewBehavior();
             behaviorMachine.currentBehavior = BehaviorMachine.PlayerBehavior.idle;
         }
     }
