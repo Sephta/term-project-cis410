@@ -85,12 +85,11 @@ public class BehaviorMachine : MonoBehaviour
 
     public bool CheckGround()
     {
-        Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.down));
+        Ray ray = new Ray(transform.position + new Vector3(0f, 0.5f, 0f), transform.TransformDirection(Vector3.down));
         RaycastHit hitData;
-        // Physics.Raycast(ray, out hitData, 10);
         if (Physics.Raycast(ray, out hitData, 0.55f)) {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hitData.distance, Color.red);
-            // Debug.Log("distance: " + hitData.distance);
+            // Debug.DrawRay(transform.position + new Vector3(0f, 0.5f, 0f), transform.TransformDirection(Vector3.down) * hitData.distance, Color.red, 5f);
+            // Debug.Log("hitData: " + hitData.distance + " was Hit? - " + hit);
             grounded = true;
         } else {
             grounded = false;

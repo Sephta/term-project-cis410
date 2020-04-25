@@ -10,6 +10,7 @@ public class BehaviorExecutor : MonoBehaviour
 {
     public BehaviorMachine behaviorMachine;
     public Rigidbody rb;
+    public Animator animator;
 
 
     /* ---------------------------------------------------------------- */
@@ -20,6 +21,7 @@ public class BehaviorExecutor : MonoBehaviour
     public float runSpeed = 0f;
     public float jumpHeight = 0f;
     public float gravity = 9.8f;
+    public float rotationSpeed = 0f;
 
     [SerializeField] Vector3 directionVector = Vector3.zero;
     [SerializeField] float currentSpeed = 0f;
@@ -29,6 +31,9 @@ public class BehaviorExecutor : MonoBehaviour
     float tw = 0f;
     float tr = 0f;
     float t_acc = 0.02f;
+
+    // used to rotate the player model towards where he is moving
+    Quaternion modelRotation = Quaternion.identity;
 
     /* ---------------------------------------------------------------- */
     /*                              Updates                             */
@@ -50,19 +55,27 @@ public class BehaviorExecutor : MonoBehaviour
         switch(behaviorMachine.currentBehavior)
         {
             case BehaviorMachine.PlayerBehavior.idle:
+                animator.SetBool("IsWalking", false);
                 break;
             
             case BehaviorMachine.PlayerBehavior.walking:
+                animator.SetBool("IsWalking", true);
+                animator.speed = 1f;
                 ExecuteMove(behaviorMachine.input.runKey);
                 break;
 
             case BehaviorMachine.PlayerBehavior.running:
+                animator.SetBool("IsWalking", true);
+                animator.speed = 2f;
                 ExecuteMove(behaviorMachine.input.runKey);
                 break;
             case BehaviorMachine.PlayerBehavior.jumping:
                 ExecuteJump(behaviorMachine.canJump);
                 break;
         }
+
+        Vector3 desiredForward = Vector3.RotateTowards(transform.forward, directionVector, rotationSpeed * Time.deltaTime, 0f);
+        modelRotation = Quaternion.LookRotation(desiredForward);
     }
 
 
@@ -91,6 +104,8 @@ public class BehaviorExecutor : MonoBehaviour
                 directionVector.x * currentSpeed * Time.deltaTime,
                 jumpVelocity * Time.deltaTime,
                 directionVector.z * currentSpeed * Time.deltaTime);
+
+            transform.rotation = modelRotation;
             
             // bound the value of tr so it doesnt grow infinitly while moving
             if (tr < 1f)
@@ -112,6 +127,8 @@ public class BehaviorExecutor : MonoBehaviour
                 jumpVelocity * Time.deltaTime,
                 directionVector.z * currentSpeed * Time.deltaTime);
 
+            transform.rotation = modelRotation;
+
             // bounds value so it doesnt keep growing infinitly
             if (tw < 1f)
                 tw += t_acc;
@@ -124,7 +141,6 @@ public class BehaviorExecutor : MonoBehaviour
 
     public void ExecuteMove(bool moveFlag)
     {
-
         // if player is walking
         if (!moveFlag) {
             tr = 0f;
@@ -132,6 +148,7 @@ public class BehaviorExecutor : MonoBehaviour
             currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, tw);
 
             transform.position += directionVector * currentSpeed * Time.deltaTime;
+            transform.rotation = modelRotation;
 
             if (tw < 1f)
                 tw += t_acc;
@@ -144,6 +161,7 @@ public class BehaviorExecutor : MonoBehaviour
             currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, tr);
             
             transform.position += directionVector * currentSpeed * Time.deltaTime;
+            transform.rotation = modelRotation;
 
             if (tr < 1f)
                 tr += t_acc;
