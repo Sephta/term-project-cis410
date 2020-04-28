@@ -1929,6 +1929,21 @@ PrefabInstance:
       propertyPath: rotationSpeed
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 8245091214218868502, guid: 333f0251f8eb62c4aa8dcf391f87c60d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3185107003784256649, guid: 333f0251f8eb62c4aa8dcf391f87c60d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8617828582451985266, guid: 333f0251f8eb62c4aa8dcf391f87c60d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 333f0251f8eb62c4aa8dcf391f87c60d, type: 3}
 --- !u!1 &5601127193703737710 stripped

@@ -1,26 +1,32 @@
 fileFormatVersion: 2
-guid: 2cdf9ea5ce202d4429badcee3d39d68b
+guid: e1321f1eaac875548bf68d5f43c1edd6
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
   - first:
-      74: -8856283390429189166
-    second: 'Armature|Idle '
+      74: 7721715186239825389
+    second: Armature.001|Action
   - first:
-      74: -7551964380084998518
-    second: Armature|Run
+      74: -7523534810428418115
+    second: Armature.001|Action.001
   - first:
-      74: -5025487861805838091
-    second: Armature|Fall
+      74: -4405619503343681686
+    second: Armature.001|Attack
   - first:
-      74: -1021122704328672182
-    second: Armature|Idle Look
+      74: 6796329528090330773
+    second: Armature.001|Fall
   - first:
-      74: 1079665108409675491
-    second: Armature|Jump
+      74: -1073646898147209005
+    second: 'Armature.001|Idle '
   - first:
-      74: 8349542763059015795
-    second: Armature|Walk
+      74: 3565664967746191464
+    second: Armature.001|Idle Look
+  - first:
+      74: -5376665257271825894
+    second: Armature.001|Jump
+  - first:
+      74: -448239265334008587
+    second: Armature.001|Walk
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -50,18 +56,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: 'Armature|Idle '
-      takeName: 'Armature|Idle '
-      internalID: -8856283390429189166
+      name: Armature.001|Action
+      takeName: Armature.001|Action
+      internalID: 7721715186239825389
       firstFrame: 0
-      lastFrame: 120
+      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -79,9 +85,38 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Attack
-      takeName: Armature|Attack
-      internalID: -7551964380084998518
+      name: Armature.001|Action.001
+      takeName: Armature.001|Action.001
+      internalID: -7523534810428418115
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.001|Attack
+      takeName: Armature.001|Attack
+      internalID: -4405619503343681686
       firstFrame: 0
       lastFrame: 16
       wrapMode: 0
@@ -90,7 +125,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -108,9 +143,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Fall
-      takeName: Armature|Fall
-      internalID: -5025487861805838091
+      name: Armature.001|Fall
+      takeName: Armature.001|Fall
+      internalID: 6796329528090330773
       firstFrame: 0
       lastFrame: 80
       wrapMode: 0
@@ -137,9 +172,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Idle Look
-      takeName: Armature|Idle Look
-      internalID: -1021122704328672182
+      name: 'Armature.001|Idle '
+      takeName: 'Armature.001|Idle '
+      internalID: -1073646898147209005
       firstFrame: 0
       lastFrame: 120
       wrapMode: 0
@@ -166,9 +201,38 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Jump
-      takeName: Armature|Jump
-      internalID: 1079665108409675491
+      name: Armature.001|Idle Look
+      takeName: Armature.001|Idle Look
+      internalID: 3565664967746191464
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.001|Jump
+      takeName: Armature.001|Jump
+      internalID: -5376665257271825894
       firstFrame: 0
       lastFrame: 11
       wrapMode: 0
@@ -195,9 +259,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Walk
-      takeName: Armature|Walk
-      internalID: 8349542763059015795
+      name: Armature.001|Walk
+      takeName: Armature.001|Walk
+      internalID: -448239265334008587
       firstFrame: 0
       lastFrame: 19
       wrapMode: 0
@@ -226,7 +290,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.3
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -272,7 +336,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.3
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
