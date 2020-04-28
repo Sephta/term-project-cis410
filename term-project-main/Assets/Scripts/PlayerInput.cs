@@ -44,6 +44,22 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    public bool runKey {
+        get { return Input.GetKey(KeyCode.LeftShift); }
+    }
+
+    public bool jumpKey {
+        get { return Input.GetKey(KeyCode.Space); }
+    }
+
+    public bool interactKey {
+        get { return Input.GetKeyDown(KeyCode.E); }
+    }
+
+    public bool attackKey {
+        get { return Input.GetMouseButtonDown(0); }
+    }
+
     // Private Vars ------------------------------------------------------
 
     private Vector2 previousInput = Vector2.zero;
@@ -66,17 +82,4 @@ public class PlayerInput : MonoBehaviour
     }
 
     void FixedUpdate() {}
-
-
-    /* ---------------------------------------------------------------- */
-    /*                             Input Keys                           */
-    /* ---------------------------------------------------------------- */
-
-    public bool runKey {
-        get { return Input.GetKey(KeyCode.LeftShift); }
-    }
-
-    public bool jumpKey {
-        get { return Input.GetKey(KeyCode.Space); }
-    }
 }

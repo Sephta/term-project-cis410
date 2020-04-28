@@ -18,7 +18,8 @@ public class BehaviorMachine : MonoBehaviour
         idle,
         walking,
         running,
-        jumping
+        jumping,
+        attack
     }
 
     public PlayerBehavior currentBehavior;
@@ -40,23 +41,29 @@ public class BehaviorMachine : MonoBehaviour
     void Update()
     {
         UpdateMovementBehavior();
+
+        if (input.attackKey && CheckGround()) {
+            ChangeBehavior(PlayerBehavior.attack);
+            executor.animator.SetBool("HasAttacked", true);
+        }
     }
 
     void UpdateMovementBehavior()
     {
-        if (input.InputAxis.magnitude > 0 && currentBehavior != PlayerBehavior.jumping) {
+        if (input.InputAxis.magnitude > 0 && currentBehavior != PlayerBehavior.jumping && currentBehavior != PlayerBehavior.attack) {
             /* Terniary operation 
             * ChangeBehavior takes a PlayerBehavior as an arguement
             * If the run key (left shift) if being pressed then the currentBehavior gets
             * changed to the running behavior, else the walking behavior */
             ChangeBehavior((input.runKey) ? PlayerBehavior.running : PlayerBehavior.walking);
         }
-        if (input.InputAxis.magnitude == 0 && currentBehavior != PlayerBehavior.jumping) {
+        if (input.InputAxis.magnitude == 0 && currentBehavior != PlayerBehavior.jumping && currentBehavior != PlayerBehavior.attack) {
             ChangeBehavior(PlayerBehavior.idle);
         }
         // if space bar is pressed and player is grounded
         if (input.jumpKey && CheckGround()) {
             ChangeBehavior(PlayerBehavior.jumping);
+            executor.animator.SetBool("HasJumped", true);
             canJump = true;
         } else {
             canJump = false;
@@ -68,19 +75,12 @@ public class BehaviorMachine : MonoBehaviour
     /*                           Helper Methods                         */
     /* ---------------------------------------------------------------- */
 
-    void ChangeBehavior(PlayerBehavior behavior)
+    public void ChangeBehavior(PlayerBehavior behavior)
     {
         if (currentBehavior == behavior)
             return;
 
         currentBehavior = behavior;
-    }
-
-    public void DetermineNewBehavior()
-    {
-        PlayerBehavior toBehavior = PlayerBehavior.idle;
-
-        currentBehavior = toBehavior;
     }
 
     public bool CheckGround()

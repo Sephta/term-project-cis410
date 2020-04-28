@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Animations;
 
 
 /* The executor class for executing defined behaviors given user input.
@@ -9,6 +11,7 @@ using UnityEngine;
 public class BehaviorExecutor : MonoBehaviour
 {
     public BehaviorMachine behaviorMachine;
+    public PortalController pc;
     public Rigidbody rb;
     public Animator animator;
 
@@ -26,6 +29,8 @@ public class BehaviorExecutor : MonoBehaviour
     [SerializeField] Vector3 directionVector = Vector3.zero;
     [SerializeField] float currentSpeed = 0f;
     [SerializeField] float jumpVelocity = 0f;
+
+    // bool heightOfJumpReached = false;
     
     // bellow vars are used to lerp between walk and run speeds
     float tw = 0f;
@@ -47,6 +52,9 @@ public class BehaviorExecutor : MonoBehaviour
     void Update()
     {
         directionVector = new Vector3(behaviorMachine.input.InputAxis.x, 0f, behaviorMachine.input.InputAxis.y);
+        if (behaviorMachine.input.interactKey && pc.canTransport) {
+            ExecutePortal();
+        }
     }
 
     void FixedUpdate()
@@ -60,18 +68,23 @@ public class BehaviorExecutor : MonoBehaviour
 
             case BehaviorMachine.PlayerBehavior.walking:
                 animator.SetBool("IsWalking", true);
-                animator.speed = 1f;
+                animator.SetFloat("AnimationSpeed", currentSpeed - 1f);
                 ExecuteMove(behaviorMachine.input.runKey);
                 break;
 
             case BehaviorMachine.PlayerBehavior.running:
                 animator.SetBool("IsWalking", true);
-                animator.speed = 2f;
+                animator.SetFloat("AnimationSpeed", currentSpeed - 1f);
                 ExecuteMove(behaviorMachine.input.runKey);
                 break;
 
             case BehaviorMachine.PlayerBehavior.jumping:
+                // animator.SetBool("HasJumped", true);
                 ExecuteJump(behaviorMachine.canJump);
+                break;
+            
+            case BehaviorMachine.PlayerBehavior.attack:
+                ExecuteAttack();
                 break;
         }
 
@@ -92,6 +105,8 @@ public class BehaviorExecutor : MonoBehaviour
         // float KE = (((1/2)*rb.mass)*(v*v));            // This is Kinetic Energy (KE = ((1/2)m)*(V)^2)
 
         jumpVelocity = Mathf.Sqrt(2 * gravity * jumpHeight);  // in physics this represents velocity just before impact
+
+        // animator.SetBool("HasJumped", false);
 
         // If the player is running 
         if (behaviorMachine.input.runKey) {
@@ -135,8 +150,12 @@ public class BehaviorExecutor : MonoBehaviour
                 tw += t_acc;
         }
 
+        // if (transform.position.y >= desiredHeight) { heightOfJumpReached = true; }
+
         if (behaviorMachine.CheckGround()) {
             behaviorMachine.currentBehavior = BehaviorMachine.PlayerBehavior.idle;
+            animator.SetBool("IsFalling", false);
+            animator.SetBool("HasJumped", false);
         }
     }
 
@@ -167,5 +186,34 @@ public class BehaviorExecutor : MonoBehaviour
             if (tr < 1f)
                 tr += t_acc;
         }
+    }
+
+    void ExecuteAttack()
+    {
+        // if (currentEnemy != null) {
+        //     EnemyMovement em = currentEnemy.GetComponent<EnemyMovement>();
+        //     em.health -= 25;
+        // }
+
+        animator.SetBool("HasAttacked", false);
+        behaviorMachine.ChangeBehavior(BehaviorMachine.PlayerBehavior.idle);
+    }
+
+    // void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.gameObject.tag == "Enemy") {
+    //         if (currentEnemy == null)
+    //             currentEnemy = other.gameObject;
+    //     }
+    // }
+
+    // void OnTriggerExit()
+    // {
+    //     currentEnemy = null;
+    // }
+
+    void ExecutePortal()
+    {
+        SceneManager.LoadScene("Hub");
     }
 }

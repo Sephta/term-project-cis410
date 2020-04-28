@@ -11,6 +11,8 @@ public class EnemyMovement : MonoBehaviour
     public float aggroRange = 5f;
     public Transform[] waypoints;
 
+    public int health = 100;
+
     int index;
     float speed, agentSpeed;
     Transform player;
@@ -58,6 +60,13 @@ public class EnemyMovement : MonoBehaviour
             // move to player position at full speed
             agent.destination = player.position;
             agent.speed = agentSpeed;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (health <= 0) {
+            Destroy(this);
         }
     }
 
