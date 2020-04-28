@@ -57,7 +57,7 @@ public class BehaviorExecutor : MonoBehaviour
             case BehaviorMachine.PlayerBehavior.idle:
                 animator.SetBool("IsWalking", false);
                 break;
-            
+
             case BehaviorMachine.PlayerBehavior.walking:
                 animator.SetBool("IsWalking", true);
                 animator.speed = 1f;
@@ -69,6 +69,7 @@ public class BehaviorExecutor : MonoBehaviour
                 animator.speed = 2f;
                 ExecuteMove(behaviorMachine.input.runKey);
                 break;
+
             case BehaviorMachine.PlayerBehavior.jumping:
                 ExecuteJump(behaviorMachine.canJump);
                 break;
@@ -89,7 +90,7 @@ public class BehaviorExecutor : MonoBehaviour
         // this means that the value of jumpVelocity should be the velocity needed to obtain a jump of height -> jumpHeight
         // float PE = gravity * rb.mass * (float)height;  // This is potential energy (PE = mgh)
         // float KE = (((1/2)*rb.mass)*(v*v));            // This is Kinetic Energy (KE = ((1/2)m)*(V)^2)
-        
+
         jumpVelocity = Mathf.Sqrt(2 * gravity * jumpHeight);  // in physics this represents velocity just before impact
 
         // If the player is running 
@@ -106,7 +107,7 @@ public class BehaviorExecutor : MonoBehaviour
                 directionVector.z * currentSpeed * Time.deltaTime);
 
             transform.rotation = modelRotation;
-            
+
             // bound the value of tr so it doesnt grow infinitly while moving
             if (tr < 1f)
                 tr += t_acc;
@@ -133,7 +134,7 @@ public class BehaviorExecutor : MonoBehaviour
             if (tw < 1f)
                 tw += t_acc;
         }
-        
+
         if (behaviorMachine.CheckGround()) {
             behaviorMachine.currentBehavior = BehaviorMachine.PlayerBehavior.idle;
         }
