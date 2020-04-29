@@ -14,6 +14,7 @@ public class BehaviorExecutor : MonoBehaviour
     // public PortalController pc;
     public Rigidbody rb;
     public Animator animator;
+    public Collider attackCollider;
 
 
     /* ---------------------------------------------------------------- */
@@ -29,7 +30,7 @@ public class BehaviorExecutor : MonoBehaviour
     [SerializeField] Vector3 directionVector = Vector3.zero;
     [SerializeField] float currentSpeed = 0f;
     [SerializeField] float jumpVelocity = 0f;
-    [SerializeField] float attackAnimationTime = 0.25f;
+    [SerializeField] float attackAnimationTime = 0.125f;
 
     // bool heightOfJumpReached = false;
     
@@ -201,13 +202,23 @@ public class BehaviorExecutor : MonoBehaviour
         //     EnemyMovement em = currentEnemy.GetComponent<EnemyMovement>();
         //     em.health -= 25;
         // }
+        attackCollider.enabled = true;
 
         attackAnimationTime -= Time.deltaTime;
 
         if (attackAnimationTime <= 0f) {
             animator.SetBool("HasAttacked", false);
-            bm.ChangeBehavior(BehaviorMachine.PlayerBehavior.idle);
-            attackAnimationTime = 0.25f;
+            bm.ChangeBehavior(BehaviorMachine.PlayerBehavior.walking);
+            attackAnimationTime = 0.125f;
+            attackCollider.enabled = false;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy" && attackCollider.enabled) {
+            EnemyMovement em = other.gameObject.GetComponent<EnemyMovement>();
+            em.health -= 25;
         }
     }
 

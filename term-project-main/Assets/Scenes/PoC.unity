@@ -2842,7 +2842,7 @@ BoxCollider:
   m_GameObject: {fileID: 1155421223}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.29124653, y: 0.30000028, z: 2.686645}
   m_Center: {x: -0.0012276217, y: 0.00000012501545, z: 1.9730295}
@@ -3174,6 +3174,7 @@ MonoBehaviour:
   bm: {fileID: 0}
   rb: {fileID: 1355646312}
   animator: {fileID: 0}
+  attackCollider: {fileID: 0}
   walkSpeed: 2
   runSpeed: 4
   jumpHeight: 1
@@ -4801,8 +4802,13 @@ PrefabInstance:
     - target: {fileID: 8245091214218868502, guid: 333f0251f8eb62c4aa8dcf391f87c60d,
         type: 3}
       propertyPath: attackAnimationTime
-      value: 0.25
+      value: 0.125
       objectReference: {fileID: 0}
+    - target: {fileID: 8245091214218868502, guid: 333f0251f8eb62c4aa8dcf391f87c60d,
+        type: 3}
+      propertyPath: attackCollider
+      value: 
+      objectReference: {fileID: 5601127193703737711}
     - target: {fileID: 3185107003784256649, guid: 333f0251f8eb62c4aa8dcf391f87c60d,
         type: 3}
       propertyPath: m_Enabled
@@ -4971,6 +4977,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2711222810714200831}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &5601127193703737711
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601127193703737710}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6, y: 0.5999999, z: 0.6999998}
+  m_Center: {x: 0, y: 0.5, z: 0.6500001}
 --- !u!114 &5601127193703737712 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8617828582451985266, guid: 333f0251f8eb62c4aa8dcf391f87c60d,
