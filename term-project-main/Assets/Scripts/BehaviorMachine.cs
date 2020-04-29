@@ -42,6 +42,7 @@ public class BehaviorMachine : MonoBehaviour
     {
         UpdateMovementBehavior();
 
+        // UpdateAttackBehavior()
         if (input.attackKey && CheckGround()) {
             ChangeBehavior(PlayerBehavior.attack);
             executor.animator.SetBool("HasAttacked", true);
@@ -94,6 +95,20 @@ public class BehaviorMachine : MonoBehaviour
         } else {
             grounded = false;
         }
+
+        // Capsule Cast code not working yet
+        // CapsuleCollider cap = gameObject.GetComponent<CapsuleCollider>();
+
+        // float distanceToPoints = cap.height / 2f - cap.radius;
+
+        // Vector3 p1 = transform.position + cap.center + Vector3.up * distanceToPoints;
+        // Vector3 p2 = transform.position + cap.center - Vector3.up * distanceToPoints;
+
+        // if (Physics.CapsuleCast(p1, p2, 0.3f, Vector3.down, 0.1f)) {
+        //     grounded = true;
+        // } else {
+        //     grounded = false;
+        // }
 
         return grounded;
     }

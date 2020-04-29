@@ -30,7 +30,7 @@ public class EnemyMovement : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         index = Random.Range(0, waypoints.Length);
 
-        InvokeRepeating("Tick", 0, 0.5f);
+        // InvokeRepeating("Tick", 0, 0.5f);
 
         if (waypoints.Length > 0)
         {
@@ -65,6 +65,8 @@ public class EnemyMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        Tick();
+
         if (health <= 0) {
             Destroy(gameObject);
         }

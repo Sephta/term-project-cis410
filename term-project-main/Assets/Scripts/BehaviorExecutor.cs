@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Animations;
+using UnityEngine.AI;
 
 
 /* The executor class for executing defined behaviors given user input.
@@ -54,15 +55,7 @@ public class BehaviorExecutor : MonoBehaviour
 
     void Update()
     {
-        // if (bm.currentBehavior == BehaviorMachine.PlayerBehavior.attack) {
-        //     attackAnimationTime -= Time.deltaTime;
-        // }
-
         directionVector = new Vector3(bm.input.InputAxis.x, 0f, bm.input.InputAxis.y);
-        
-        // if (bm.input.interactKey && pc.canTransport) {
-        //     ExecutePortal();
-        // }
     }
 
     void FixedUpdate()
@@ -198,10 +191,6 @@ public class BehaviorExecutor : MonoBehaviour
 
     void ExecuteAttack()
     {
-        // if (currentEnemy != null) {
-        //     EnemyMovement em = currentEnemy.GetComponent<EnemyMovement>();
-        //     em.health -= 25;
-        // }
         attackCollider.enabled = true;
 
         attackAnimationTime -= Time.deltaTime;
@@ -219,6 +208,11 @@ public class BehaviorExecutor : MonoBehaviour
         if (other.gameObject.tag == "Enemy" && attackCollider.enabled) {
             EnemyMovement em = other.gameObject.GetComponent<EnemyMovement>();
             em.health -= 25;
+            // NavMeshAgent agent = other.gameObject.GetComponent<NavMeshAgent>();
+            // agent.isStopped = true;
+            // Rigidbody enemyRB = other.gameObject.GetComponent<Rigidbody>();
+            // enemyRB.AddForce(transform.forward * 3f, ForceMode.VelocityChange);
+            // agent.isStopped = false;
         }
     }
 
