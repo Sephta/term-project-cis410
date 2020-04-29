@@ -21,7 +21,52 @@ ModelImporter:
   - first:
       74: 8349542763059015795
     second: Armature|Walk
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Voxel_mat11
+    second: {fileID: 2100000, guid: 8e93f071aca36fd40bfdd95ddf16b896, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Voxel_mat12
+    second: {fileID: 2100000, guid: b7d4c694a0eb6b94a8c8ac291192e07c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Voxel_mat138
+    second: {fileID: 2100000, guid: 3f0d70efa6f939748b59871a519ae446, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Voxel_mat217
+    second: {fileID: 2100000, guid: a06268671c112154a869f11a75cb5f4f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Voxel_mat219
+    second: {fileID: 2100000, guid: ac5cb9a258a09f340b87f1917574c6e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Voxel_mat246
+    second: {fileID: 2100000, guid: 8811bff6e20f9854da0684ef82fff9cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Voxel_mat255
+    second: {fileID: 2100000, guid: 08cd981e60d75664db37ee7d667ccfcb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Voxel_mat72
+    second: {fileID: 2100000, guid: 1961861d42546fb4993ac5acd55580cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Voxel_mat9
+    second: {fileID: 2100000, guid: 15efcc929336c074ca39d81590164f5b, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

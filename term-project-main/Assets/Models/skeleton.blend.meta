@@ -27,7 +27,32 @@ ModelImporter:
   - first:
       74: -448239265334008587
     second: Armature.001|Walk
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Voxel_mat137
+    second: {fileID: 2100000, guid: 6fa1ad82d0be0bd418c279633e47ea3a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Voxel_mat216
+    second: {fileID: 2100000, guid: 1107db353c5639241833d9492db9a228, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Voxel_mat246.001
+    second: {fileID: 2100000, guid: f508649429a56d6489d4a63d6fc0186b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Voxel_mat4
+    second: {fileID: 2100000, guid: b0c5dc8ee35960241a6149c246321cc4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Voxel_mat72.001
+    second: {fileID: 2100000, guid: 05f4fe9dabbb3694980053768dd3a618, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
