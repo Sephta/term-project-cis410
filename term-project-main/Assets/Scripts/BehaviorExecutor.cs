@@ -208,11 +208,6 @@ public class BehaviorExecutor : MonoBehaviour
         if (other.gameObject.tag == "Enemy" && attackCollider.enabled) {
             EnemyMovement em = other.gameObject.GetComponent<EnemyMovement>();
             em.health -= 25;
-            // NavMeshAgent agent = other.gameObject.GetComponent<NavMeshAgent>();
-            // agent.isStopped = true;
-            // Rigidbody enemyRB = other.gameObject.GetComponent<Rigidbody>();
-            // enemyRB.AddForce(transform.forward * 3f, ForceMode.VelocityChange);
-            // agent.isStopped = false;
         }
     }
 
