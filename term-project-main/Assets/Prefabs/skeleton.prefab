@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 226102275108507946}
   m_Layer: 0
   m_Name: skeleton
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -285,6 +285,7 @@ MonoBehaviour:
   patrolTime: 8
   aggroRange: 5
   waypoints: []
+  health: 100
 --- !u!195 &226102275108507946
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -66,7 +66,7 @@ public class EnemyMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (health <= 0) {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 

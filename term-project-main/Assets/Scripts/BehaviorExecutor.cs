@@ -10,8 +10,8 @@ using UnityEngine.Animations;
 */
 public class BehaviorExecutor : MonoBehaviour
 {
-    public BehaviorMachine behaviorMachine;
-    public PortalController pc;
+    public BehaviorMachine bm;
+    // public PortalController pc;
     public Rigidbody rb;
     public Animator animator;
 
@@ -29,6 +29,7 @@ public class BehaviorExecutor : MonoBehaviour
     [SerializeField] Vector3 directionVector = Vector3.zero;
     [SerializeField] float currentSpeed = 0f;
     [SerializeField] float jumpVelocity = 0f;
+    [SerializeField] float attackAnimationTime = 0.25f;
 
     // bool heightOfJumpReached = false;
     
@@ -39,6 +40,7 @@ public class BehaviorExecutor : MonoBehaviour
 
     // used to rotate the player model towards where he is moving
     Quaternion modelRotation = Quaternion.identity;
+
 
     /* ---------------------------------------------------------------- */
     /*                              Updates                             */
@@ -51,16 +53,21 @@ public class BehaviorExecutor : MonoBehaviour
 
     void Update()
     {
-        directionVector = new Vector3(behaviorMachine.input.InputAxis.x, 0f, behaviorMachine.input.InputAxis.y);
-        if (behaviorMachine.input.interactKey && pc.canTransport) {
-            ExecutePortal();
-        }
+        // if (bm.currentBehavior == BehaviorMachine.PlayerBehavior.attack) {
+        //     attackAnimationTime -= Time.deltaTime;
+        // }
+
+        directionVector = new Vector3(bm.input.InputAxis.x, 0f, bm.input.InputAxis.y);
+        
+        // if (bm.input.interactKey && pc.canTransport) {
+        //     ExecutePortal();
+        // }
     }
 
     void FixedUpdate()
     {
 
-        switch(behaviorMachine.currentBehavior)
+        switch(bm.currentBehavior)
         {
             case BehaviorMachine.PlayerBehavior.idle:
                 animator.SetBool("IsWalking", false);
@@ -69,18 +76,18 @@ public class BehaviorExecutor : MonoBehaviour
             case BehaviorMachine.PlayerBehavior.walking:
                 animator.SetBool("IsWalking", true);
                 animator.SetFloat("AnimationSpeed", currentSpeed - 1f);
-                ExecuteMove(behaviorMachine.input.runKey);
+                ExecuteMove(bm.input.runKey);
                 break;
 
             case BehaviorMachine.PlayerBehavior.running:
                 animator.SetBool("IsWalking", true);
                 animator.SetFloat("AnimationSpeed", currentSpeed - 1f);
-                ExecuteMove(behaviorMachine.input.runKey);
+                ExecuteMove(bm.input.runKey);
                 break;
 
             case BehaviorMachine.PlayerBehavior.jumping:
                 // animator.SetBool("HasJumped", true);
-                ExecuteJump(behaviorMachine.canJump);
+                ExecuteJump(bm.canJump);
                 break;
             
             case BehaviorMachine.PlayerBehavior.attack:
@@ -109,7 +116,7 @@ public class BehaviorExecutor : MonoBehaviour
         // animator.SetBool("HasJumped", false);
 
         // If the player is running 
-        if (behaviorMachine.input.runKey) {
+        if (bm.input.runKey) {
             tw = 0f; // resets the lerp t value for walking
 
             // transition from run to walk by increments of tr
@@ -152,8 +159,8 @@ public class BehaviorExecutor : MonoBehaviour
 
         // if (transform.position.y >= desiredHeight) { heightOfJumpReached = true; }
 
-        if (behaviorMachine.CheckGround()) {
-            behaviorMachine.currentBehavior = BehaviorMachine.PlayerBehavior.idle;
+        if (bm.CheckGround()) {
+            bm.currentBehavior = BehaviorMachine.PlayerBehavior.idle;
             animator.SetBool("IsFalling", false);
             animator.SetBool("HasJumped", false);
         }
@@ -195,22 +202,14 @@ public class BehaviorExecutor : MonoBehaviour
         //     em.health -= 25;
         // }
 
-        animator.SetBool("HasAttacked", false);
-        behaviorMachine.ChangeBehavior(BehaviorMachine.PlayerBehavior.idle);
+        attackAnimationTime -= Time.deltaTime;
+
+        if (attackAnimationTime <= 0f) {
+            animator.SetBool("HasAttacked", false);
+            bm.ChangeBehavior(BehaviorMachine.PlayerBehavior.idle);
+            attackAnimationTime = 0.25f;
+        }
     }
-
-    // void OnTriggerEnter(Collider other)
-    // {
-    //     if (other.gameObject.tag == "Enemy") {
-    //         if (currentEnemy == null)
-    //             currentEnemy = other.gameObject;
-    //     }
-    // }
-
-    // void OnTriggerExit()
-    // {
-    //     currentEnemy = null;
-    // }
 
     void ExecutePortal()
     {
