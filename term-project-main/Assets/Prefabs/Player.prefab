@@ -388,15 +388,15 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -342742898243206653, guid: 2cdf9ea5ce202d4429badcee3d39d68b, type: 3}
-  - {fileID: 4009402529718078412, guid: 2cdf9ea5ce202d4429badcee3d39d68b, type: 3}
-  - {fileID: -7447246702262999548, guid: 2cdf9ea5ce202d4429badcee3d39d68b, type: 3}
-  - {fileID: 8963775617258771819, guid: 2cdf9ea5ce202d4429badcee3d39d68b, type: 3}
-  - {fileID: -5334308785337070482, guid: 2cdf9ea5ce202d4429badcee3d39d68b, type: 3}
-  - {fileID: -4570606715112235217, guid: 2cdf9ea5ce202d4429badcee3d39d68b, type: 3}
-  - {fileID: -3598983798144762556, guid: 2cdf9ea5ce202d4429badcee3d39d68b, type: 3}
-  - {fileID: -7502385468522212249, guid: 2cdf9ea5ce202d4429badcee3d39d68b, type: 3}
-  - {fileID: -4625068610622863243, guid: 2cdf9ea5ce202d4429badcee3d39d68b, type: 3}
+  - {fileID: 2100000, guid: 15efcc929336c074ca39d81590164f5b, type: 2}
+  - {fileID: 2100000, guid: 8e93f071aca36fd40bfdd95ddf16b896, type: 2}
+  - {fileID: 2100000, guid: 3f0d70efa6f939748b59871a519ae446, type: 2}
+  - {fileID: 2100000, guid: ac5cb9a258a09f340b87f1917574c6e0, type: 2}
+  - {fileID: 2100000, guid: b7d4c694a0eb6b94a8c8ac291192e07c, type: 2}
+  - {fileID: 2100000, guid: 8811bff6e20f9854da0684ef82fff9cf, type: 2}
+  - {fileID: 2100000, guid: 1961861d42546fb4993ac5acd55580cd, type: 2}
+  - {fileID: 2100000, guid: a06268671c112154a869f11a75cb5f4f, type: 2}
+  - {fileID: 2100000, guid: 08cd981e60d75664db37ee7d667ccfcb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -630,9 +630,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f512b7c776bc867499fe7dace5dbde44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviorMachine: {fileID: 8617828582451985266}
+  bm: {fileID: 0}
   rb: {fileID: 6686992790913887515}
   animator: {fileID: 3515722862171385080}
+  attackCollider: {fileID: 0}
   walkSpeed: 2
   runSpeed: 4
   jumpHeight: 1
@@ -641,6 +642,7 @@ MonoBehaviour:
   directionVector: {x: 0, y: 0, z: 0}
   currentSpeed: 0
   jumpVelocity: 0
+  attackAnimationTime: 0.125
 --- !u!1 &8205407082514450748
 GameObject:
   m_ObjectHideFlags: 0
