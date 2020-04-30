@@ -6,10 +6,21 @@ For this project we will be building a 3D zelda-like reminiscent of the Link's A
   * Zack Johnson
   * Brennan Holmes
 
-## Features
-   1. test1
-   2. test2
-   3. test3
+## Build Contributions
 
-Video games are cool.
-Yeet.
+
+#### Proof of Concept Build
+   * Seth Tal
+      > Player Controller
+      >
+      > Camera Controller
+   * Zack Johnson
+      > Player Controller
+      >
+      > Enemy Controller (i.e. Nav Mesh, EnemyController.cs, etc)
+      >
+      > Playtest Environment
+   * Brennan Holmes
+      > Character Models and Animations
+      >
+      > Player Controller
