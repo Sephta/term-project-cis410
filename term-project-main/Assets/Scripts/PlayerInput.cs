@@ -63,13 +63,18 @@ public class PlayerInput : MonoBehaviour
     // Private Vars ------------------------------------------------------
 
     private Vector2 previousInput = Vector2.zero;
+    int jumpTimer;
+    bool canJump;
 
 
     /* ---------------------------------------------------------------- */
     /*                              Updates()                           */
     /* ---------------------------------------------------------------- */
     
-    void Start() {}
+    void Start()
+    {
+        jumpTimer = -1;
+    }
 
     void Update()
     {
@@ -81,5 +86,19 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    void FixedUpdate() {}
+    void FixedUpdate()
+    {
+        if (!Input.GetKey(KeyCode.Space))
+        {
+            canJump = false;
+            jumpTimer++;
+        }
+        else if (jumpTimer > 0)
+            canJump = true;
+    }
+
+    public bool CanJump()
+    {
+        return canJump;
+    }
 }

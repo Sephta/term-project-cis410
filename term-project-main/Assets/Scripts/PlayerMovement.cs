@@ -2,165 +2,127 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// ! THIS SCRIPT IS OUTDATED AND IS ONLY BEING KEPT FOR REFFERENCE OR FALLBACk
+
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody rb;
+    // Public Vars
+    public bool isJumping = false;
+    public float currentSpeed = 0f;
+    public float walkSpeed = 0f;
+    public float runSpeed = 0f;
+    public float jumpHeight = 0f;
+    public float gravity = 9.8f;
+    public float rotationSpeed = 0f;
 
-    public bool cameraMode; // False = Isometric, True = TopDown
+    // Private Vars
+    [SerializeField] Vector3 directionVector = Vector3.zero;
+    float jumpVelocity = 0f;
+    Vector3 desiredForward = Vector3.zero;
 
-    public enum PlayerState {
-        grounded,
-        jumping,
-    }
-    public PlayerState currentState;
-
-    [SerializeField]
-    Vector3 directionVector = Vector3.zero;
-    public float movementSpeed;
-    public float walkSpeed;
-    public float runSpeed;
-    // [SerializeField] float t = 0f;
-    // public float t_acc; // walk -> run acceleration
-    public float height;
-    public float playerVelocity = 0.0f;
+    private PlayerController pc;
+    private PlayerInput pi;
+    private Rigidbody rb;
 
 
-    float gravity = 9.8f;
+    /* ---------------------------------------------------------------- */
+    /*                              Updates                             */
+    /* ---------------------------------------------------------------- */
 
     void Start()
     {
-        currentState = PlayerState.grounded;
+        if (gameObject.GetComponent<PlayerController>() != null)
+            pc = gameObject.GetComponent<PlayerController>();
+
+        if (gameObject.GetComponent<PlayerInput>() != null)
+            pi = gameObject.GetComponent<PlayerInput>();
+        
+        if (gameObject.GetComponent<Rigidbody>() != null)
+            rb = gameObject.GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        // Determine player direction (normalized)
-        if (cameraMode) {
-            directionVector = GetAxisInput_TopDown();
-        } else {
-            directionVector = GetAxisInput_Isometric();
-        }
-
-        HandleOtherInput();
+        directionVector = new Vector3(pi.InputAxis.x, 0f, pi.InputAxis.y);
     }
 
     void FixedUpdate()
     {
-        // Move player's position given inputed direction * speed * amount of time passed
-        rb.MovePosition(transform.position + (directionVector * movementSpeed * Time.deltaTime));
-        // transform.position += directionVector * movementSpeed * Time.deltaTime;
+        if (pc.GroundCheck()) {
+            pc.animator.SetBool("IsFalling", false);
+            pc.animator.SetBool("IsJumping", false);
+            isJumping = false;
+        }
 
-        // Applies constant gravity to the player of about 9.8 (m/s)^2
-        rb.AddForce(-transform.up * gravity, ForceMode.Acceleration);
+        if (transform.position.y <= desiredHeight + 0.1f && transform.position.y >= desiredHeight - 0.1f) {
+            isJumping = false;
+            pc.animator.SetBool("IsJumping", isJumping);
+            pc.animator.SetBool("IsFalling", true);
+        }
+
+        if (pc.GroundCheck() && pi.jumpKey) {
+            desiredHeight = transform.position.y + jumpHeight;
+            isJumping = true;
+            pc.animator.SetBool("IsJumping", isJumping);
+            jumpVelocity = Mathf.Sqrt(2 * gravity * jumpHeight);
+            rb.AddForce(Vector3.up * jumpVelocity, ForceMode.VelocityChange);
+        }
+        
+        // * Testing different jump types
+        // if (rb.velocity.y < 0) {
+        //     Debug.Log("grav rb: " + Physics.gravity);
+        //     Physics.gravity = new Vector3(0f, gravity * 2, 0f) * Vector3.down;
+        // } else Physics.gravity = new Vector3(0f, gravity, 0f) * Vector3.down;
+
+        // Update model facing direction
+        desiredForward = Vector3.RotateTowards(transform.forward, directionVector, rotationSpeed * Time.deltaTime, 0f);
+        modelRotation = Quaternion.LookRotation(desiredForward);
     }
 
-    // Returns a vector based on horizontal and vertical input axis
-    Vector3 GetAxisInput_TopDown()
+
+    /* ---------------------------------------------------------------- */
+    /*                           Helper Methods                         */
+    /* ---------------------------------------------------------------- */
+
+    // bellow vars are used to lerp between walk and run speeds
+    float tw = 0f;
+    float tr = 0f;
+    float t_acc = 0.02f;
+
+    // Jump related vars
+    float desiredHeight = 0f;
+
+    // rotation of player model
+    Quaternion modelRotation = Quaternion.identity;
+
+    public void MovePlayer(bool runFlag)
     {
-        /*
-        *  Here in 3D space (in Unity) the vertical and horizontal
-        *  movement axis are defined by X and Z, not X and Y
-        *  Also im no longer using GetAxis() from unity's input
-        *  system because the acceleration and decceleration values
-        *  are too slow...
-        */
-        // Vector3 direction = new Vector3(
-        //     Input.GetAxis("Horizontal"),  // X
-        //     0f,                           // Y
-        //     Input.GetAxis("Vertical")     // Z
-        // );
 
-        Vector3 direction = Vector3.zero;
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
-            direction.z = 1.0f;
+        // if player is walking
+        if (!runFlag) {
+            tr = 0f;
+
+            currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, tw);
+
+            transform.position += directionVector * currentSpeed * Time.deltaTime;
+            transform.rotation = modelRotation;
+            // transform.eulerAngles = desiredForward;
+
+            if (tw < 1f)
+                tw += t_acc;
+            
         }
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
-            direction.z = -1.0f;
-        }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
-            direction.x = 1.0f;
-        }
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
-            direction.x = -1.0f;
-        }
+        // else player is running
+        else {
+            tw = 0f;
 
+            currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, tr);
+            
+            transform.position += directionVector * currentSpeed * Time.deltaTime;
+            transform.rotation = modelRotation;
+            // transform.eulerAngles = desiredForward;
 
-        // will help maintain a consistant velocity when moving diagonally
-        direction.Normalize();
-
-        return direction;
-    }
-
-    Vector3 GetAxisInput_Isometric()
-    {
-        Vector3 direction = Vector3.zero;
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
-            direction.x = 1.0f;
-            direction.y = 0.0f;
-            direction.z = 1.0f;
-        }
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
-            direction.x = -1.0f;
-            direction.y = 0.0f;
-            direction.z = -1.0f;
-        }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
-            direction.x = 1.0f;
-            direction.y = 0.0f;
-            direction.z = -1.0f;
-        }
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
-            direction.x = -1.0f;
-            direction.y = 0.0f;
-            direction.z = 1.0f;
-        }
-
-        direction.Normalize();
-        return direction;
-    }
-
-    void HandleOtherInput()
-    {
-        // Jumping if on ground
-        if (Input.GetKeyDown(KeyCode.Space) && currentState == PlayerState.grounded) {
-            PerformJump();
-        }
-
-        // Running logic
-        if (Input.GetKey(KeyCode.LeftShift)) {
-            // movementSpeed = Mathf.Lerp(movementSpeed, runSpeed, t);
-            // t += t_acc;
-            movementSpeed = runSpeed;
-        } else {
-            movementSpeed = walkSpeed;
-            // t = 0f;
-        }
-    }
-
-    void PerformJump()
-    {
-        // The bellow equations were used to derive the velocity value 'v'
-        // float PE = gravity * rb.mass * (float)height;  // This is potential energy (PE = mgh)
-        // float KE = (((1/2)*rb.mass)*(v*v)); // This is Kinetic Energy (KE = ((1/2)m)*(V)^2)
-
-        // height = 10.0f;                        // Height of the jump
-        playerVelocity = Mathf.Sqrt(2 * gravity * height);  // in physics this represents velecotity just before impact
-
-        rb.AddForce(transform.up * playerVelocity, ForceMode.VelocityChange);
-        // rb.AddForce(directionVector * 2.0f, ForceMode.VelocityChange);
-    }
-
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "Ground") {
-            currentState = PlayerState.grounded;
-        }
-    }
-
-    void OnCollisionExit(Collision other) {
-        if (other.gameObject.tag == "Ground") {
-            currentState = PlayerState.jumping;
+            if (tr < 1f)
+                tr += t_acc;
         }
     }
 }
