@@ -12,8 +12,8 @@ The core concept of the game involves the player venturing out into an open envi
 ## Build Contributions
 
 #### Proof of Concept Build
-###### [Submission Doc](https://docs.google.com/document/d/1zmiD56hhCFNOTp7yyA7xTGTJVNLScY67CEVMH6y1p7I/edit?usp=sharing "Submission Doc")
 ---
+###### [Submission Doc](https://docs.google.com/document/d/1zmiD56hhCFNOTp7yyA7xTGTJVNLScY67CEVMH6y1p7I/edit?usp=sharing "Submission Doc")
    * Seth Tal
       * Player Controller
       * Camera Controller
@@ -27,9 +27,11 @@ The core concept of the game involves the player venturing out into an open envi
 ---
 
 #### Alpha Build
+---
    * Seth Tal
       > TODO
    * Zack Johnson
       > TODO
    * Brennan Holmes
       > TODO
+---
