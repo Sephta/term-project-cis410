@@ -126,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    [SerializeField] float currAtkTime = 0f;
+    float currAtkTime = 0f;
     public void PlayerAttack()
     {
         currAtkTime += Time.deltaTime;

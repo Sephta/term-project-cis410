@@ -5616,6 +5616,16 @@ PrefabInstance:
       propertyPath: runSpeed
       value: 3.2
       objectReference: {fileID: 0}
+    - target: {fileID: 5841109444190421733, guid: ca0fde06b2b2efd41889141986c5a36e,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5841109444190421733, guid: ca0fde06b2b2efd41889141986c5a36e,
+        type: 3}
+      propertyPath: m_Drag
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca0fde06b2b2efd41889141986c5a36e, type: 3}
 --- !u!1 &1178786122

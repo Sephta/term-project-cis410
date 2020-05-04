@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("IsWalking", true);
                 animator.SetBool("IsIdle", false);
                 animator.SetBool("HasAttacked", false);
-                animator.SetFloat("AnimationSpeed", pm.currentSpeed - 1f);
+                animator.SetFloat("AnimationSpeed", pm.currentSpeed - 0.5f);
                 pm.PlayerMove(pi.runKey);
                 break;
 
@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // If player is falling (not because of jumping, i.e. walks off a ledge)
-        if (rb.velocity.y < 0  && !pm.isJumping) {
+        if (rb.velocity.y < 0  && !pm.isJumping && !GroundCheck()) {
             animator.SetBool("IsFalling", true);
         }
     }
