@@ -19,6 +19,8 @@ Build/
 UserSettings/
 TurnTheGameOn/
 TurnTheGameOn.meta
+Assets/VSCode/
+VSCode.meta
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
