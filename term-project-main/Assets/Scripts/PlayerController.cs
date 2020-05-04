@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     /* ------------------- */
 
     public enum PlayerState { idle, walking, running, attacking };
+    public PlayerState prevState;
     public PlayerState currentState;
 
     public bool grounded;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     // Private Vars
     private PlayerInput pi;
     private PlayerMovement pm;
+    private Rigidbody rb;
 
 
     /* ---------------------------------------------------------------- */
@@ -43,7 +45,11 @@ public class PlayerController : MonoBehaviour
         if (gameObject.GetComponent<PlayerMovement>() != null)
             pm = gameObject.GetComponent<PlayerMovement>();
 
+        if (gameObject.GetComponent<Rigidbody>() != null)
+            rb = gameObject.GetComponent<Rigidbody>();
+
         currentState = PlayerState.idle;
+        prevState = PlayerState.idle;
 
         playerCamera.transform.eulerAngles = cameraAngle;
     }
@@ -51,6 +57,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         UpdateMovementState();
+        UpdateAttackState();
     }
 
     void FixedUpdate()
@@ -61,25 +68,32 @@ public class PlayerController : MonoBehaviour
             case PlayerState.idle:
                 animator.SetBool("IsIdle", true);
                 animator.SetBool("IsWalking", false);
+                animator.SetBool("HasAttacked", false);
                 animator.SetFloat("AnimationSpeed", 2f);
                 break;
 
             case PlayerState.walking:
                 animator.SetBool("IsWalking", true);
                 animator.SetBool("IsIdle", false);
+                animator.SetBool("HasAttacked", false);
                 animator.SetFloat("AnimationSpeed", pm.currentSpeed - 1f);
-                pm.MovePlayer(pi.runKey);
+                pm.PlayerMove(pi.runKey);
                 break;
 
             case PlayerState.running:
                 animator.SetBool("IsWalking", true);
                 animator.SetBool("IsIdle", false);
+                animator.SetBool("HasAttacked", false);
                 animator.SetFloat("AnimationSpeed", pm.currentSpeed - 1f);
-                pm.MovePlayer(pi.runKey);
+                pm.PlayerMove(pi.runKey);
                 break;
 
             case PlayerState.attacking:
                 animator.SetBool("IsIdle", false);
+                animator.SetBool("IsWalking", false);
+                animator.SetBool("HasAttacked", true);
+                animator.SetFloat("AnimationSpeed", 1.7f);
+                pm.PlayerAttack();
                 break;
         }
             
@@ -94,31 +108,58 @@ public class PlayerController : MonoBehaviour
     /*                           Helper Methods                         */
     /* ---------------------------------------------------------------- */
 
+    /* Changes the currentState of the Player
+     * for private use only
+    */
     void ChangeState(PlayerState newState)
     {
         if (currentState == newState)
             return;
 
+        prevState = currentState;
         currentState = newState;
     }
 
-    public void UpdatePlayerState(PlayerState state)
-    {
+    /* public version of the function above
+     * For use outside of this PlayerController script
+    */
+    public void UpdatePlayerState(PlayerState state) { ChangeState(state); }
 
-        ChangeState(state);
-    }
-
+    /* Tracks movement behavior
+     * Tracks behavior of player movement to update the states (walking, running)
+    */
     void UpdateMovementState()
     {
-        if (pi.InputAxis.magnitude > 0 && !pm.isJumping) {
+        // GroundCheck
+        if (GroundCheck()) {
+            animator.SetBool("IsFalling", false);
+        }
+
+        if (pi.InputAxis.magnitude > 0 && !pm.isJumping && currentState != PlayerState.attacking) {
             ChangeState((pi.runKey) ? PlayerState.running : PlayerState.walking);
         }
 
         if (pi.InputAxis.magnitude == 0 && currentState != PlayerState.attacking) {
             ChangeState(PlayerState.idle);
         }
+
+        // If player is falling (not because of jumping, i.e. walks off a ledge)
+        if (rb.velocity.y < 0  && !pm.isJumping) {
+            animator.SetBool("IsFalling", true);
+        }
     }
 
+    /* Tracks attack behavior
+     * Tracks the attack behavior to update the state(s) > (attacking)
+    */
+    void UpdateAttackState()
+    {
+        if (pi.attackKey && GroundCheck() && !pm.isJumping) {
+            ChangeState(PlayerState.attacking);
+        }
+    }
+
+    // Basic Ground check using a Physics.Raycast
     RaycastHit hitData;
     Ray ray;
     public bool GroundCheck()
@@ -130,6 +171,10 @@ public class PlayerController : MonoBehaviour
         return grounded;
     }
 
+    /* Updates transfrom of the camera
+     * Modifies transform.position
+     * Modifies transform.rotation (Maybe? / Eventually?)
+    */
     void UpdatePlayerCamera()
     {
         playerCamera.transform.position = Vector3.Lerp(playerCamera.transform.position, transform.position + cameraPosition, camFollowSpeed * Time.deltaTime);

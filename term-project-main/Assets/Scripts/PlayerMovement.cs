@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
             pc.animator.SetBool("IsFalling", true);
         }
 
-        if (pc.GroundCheck() && pi.jumpKey) {
+        if (pc.GroundCheck() && pi.jumpKey && pc.currentState != PlayerController.PlayerState.attacking) {
             desiredHeight = transform.position.y + jumpHeight;
             isJumping = true;
             pc.animator.SetBool("IsJumping", isJumping);
@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
     // rotation of player model
     Quaternion modelRotation = Quaternion.identity;
 
-    public void MovePlayer(bool runFlag)
+    public void PlayerMove(bool runFlag)
     {
 
         // if player is walking
@@ -123,6 +123,18 @@ public class PlayerMovement : MonoBehaviour
 
             if (tr < 1f)
                 tr += t_acc;
+        }
+    }
+
+    [SerializeField] float currAtkTime = 0f;
+    public void PlayerAttack()
+    {
+        currAtkTime += Time.deltaTime;
+        AnimatorStateInfo currState = pc.animator.GetCurrentAnimatorStateInfo(0);
+        if (currAtkTime >= currState.length) {
+            currAtkTime = 0f;
+
+            pc.UpdatePlayerState(pc.prevState);
         }
     }
 }
