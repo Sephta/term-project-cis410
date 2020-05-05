@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     // Public Vars
     public Animator animator;
+    public Animator cameraAnimator;
 
     /* Player Camera Vars
      * Camera Game Object
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
     /* ------------------- */
 
     public enum PlayerState { idle, walking, running, attacking };
-    public PlayerState prevState;
+    [HideInInspector] public PlayerState prevState;
     public PlayerState currentState;
 
     public bool grounded;
@@ -93,7 +94,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("IsWalking", false);
                 animator.SetBool("HasAttacked", true);
                 animator.SetFloat("AnimationSpeed", 1.7f);
-                pm.PlayerAttack();
+                pm.CombatState();
                 break;
         }
             
@@ -154,7 +155,9 @@ public class PlayerController : MonoBehaviour
     */
     void UpdateAttackState()
     {
-        if (pi.attackKey && GroundCheck() && !pm.isJumping) {
+        if (pi.attackKey && GroundCheck() && !pm.isJumping && pm.canCombo) {
+            animator.SetTrigger("DoCombo");
+            pm.PlayerAttack();
             ChangeState(PlayerState.attacking);
         }
     }
@@ -178,5 +181,11 @@ public class PlayerController : MonoBehaviour
     void UpdatePlayerCamera()
     {
         playerCamera.transform.position = Vector3.Lerp(playerCamera.transform.position, transform.position + cameraPosition, camFollowSpeed * Time.deltaTime);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, 1.25f);
     }
 }

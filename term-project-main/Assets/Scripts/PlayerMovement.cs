@@ -11,17 +11,23 @@ public class PlayerMovement : MonoBehaviour
     public float walkSpeed = 0f;
     public float runSpeed = 0f;
     public float jumpHeight = 0f;
-    public float gravity = 9.8f;
+    [HideInInspector] public float gravity = 9.8f;
     public float rotationSpeed = 0f;
 
     // Private Vars
-    [SerializeField] Vector3 directionVector = Vector3.zero;
+    Vector3 directionVector = Vector3.zero;
     float jumpVelocity = 0f;
     Vector3 desiredForward = Vector3.zero;
 
     private PlayerController pc;
     private PlayerInput pi;
     private Rigidbody rb;
+
+    // Combat Vars
+    [HideInInspector]
+    public bool canCombo;
+    [HideInInspector]
+    public int comboCounter;
 
 
     /* ---------------------------------------------------------------- */
@@ -38,11 +44,19 @@ public class PlayerMovement : MonoBehaviour
         
         if (gameObject.GetComponent<Rigidbody>() != null)
             rb = gameObject.GetComponent<Rigidbody>();
+
+        // Init combat vars
+        comboCounter = 0;
+        canCombo = true;
     }
 
     void Update()
     {
         directionVector = new Vector3(pi.InputAxis.x, 0f, pi.InputAxis.y);
+        
+        // Increment based on number of clicks
+        // if (pi.attackKey) comboCounter++;
+        // comboCounter = Mathf.Clamp(comboCounter, 0, 3);
     }
 
     void FixedUpdate()
@@ -127,14 +141,45 @@ public class PlayerMovement : MonoBehaviour
     }
 
     float currAtkTime = 0f;
-    public void PlayerAttack()
+    public void CombatState()
     {
-        currAtkTime += Time.deltaTime;
+        if (pi.attackKey) {
+            pc.animator.SetTrigger("DoCombo");
+            PlayerAttack();
+            currAtkTime = 0f;
+        }
+
         AnimatorStateInfo currState = pc.animator.GetCurrentAnimatorStateInfo(0);
+
+        currAtkTime += Time.deltaTime;
         if (currAtkTime >= currState.length) {
             currAtkTime = 0f;
-
             pc.UpdatePlayerState(pc.prevState);
+            comboCounter++;
+        }
+    }
+
+    public void PlayerAttack()
+    {
+        // All of the enemies damaged this attack call
+        HashSet<GameObject> damaged = new HashSet<GameObject>();
+
+        // Mask of all layers to ignore
+        // LayerMask mask = (1) & (1 << 2) & (1 << 4) & (1 << 5) & (1 << 8) & (1 << 10);
+        LayerMask enemyMask = (1 << 9);
+
+        // A list of all of the colliders within range of the player
+        Collider[] withinRange = Physics.OverlapSphere(transform.position, 1.25f, enemyMask);
+
+        // For each enemy within range, apply damage
+        foreach (Collider col in withinRange) {
+            Transform target = col.transform;
+            Vector3 dirToTarget = (target.position - transform.position).normalized;
+            if (col.gameObject.tag == "Enemy" && !damaged.Contains(col.gameObject) && Vector3.Angle(transform.forward, dirToTarget) < 45) {
+                damaged.Add(col.gameObject);
+                Debug.Log("Hit Dummy");
+                pc.cameraAnimator.SetTrigger("CamShake");
+            }
         }
     }
 }
