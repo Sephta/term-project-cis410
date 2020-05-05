@@ -110,9 +110,22 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayerMove(bool runFlag)
     {
+        // runFlag = runFlag & (stam == 0);
+        // else player is running
+        if (runFlag) {
+            tw = 0f;
 
+            currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, tr);
+            
+            transform.position += directionVector * currentSpeed * Time.deltaTime;
+            transform.rotation = modelRotation;
+            // transform.eulerAngles = desiredForward;
+
+            if (tr < 1f)
+                tr += t_acc;
+        }
         // if player is walking
-        if (!runFlag) {
+        else {
             tr = 0f;
 
             currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, tw);
@@ -124,19 +137,6 @@ public class PlayerMovement : MonoBehaviour
             if (tw < 1f)
                 tw += t_acc;
             
-        }
-        // else player is running
-        else {
-            tw = 0f;
-
-            currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, tr);
-            
-            transform.position += directionVector * currentSpeed * Time.deltaTime;
-            transform.rotation = modelRotation;
-            // transform.eulerAngles = desiredForward;
-
-            if (tr < 1f)
-                tr += t_acc;
         }
     }
 
