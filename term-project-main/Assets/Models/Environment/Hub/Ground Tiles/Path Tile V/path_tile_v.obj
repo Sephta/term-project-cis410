@@ -4,7 +4,7 @@
 o 
 
 # material
-mtllib path_tile.mtl
+mtllib path_tile_v.mtl
 usemtl palette
 
 # normals
