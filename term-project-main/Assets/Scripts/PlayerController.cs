@@ -102,6 +102,11 @@ public class PlayerController : MonoBehaviour
 
         UpdatePlayerCamera();
         // GroundCheck();
+
+        // stamina regen
+        if (currentState != PlayerState.running && pm.stamina < 100)
+            pm.stamina += pm.regenRate;
+
     }
 
 

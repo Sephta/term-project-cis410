@@ -14,6 +14,11 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public float gravity = 9.8f;
     public float rotationSpeed = 0f;
 
+    // stam
+    public float stamina = 100;
+    public float drainRate = 1f;
+    public float regenRate = 1f;
+
     // Private Vars
     Vector3 prevDirection = Vector3.zero;
     Vector3 directionVector = Vector3.zero;
@@ -115,7 +120,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayerMove(bool runFlag)
     {
-        // runFlag = runFlag & (stam == 0);
+        runFlag = (pi.runKey && stamina > 0);
+
+
         // else player is running
         if (runFlag) {
             tw = 0f;
@@ -125,6 +132,8 @@ public class PlayerMovement : MonoBehaviour
             transform.position += directionVector * currentSpeed * Time.deltaTime;
             // transform.rotation = modelRotation;
             // transform.eulerAngles = desiredForward;
+
+            stamina -= drainRate;
 
             if (tr < 1f)
                 tr += t_acc;
