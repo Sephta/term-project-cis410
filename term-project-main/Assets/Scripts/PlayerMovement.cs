@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed = 0f;
 
     // Private Vars
+    Vector3 prevDirection = Vector3.zero;
     Vector3 directionVector = Vector3.zero;
     float jumpVelocity = 0f;
     Vector3 desiredForward = Vector3.zero;
@@ -52,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        prevDirection = directionVector;
         directionVector = new Vector3(pi.InputAxis.x, 0f, pi.InputAxis.y);
         
         // Increment based on number of clicks
@@ -89,7 +91,10 @@ public class PlayerMovement : MonoBehaviour
 
         // Update model facing direction
         desiredForward = Vector3.RotateTowards(transform.forward, directionVector, rotationSpeed * Time.deltaTime, 0f);
-        modelRotation = Quaternion.LookRotation(desiredForward);
+        // modelRotation = Quaternion.LookRotation(desiredForward, Vector3.up);
+        // transform.forward = Vector3.Normalize(directionVector);
+        if (pc.currentState != PlayerController.PlayerState.attacking)
+            transform.rotation = Quaternion.LookRotation(desiredForward);
     }
 
 
@@ -118,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
             currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, tr);
             
             transform.position += directionVector * currentSpeed * Time.deltaTime;
-            transform.rotation = modelRotation;
+            // transform.rotation = modelRotation;
             // transform.eulerAngles = desiredForward;
 
             if (tr < 1f)
@@ -131,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
             currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, tw);
 
             transform.position += directionVector * currentSpeed * Time.deltaTime;
-            transform.rotation = modelRotation;
+            // transform.rotation = modelRotation;
             // transform.eulerAngles = desiredForward;
 
             if (tw < 1f)
@@ -175,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
         foreach (Collider col in withinRange) {
             Transform target = col.transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
-            if (col.gameObject.tag == "Enemy" && !damaged.Contains(col.gameObject) && Vector3.Angle(transform.forward, dirToTarget) < 45) {
+            if (col.gameObject.tag == "Enemy" && !damaged.Contains(col.gameObject) && Vector3.Angle(transform.forward, dirToTarget) < 90) {
                 damaged.Add(col.gameObject);
                 Debug.Log("Hit Dummy");
                 pc.cameraAnimator.SetTrigger("CamShake");
