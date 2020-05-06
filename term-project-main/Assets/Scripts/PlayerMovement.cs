@@ -148,16 +148,22 @@ public class PlayerMovement : MonoBehaviour
     float currAtkTime = 0f;
     public void CombatState()
     {
+        // AnimatorStateInfo currState = pc.animator.GetCurrentAnimatorStateInfo(0);
+
+        Debug.Log("Ideal Attack Time: " + 0.5f + " , Current time: " + currAtkTime);
+        currAtkTime += Time.deltaTime;
+
+        // Trigger New Attack
         if (pi.attackKey) {
             pc.animator.SetTrigger("DoCombo");
+
+            // Hit Detection
             PlayerAttack();
+
             currAtkTime = 0f;
         }
 
-        AnimatorStateInfo currState = pc.animator.GetCurrentAnimatorStateInfo(0);
-
-        currAtkTime += Time.deltaTime;
-        if (currAtkTime >= currState.length) {
+        if (currAtkTime >= 0.5f) {
             currAtkTime = 0f;
             pc.UpdatePlayerState(pc.prevState);
             comboCounter++;

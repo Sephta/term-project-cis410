@@ -23,22 +23,6 @@ public class PlayerInput : MonoBehaviour
             input.x = Input.GetAxis("Horizontal");
             input.y = Input.GetAxis("Vertical");
 
-            // * Or directly check the keyboard keys
-            /*
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
-                input.y = 1.0f;
-            }
-            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
-                input.y = -1.0f;
-            }
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
-                input.x = 1.0f;
-            }
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
-                input.x = -1.0f;
-            }
-            */
-
             input.Normalize();
             return input;
         }
@@ -58,6 +42,10 @@ public class PlayerInput : MonoBehaviour
 
     public bool attackKey {
         get { return Input.GetMouseButtonDown(0); }
+    }
+
+    public bool chargeAttackKey {
+        get { return Input.GetMouseButton(0); }
     }
 
     // Private Vars ------------------------------------------------------

@@ -183,9 +183,9 @@ public class PlayerController : MonoBehaviour
         playerCamera.transform.position = Vector3.Lerp(playerCamera.transform.position, transform.position + cameraPosition, camFollowSpeed * Time.deltaTime);
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, 1.25f);
-    }
+    // void OnDrawGizmos()
+    // {
+    //     Gizmos.color = Color.yellow;
+    //     Gizmos.DrawWireSphere(transform.position, 1.25f);
+    // }
 }
