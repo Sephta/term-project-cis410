@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public float gravity = 9.8f;
     public float rotationSpeed = 0f;
 
-    // stam
     public float stamina = 100;
     public float drainRate = 1f;
     public float regenRate = 1f;

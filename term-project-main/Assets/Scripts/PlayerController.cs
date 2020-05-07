@@ -7,7 +7,16 @@ public class PlayerController : MonoBehaviour
     // Public Vars
     public Animator animator;
     public Animator cameraAnimator;
+    
+    public Bartender healthbar;
+    public Bartender staminabar;
 
+    // HP & Stamina
+    public float maxHealth = 100;
+    public float maxStamina = 100;
+    public float currentHealth;
+    public float currentStamina;
+    
     /* Player Camera Vars
      * Camera Game Object
      * pos
@@ -25,6 +34,7 @@ public class PlayerController : MonoBehaviour
     public PlayerState currentState;
 
     public bool grounded;
+
 
     // Private Vars
     private PlayerInput pi;
@@ -53,12 +63,27 @@ public class PlayerController : MonoBehaviour
         prevState = PlayerState.idle;
 
         playerCamera.transform.eulerAngles = cameraAngle;
+
+        currentHealth = maxHealth;
+        healthbar.setMax(maxHealth);
+
+        currentStamina = pm.stamina;
     }
 
     void Update()
     {
         UpdateMovementState();
         UpdateAttackState();
+        
+        UpdateStamina(pm.stamina);
+
+        // TEST: testing HP system functionality
+        if (Input.GetKeyDown(KeyCode.P))
+            TakeDamage(15);
+
+        // stamina regen
+        if (currentState != PlayerState.running && pm.stamina < maxStamina)
+            pm.stamina += pm.regenRate;
     }
 
     void FixedUpdate()
@@ -102,11 +127,6 @@ public class PlayerController : MonoBehaviour
 
         UpdatePlayerCamera();
         // GroundCheck();
-
-        // stamina regen
-        if (currentState != PlayerState.running && pm.stamina < 100)
-            pm.stamina += pm.regenRate;
-
     }
 
 
@@ -193,4 +213,15 @@ public class PlayerController : MonoBehaviour
     //     Gizmos.color = Color.yellow;
     //     Gizmos.DrawWireSphere(transform.position, 1.25f);
     // }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthbar.setValue(currentHealth);
+    }
+
+    void UpdateStamina(float value)
+    {
+        staminabar.setValue(value);
+    }
 }
