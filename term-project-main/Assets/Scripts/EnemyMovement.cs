@@ -44,7 +44,6 @@ public class EnemyMovement : MonoBehaviour
         index = index == (waypoints.Length - 1) ? 0 : index + 1;
     }
 
-
     void Tick()
     {
         // move to next waypoint position
@@ -71,6 +70,5 @@ public class EnemyMovement : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }
 
