@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8989556380430014128}
   - component: {fileID: 1773467385990149832}
   - component: {fileID: 1844433958990582124}
+  - component: {fileID: 4204873922168413192}
   m_Layer: 8
   m_Name: Player - Improved
   m_TagString: Player
@@ -106,11 +107,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8989556380430014137}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 1}
+  m_Size: {x: 1, y: 1, z: 2}
+  m_Center: {x: 0, y: 0, z: 1.5}
 --- !u!114 &8989556380430014128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +138,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 8700522643187577754}
   cameraAnimator: {fileID: 0}
+  healthbar: {fileID: 0}
+  staminabar: {fileID: 0}
+  maxHealth: 100
+  maxStamina: 100
+  currentHealth: 0
+  currentStamina: 0
   playerCamera: {fileID: 0}
   cameraPosition: {x: 0, y: 4, z: -5}
   cameraAngle: {x: 32, y: 0, z: 0}
@@ -163,8 +170,27 @@ MonoBehaviour:
   jumpHeight: 1.25
   gravity: 9.8
   rotationSpeed: 20
+  stamina: 100
+  drainRate: 1
+  regenRate: 1
+  hitBox: {fileID: 641072703}
+  directionVector: {x: 0, y: 0, z: 0}
   canCombo: 0
   comboCounter: 0
+--- !u!114 &4204873922168413192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8989556380430014137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d3cbb294592ed4eaeae1bf14b9d822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pm: {fileID: 0}
+  pc: {fileID: 0}
 --- !u!1001 &1039321303376669277
 PrefabInstance:
   m_ObjectHideFlags: 0

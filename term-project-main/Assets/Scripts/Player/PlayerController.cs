@@ -1,22 +1,55 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
+// ------------------------------------------------------------------
+// THIS CODE ALLOWS FOR READ ONLY VARIABLES VISIBLE WITHIN THE EDITOR
+// Credit: It3ration on the Unity Forums
+// Link: https://answers.unity.com/questions/489942/how-to-make-a-readonly-property-in-inspector.html
+public class ReadOnlyAttribute : PropertyAttribute {}
+ 
+ [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
+ public class ReadOnlyDrawer : PropertyDrawer
+ {
+     public override float GetPropertyHeight(SerializedProperty property,
+                                             GUIContent label)
+     {
+         return EditorGUI.GetPropertyHeight(property, label, true);
+     }
+ 
+     public override void OnGUI(Rect position,
+                                SerializedProperty property,
+                                GUIContent label)
+     {
+         GUI.enabled = false;
+         EditorGUI.PropertyField(position, property, label, true);
+         GUI.enabled = true;
+     }
+ }
+// ------------------------------------------------------------------
+
+[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
 {
     // Public Vars
+    [Header("Animators")]
     public Animator animator;
     public Animator cameraAnimator;
     
+    [Header("Prefabs")]
     public Bartender healthbar;
     public Bartender staminabar;
 
     // HP & Stamina
+    [Header("Player Stats")]
     public float maxHealth = 100;
     public float maxStamina = 100;
-    public float currentHealth;
-    public float currentStamina;
+    [ReadOnly] public float currentHealth;
+    [ReadOnly] public float currentStamina;
     
+    [Header("Camera Settings")]
     /* Player Camera Vars
      * Camera Game Object
      * pos
@@ -26,13 +59,14 @@ public class PlayerController : MonoBehaviour
     public Camera playerCamera;
     public Vector3 cameraPosition;
     public Vector3 cameraAngle;
-    public float camFollowSpeed;
+    [Range(0, 5)] public float camFollowSpeed;
     /* ------------------- */
 
     public enum PlayerState { idle, walking, running, attacking };
     [HideInInspector] public PlayerState prevState;
-    public PlayerState currentState;
+    [ReadOnly] public PlayerState currentState;
 
+    [Header("Grounded State")]
     public bool grounded;
 
 
@@ -180,9 +214,11 @@ public class PlayerController : MonoBehaviour
     */
     void UpdateAttackState()
     {
-        if (pi.attackKey && GroundCheck() && !pm.isJumping && pm.canCombo) {
-            animator.SetTrigger("DoCombo");
-            pm.PlayerAttack();
+        // ! Removed canCombo check
+        if (pi.attackKey && GroundCheck() && !pm.isJumping) {
+            // animator.SetTrigger("DoCombo");
+            // pm.PlayerAttack();
+            // pm.DetectEnemies();
             ChangeState(PlayerState.attacking);
         }
     }
