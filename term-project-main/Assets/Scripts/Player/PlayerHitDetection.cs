@@ -27,7 +27,7 @@ public class PlayerHitDetection : MonoBehaviour
             Rigidbody enemyRB = other.gameObject.GetComponent<Rigidbody>();
             if (enemyRB != null)
             {
-                enemyRB.AddForce(pm.directionVector * knockback, ForceMode.Impulse);
+                enemyRB.AddForce(pm.directionVector * knockback, ForceMode.VelocityChange);
             }
 
             EnemyMovement em = other.gameObject.GetComponent<EnemyMovement>();

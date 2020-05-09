@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public Animator cameraAnimator;
     
-    [Header("Prefabs")]
+    [Header("StatBars")]
     public Bartender healthbar;
     public Bartender staminabar;
 

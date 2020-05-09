@@ -29,20 +29,29 @@ public class EnemyMovement : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
         index = Random.Range(0, waypoints.Length);
+    }
 
-        // InvokeRepeating("Tick", 0, 0.5f);
+    /* ---------------------------------------------------------------- */
+    /*                              Updates                             */
+    /* ---------------------------------------------------------------- */
 
+    void FixedUpdate()
+    {
         if (waypoints.Length > 0)
         {
             InvokeRepeating("Patrol", 0, patrolTime);
         }
+
+        Tick();
+
+        if (health <= 0) {
+            Destroy(gameObject);
+        }
     }
 
-    void Patrol()
-    {
-        // if index is at last waypoint, go back to waypoints[0], else iterate index
-        index = index == (waypoints.Length - 1) ? 0 : index + 1;
-    }
+    /* ---------------------------------------------------------------- */
+    /*                           Helper Methods                         */
+    /* ---------------------------------------------------------------- */
 
     void Tick()
     {
@@ -62,13 +71,10 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    void Patrol()
     {
-        Tick();
-
-        if (health <= 0) {
-            Destroy(gameObject);
-        }
+        // if index is at last waypoint, go back to waypoints[0], else iterate index
+        index = (index == (waypoints.Length - 1)) ? 0 : index + 1;
     }
 }
 
