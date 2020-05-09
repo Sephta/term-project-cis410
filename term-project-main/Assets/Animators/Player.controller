@@ -350,6 +350,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: DoCombo
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: HasAttacked
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4198765177093330819}
   m_Solo: 0
@@ -1046,7 +1049,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -4552515205397978273, guid: 2cdf9ea5ce202d4429badcee3d39d68b,
+  m_Motion: {fileID: 4723146814002874508, guid: 2cdf9ea5ce202d4429badcee3d39d68b,
     type: 3}
   m_Tag: 
   m_SpeedParameter: AnimationSpeed

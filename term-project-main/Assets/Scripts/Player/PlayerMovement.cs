@@ -178,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
         //     currAtkTime = 0f;
         // }
 
-        if (currAtkTime >= 0.5f) {
+        if (currAtkTime >= 0.2f) {
             hitBox.enabled = false;
             currAtkTime = 0f;
             pc.UpdatePlayerState(pc.prevState);

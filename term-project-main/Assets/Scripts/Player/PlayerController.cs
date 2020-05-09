@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("IsIdle", false);
                 animator.SetBool("IsWalking", false);
                 animator.SetBool("HasAttacked", true);
-                animator.SetFloat("AnimationSpeed", 1.7f);
+                animator.SetFloat("AnimationSpeed", 1.0f);
                 pm.CombatState();
                 break;
         }
