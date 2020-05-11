@@ -31,7 +31,7 @@ public class PlayerHitDetection : MonoBehaviour
             }
 
             EnemyMovement em = other.gameObject.GetComponent<EnemyMovement>();
-            em.health -= 25;
+            em.TakeDamage(25);
         }
     }
 

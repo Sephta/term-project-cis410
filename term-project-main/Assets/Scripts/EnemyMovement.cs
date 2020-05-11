@@ -7,28 +7,37 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float patrolTime = 8f;
-    public float aggroRange = 5f;
+    [Header("Stats")]
+    public Bartender enemyHealth;
+    [Range(0, 100)] public int health = 100;
+
+    [Header("Nav Agent Vars")]
+    [Range(2, 5)] public float agentSpeed;
+    public float patrolTime;
+    public float aggroRange;
+
+    [Header("Waypoints")]
     public Transform[] waypoints;
 
-    public int health = 100;
-
-    int index;
-    float speed, agentSpeed;
-    Transform player;
-
-    // Animator anim;
     NavMeshAgent agent;
+    Transform player;
+    Animator animator;
+
+    int currWaypoint = 0;
+    int prevWaypoint = 0;
 
     void Awake()
     {
-        // anim = GetComponent<Animator>();
-        agent = GetComponent<NavMeshAgent>();
+        if (gameObject.GetComponent<NavMeshAgent>() != null)
+            agent = gameObject.GetComponent<NavMeshAgent>();
 
-        if (agent != null) { agentSpeed = agent.speed; }
+        if (gameObject.GetComponent<Animator>() != null)
+            animator = gameObject.GetComponent<Animator>();
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        index = Random.Range(0, waypoints.Length);
+
+        // Random starting waypoint
+        currWaypoint = Random.Range(0, waypoints.Length);
     }
 
     /* ---------------------------------------------------------------- */
@@ -52,15 +61,20 @@ public class EnemyMovement : MonoBehaviour
     /* ---------------------------------------------------------------- */
     /*                           Helper Methods                         */
     /* ---------------------------------------------------------------- */
+    public void TakeDamage(int amount)
+    {
+        health -= amount;
+        enemyHealth.setValue(health);
+    }
 
     void Tick()
     {
         // move to next waypoint position
-        agent.destination = waypoints[index].position;
+        agent.destination = waypoints[currWaypoint].position;
 
         // set non-aggro speed to "walking pace"
         // NOTE: could set patSpeed, chaseSpeed, etc as variables and swap between them based on state
-        agent.speed = agentSpeed / 2;
+        agent.speed = agentSpeed;
 
         // if player in aggro range...
         if (player != null && Vector3.Distance(transform.position, player.position) < aggroRange)
@@ -73,8 +87,8 @@ public class EnemyMovement : MonoBehaviour
 
     void Patrol()
     {
-        // if index is at last waypoint, go back to waypoints[0], else iterate index
-        index = (index == (waypoints.Length - 1)) ? 0 : index + 1;
+        // if currWaypoint is at last waypoint, go back to waypoints[0], else iterate currWaypoint
+        currWaypoint = (currWaypoint == (waypoints.Length - 1)) ? 0 : currWaypoint++;
     }
 }
 
