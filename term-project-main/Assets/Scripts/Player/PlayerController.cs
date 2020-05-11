@@ -260,4 +260,10 @@ public class PlayerController : MonoBehaviour
     {
         staminabar.setValue(value);
     }
+
+    // CURRENTLY FOR TESTING SHOP SYSTEM, WILL NEED TO IMPLEMENT EQUIP (UNLOCK?) BEHAVIOR WHEN WE HAVE >1 WEAPON
+    public void EquipItem()
+    {
+        Debug.Log("Equipped Item!");
+    }
 }
