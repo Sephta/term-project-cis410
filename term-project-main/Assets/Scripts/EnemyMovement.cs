@@ -9,7 +9,7 @@ public class EnemyMovement : MonoBehaviour
 {
     [Header("Stats")]
     public Bartender enemyHealth;
-    [Range(0, 100)] public int health = 100;
+    [Range(0, 100)] public float health = 100;
 
     [Header("Nav Agent Vars")]
     [Range(2, 5)] public float agentSpeed;
@@ -61,7 +61,7 @@ public class EnemyMovement : MonoBehaviour
     /* ---------------------------------------------------------------- */
     /*                           Helper Methods                         */
     /* ---------------------------------------------------------------- */
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         health -= amount;
         enemyHealth.setValue(health);

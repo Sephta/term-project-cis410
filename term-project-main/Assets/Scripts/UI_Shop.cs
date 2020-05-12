@@ -7,20 +7,24 @@ public class UI_Shop : MonoBehaviour
 {
     private Transform container;
     private Transform shopItemTemplate;
+    
+    private GameObject player;
+    private PlayerController pc;
 
     private void Awake()
     {
         container = transform.Find("Container");
         shopItemTemplate = container.Find("ShopItemTemplate");
         shopItemTemplate.gameObject.SetActive(false);
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        pc = player.GetComponent<PlayerController>();
     }
 
     private void Start()
     {
         // generate shop item buttons
-        CreateItemButton("Weapon 1", 420, 0);
-        CreateItemButton("Weapon 2", 1, 1);
-        CreateItemButton("Weapon Threeeeeeeeee", 6969, 2);
+        CreateItemButton("Sword Upgrade", 50, 0);
 
         HideShop();
     }
@@ -63,6 +67,15 @@ public class UI_Shop : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // public void BuyItem() ... ?
+    public void BuyItem(int cost)
+    {
+        if (player != null && pc != null)
+        {
+            if (pc.SpendCurrency(cost))
+            {
+                pc.EquipItem();
+            }
+        }
+    }
 }
 

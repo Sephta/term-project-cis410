@@ -9,6 +9,9 @@ public class PlayerHitDetection : MonoBehaviour
 
     private float knockback = 2f;
 
+    //[SerializeField] private float damageModifier = 1f;
+    //[SerializeField] private float baseDamage = 25f;
+
     void Start()
     {
         if (gameObject.GetComponent<PlayerMovement>() != null)
@@ -31,7 +34,7 @@ public class PlayerHitDetection : MonoBehaviour
             }
 
             EnemyMovement em = other.gameObject.GetComponent<EnemyMovement>();
-            em.TakeDamage(25);
+            em.TakeDamage(pc.baseDamage * pc.damageModifier);
         }
     }
 

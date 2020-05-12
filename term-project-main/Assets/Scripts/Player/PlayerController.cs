@@ -46,8 +46,11 @@ public class PlayerController : MonoBehaviour
     [Header("Player Stats")]
     public float maxHealth = 100;
     public float maxStamina = 100;
+    public int wallet = 500;
     [ReadOnly] public float currentHealth;
     [ReadOnly] public float currentStamina;
+    public float damageModifier = 1f;
+    public float baseDamage = 25f;
     
     [Header("Camera Settings")]
     /* Player Camera Vars
@@ -74,6 +77,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInput pi;
     private PlayerMovement pm;
     private Rigidbody rb;
+
 
 
     /* ---------------------------------------------------------------- */
@@ -261,9 +265,24 @@ public class PlayerController : MonoBehaviour
         staminabar.setValue(value);
     }
 
-    // CURRENTLY FOR TESTING SHOP SYSTEM, WILL NEED TO IMPLEMENT EQUIP (UNLOCK?) BEHAVIOR WHEN WE HAVE >1 WEAPON
     public void EquipItem()
     {
-        Debug.Log("Equipped Item!");
+        damageModifier += 0.2f;
+        Debug.Log("Upgrade equipped! Current attack power: " + (damageModifier * baseDamage));
+    }
+    
+    public bool SpendCurrency(int amount)
+    {
+        if (wallet >= amount)
+        {
+            wallet -= amount;
+            return true;
+        }
+        
+        else
+        {
+            Debug.Log("not enough cash!");
+            return false;
+        }
     }
 }
