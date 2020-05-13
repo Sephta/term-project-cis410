@@ -86,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6596446198732657682}
-  - component: {fileID: 7831966655410709166}
+  - component: {fileID: 5980208365268684727}
   m_Layer: 0
   m_Name: path_tile_h
   m_TagString: Untagged
@@ -109,8 +109,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7831966655410709166
-BoxCollider:
+--- !u!64 &5980208365268684727
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -119,6 +119,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10, y: 0.1, z: 10}
-  m_Center: {x: -5, y: 0.05, z: -5}
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -2432090755550338912, guid: 9414a1c0d37bbb94894c2e725d8192bd, type: 3}
