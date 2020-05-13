@@ -6,7 +6,7 @@ public class ShopTrigger : MonoBehaviour
 {
 
     [SerializeField]
-    private UI_Shop shop;
+    private UI_Shop shop = null;
 
     private void OnTriggerEnter(Collider other)
     {
