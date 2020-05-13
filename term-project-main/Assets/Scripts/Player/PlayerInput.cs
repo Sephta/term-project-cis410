@@ -41,12 +41,12 @@ public class PlayerInput : MonoBehaviour
     }
 
     public bool attackKey {
-        get { return Input.GetMouseButtonDown(0); }
+        get { return Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.P); }
     }
 
-    public bool chargeAttackKey {
-        get { return Input.GetMouseButton(0); }
-    }
+    // public bool chargeAttackKey {
+    //     get { return Input.GetMouseButton(0); }
+    // }
 
     // Private Vars ------------------------------------------------------
 

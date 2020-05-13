@@ -4350,11 +4350,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Test Dummy
       objectReference: {fileID: 0}
-    - target: {fileID: 11650604087253526, guid: bdd125c6d2f148a4ba4548cae1503710,
+    - target: {fileID: 2640037538381621233, guid: bdd125c6d2f148a4ba4548cae1503710,
         type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 247546713}
+    - target: {fileID: 2640037538381621233, guid: bdd125c6d2f148a4ba4548cae1503710,
+        type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1585472994}
+    - target: {fileID: 2640037538381621233, guid: bdd125c6d2f148a4ba4548cae1503710,
+        type: 3}
+      propertyPath: waypoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1272926706}
+    - target: {fileID: 2640037538381621233, guid: bdd125c6d2f148a4ba4548cae1503710,
+        type: 3}
+      propertyPath: waypoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 616298142}
     - target: {fileID: 3155603415184108114, guid: bdd125c6d2f148a4ba4548cae1503710,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4410,72 +4425,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3155603415184108114, guid: bdd125c6d2f148a4ba4548cae1503710,
+    - target: {fileID: 5247391875918659090, guid: bdd125c6d2f148a4ba4548cae1503710,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3155603415184108114, guid: bdd125c6d2f148a4ba4548cae1503710,
+    - target: {fileID: 5247391875918659090, guid: bdd125c6d2f148a4ba4548cae1503710,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3155603415184108114, guid: bdd125c6d2f148a4ba4548cae1503710,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdd125c6d2f148a4ba4548cae1503710, type: 3}
---- !u!1 &866653188 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 11650604087253526, guid: bdd125c6d2f148a4ba4548cae1503710,
-    type: 3}
-  m_PrefabInstance: {fileID: 866653187}
-  m_PrefabAsset: {fileID: 0}
---- !u!195 &866653189
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866653188}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 1
-  m_Acceleration: 1
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 1
-  m_AutoTraverseOffMeshLink: 0
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &866653195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866653188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c5bf67d2d8f69b48b08aaeb2bc0603a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  agentSpeed: 3.5
-  patrolTime: 2
-  aggroRange: 2
-  waypoints:
-  - {fileID: 247546713}
-  - {fileID: 1585472994}
-  - {fileID: 1272926706}
-  - {fileID: 616298142}
 --- !u!1 &890300961
 GameObject:
   m_ObjectHideFlags: 0
@@ -5687,6 +5648,11 @@ PrefabInstance:
         type: 3}
       propertyPath: runSpeed
       value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844433958990582124, guid: ca0fde06b2b2efd41889141986c5a36e,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1773467385990149832, guid: ca0fde06b2b2efd41889141986c5a36e,
         type: 3}

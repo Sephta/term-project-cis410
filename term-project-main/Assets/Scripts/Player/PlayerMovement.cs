@@ -12,13 +12,13 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping = false;
 
     [Header("Movement")]
-    [ReadOnly] public float currentSpeed = 0f;
+    /* [ReadOnly] */ public float currentSpeed = 0f;
     [Range(0, 6)] public float walkSpeed = 0f;
     [Range(2, 8)] public float runSpeed = 0f;
     public float jumpHeight = 0f;
+    [Range(0.1f, 0.8f)] public float rotationSpeed = 0f;
 
     [HideInInspector] public float gravity = 9.8f;
-    [HideInInspector] public float rotationSpeed = 20f;
 
     [Header("Stamina")]
     [Range(0, 250)] public float stamina = 100;
@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public Vector3 directionVector = Vector3.zero;
     float jumpVelocity = 0f;
     Vector3 desiredForward = Vector3.zero;
+    Quaternion prevRotation = Quaternion.identity;
 
     private PlayerController pc;
     private PlayerInput pi;
@@ -98,11 +99,20 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Update model facing direction ----------------------------------------------------------
-        desiredForward = Vector3.RotateTowards(transform.forward, directionVector, rotationSpeed * Time.deltaTime, 0f);
+        // desiredForward = Vector3.RotateTowards(transform.forward, directionVector, rotationSpeed * Time.deltaTime, 0f);
         // modelRotation = Quaternion.LookRotation(desiredForward, Vector3.up);
         // transform.forward = Vector3.Normalize(directionVector);
-        if (pc.currentState != PlayerController.PlayerState.attacking)
-            transform.rotation = Quaternion.LookRotation(desiredForward);
+        // if (pc.currentState != PlayerController.PlayerState.attacking)
+            // transform.rotation = Quaternion.LookRotation(desiredForward);
+        if (directionVector != Vector3.zero)
+        {
+            prevRotation = transform.rotation;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(directionVector), rotationSpeed);
+        }
+        else
+        {
+            transform.rotation = prevRotation;
+        }
         // ----------------------------------------------------------------------------------------
     }
 
@@ -133,9 +143,11 @@ public class PlayerMovement : MonoBehaviour
 
             currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, tr);
             
-            transform.position += directionVector * currentSpeed * Time.deltaTime;
+            // transform.position += directionVector * currentSpeed * Time.deltaTime;
             // transform.rotation = modelRotation;
             // transform.eulerAngles = desiredForward;
+
+            transform.Translate(directionVector * currentSpeed * Time.deltaTime, Space.World);
 
             stamina -= drainRate;
 
@@ -148,9 +160,11 @@ public class PlayerMovement : MonoBehaviour
 
             currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, tw);
 
-            transform.position += directionVector * currentSpeed * Time.deltaTime;
+            // transform.position += directionVector * currentSpeed * Time.deltaTime;
             // transform.rotation = modelRotation;
             // transform.eulerAngles = desiredForward;
+
+            transform.Translate(directionVector * currentSpeed * Time.deltaTime, Space.World);
 
             if (tw < 1f)
                 tw += t_acc;

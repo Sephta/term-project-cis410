@@ -2,31 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 // ------------------------------------------------------------------
 // THIS CODE ALLOWS FOR READ ONLY VARIABLES VISIBLE WITHIN THE EDITOR
 // Credit: It3ration on the Unity Forums
 // Link: https://answers.unity.com/questions/489942/how-to-make-a-readonly-property-in-inspector.html
-public class ReadOnlyAttribute : PropertyAttribute {}
+// public class ReadOnlyAttribute : PropertyAttribute {}
  
- [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
- public class ReadOnlyDrawer : PropertyDrawer
- {
-     public override float GetPropertyHeight(SerializedProperty property,
-                                             GUIContent label)
-     {
-         return EditorGUI.GetPropertyHeight(property, label, true);
-     }
+//  [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
+//  public class ReadOnlyDrawer : PropertyDrawer
+//  {
+//      public override float GetPropertyHeight(SerializedProperty property,
+//                                              GUIContent label)
+//      {
+//          return EditorGUI.GetPropertyHeight(property, label, true);
+//      }
  
-     public override void OnGUI(Rect position,
-                                SerializedProperty property,
-                                GUIContent label)
-     {
-         GUI.enabled = false;
-         EditorGUI.PropertyField(position, property, label, true);
-         GUI.enabled = true;
-     }
- }
+//      public override void OnGUI(Rect position,
+//                                 SerializedProperty property,
+//                                 GUIContent label)
+//      {
+//          GUI.enabled = false;
+//          EditorGUI.PropertyField(position, property, label, true);
+//          GUI.enabled = true;
+//      }
+//  }
 // ------------------------------------------------------------------
 
 [RequireComponent(typeof(PlayerMovement))]
@@ -47,8 +48,8 @@ public class PlayerController : MonoBehaviour
     public float maxHealth = 100;
     public float maxStamina = 100;
     public int wallet = 500;
-    [ReadOnly] public float currentHealth;
-    [ReadOnly] public float currentStamina;
+    /* [ReadOnly] */ public float currentHealth;
+    /* [ReadOnly] */ public float currentStamina;
     public float damageModifier = 1f;
     public float baseDamage = 25f;
     
@@ -67,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
     public enum PlayerState { idle, walking, running, attacking };
     [HideInInspector] public PlayerState prevState;
-    [ReadOnly] public PlayerState currentState;
+    /* [ReadOnly] */ public PlayerState currentState;
 
     [Header("Grounded State")]
     public bool grounded;
@@ -116,8 +117,8 @@ public class PlayerController : MonoBehaviour
         UpdateStamina(pm.stamina);
 
         // TEST: testing HP system functionality
-        if (Input.GetKeyDown(KeyCode.P))
-            TakeDamage(15);
+        // if (Input.GetKeyDown(KeyCode.P))
+        //     TakeDamage(15);
 
         // stamina regen
         if (currentState != PlayerState.running && pm.stamina < maxStamina)
