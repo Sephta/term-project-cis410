@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         // transform.forward = Vector3.Normalize(directionVector);
         // if (pc.currentState != PlayerController.PlayerState.attacking)
             // transform.rotation = Quaternion.LookRotation(desiredForward);
-
+         
         if (!pc.rotateAroundPlayer) {
             if (directionVector != Vector3.zero)
             {
@@ -115,6 +115,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.rotation = prevRotation;
             }
+        }
+        else
+        {
+            float h = 3.0f * Input.GetAxis("Mouse X");
+            transform.Rotate(0, h, 0);
         }
         // ----------------------------------------------------------------------------------------
     }

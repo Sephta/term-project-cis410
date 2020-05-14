@@ -250,18 +250,23 @@ public class PlayerController : MonoBehaviour
     */
     void UpdatePlayerCamera()
     {
-        if (rotateAroundPlayer) {
-            Quaternion camTurnAngle = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * rotationSpeed, Vector3.up);
-            cameraOffset = camTurnAngle * cameraOffset;
-            transform.rotation *= camTurnAngle;
+        if (rotateAroundPlayer) 
+        {
+            Quaternion newRotation = Quaternion.LookRotation(transform.position - playerCamera.transform.position);
+            playerCamera.transform.rotation = Quaternion.Slerp(playerCamera.transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
+
+            Vector3 newPosition = transform.position + transform.forward * cameraOffset.z + transform.up * cameraOffset.y;
+            playerCamera.transform.position = Vector3.Slerp(playerCamera.transform.position, newPosition, rotationSpeed * Time.deltaTime);
+        } 
+        else 
+        {
+            Vector3 newPosition = transform.position + cameraOffset;
+            playerCamera.transform.position = Vector3.Lerp(playerCamera.transform.position, newPosition, camFollowSpeed * Time.deltaTime);
         }
 
-        Vector3 newPosition = transform.position + cameraOffset;
-
-        playerCamera.transform.position = Vector3.Lerp(playerCamera.transform.position, newPosition, camFollowSpeed * Time.deltaTime);
-
-        if (rotateAroundPlayer) {
-            playerCamera.transform.LookAt(transform);
+        if (rotateAroundPlayer) 
+        {
+           playerCamera.transform.LookAt(transform);
         }
     }
 
