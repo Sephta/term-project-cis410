@@ -302,4 +302,15 @@ public class PlayerController : MonoBehaviour
             return false;
         }
     }
+
+    void OnCollisionEnter(Collision collision) {
+        rb.angularVelocity = Vector3.zero;
+    }
+
+    void OnCollisionStay(Collision collision) {
+        rb.angularVelocity = Vector3.zero;
+    }
+    void OnCollisionExit(Collision collision) {
+        rb.angularVelocity = Vector3.zero;
+    }
 }
