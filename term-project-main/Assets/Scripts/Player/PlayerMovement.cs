@@ -104,14 +104,17 @@ public class PlayerMovement : MonoBehaviour
         // transform.forward = Vector3.Normalize(directionVector);
         // if (pc.currentState != PlayerController.PlayerState.attacking)
             // transform.rotation = Quaternion.LookRotation(desiredForward);
-        if (directionVector != Vector3.zero)
-        {
-            prevRotation = transform.rotation;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(directionVector), rotationSpeed);
-        }
-        else
-        {
-            transform.rotation = prevRotation;
+
+        if (!pc.rotateAroundPlayer) {
+            if (directionVector != Vector3.zero)
+            {
+                prevRotation = transform.rotation;
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(directionVector), rotationSpeed);
+            }
+            else
+            {
+                transform.rotation = prevRotation;
+            }
         }
         // ----------------------------------------------------------------------------------------
     }
@@ -147,7 +150,11 @@ public class PlayerMovement : MonoBehaviour
             // transform.rotation = modelRotation;
             // transform.eulerAngles = desiredForward;
 
-            transform.Translate(directionVector * currentSpeed * Time.deltaTime, Space.World);
+            if (pc.rotateAroundPlayer) {
+                transform.Translate(transform.rotation * directionVector * currentSpeed * Time.deltaTime, Space.World);
+            } else {
+                transform.Translate(directionVector * currentSpeed * Time.deltaTime, Space.World);
+            }
 
             stamina -= drainRate;
 
@@ -164,7 +171,11 @@ public class PlayerMovement : MonoBehaviour
             // transform.rotation = modelRotation;
             // transform.eulerAngles = desiredForward;
 
-            transform.Translate(directionVector * currentSpeed * Time.deltaTime, Space.World);
+            if (pc.rotateAroundPlayer) {
+                transform.Translate(transform.rotation * directionVector * currentSpeed * Time.deltaTime, Space.World);
+            } else {
+                transform.Translate(directionVector * currentSpeed * Time.deltaTime, Space.World);
+            }
 
             if (tw < 1f)
                 tw += t_acc;

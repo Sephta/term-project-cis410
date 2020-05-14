@@ -64,6 +64,9 @@ public class PlayerController : MonoBehaviour
     public Vector3 cameraPosition;
     public Vector3 cameraAngle;
     [Range(0, 5)] public float camFollowSpeed;
+    public bool rotateAroundPlayer = true;
+    public float rotationSpeed = 5.0f;
+    private Vector3 cameraOffset;
     /* ------------------- */
 
     public enum PlayerState { idle, walking, running, attacking };
@@ -102,6 +105,7 @@ public class PlayerController : MonoBehaviour
         prevState = PlayerState.idle;
 
         playerCamera.transform.eulerAngles = cameraAngle;
+        cameraOffset = playerCamera.transform.position - transform.position;
 
         currentHealth = maxHealth;
         healthbar.setMax(maxHealth);
@@ -246,7 +250,19 @@ public class PlayerController : MonoBehaviour
     */
     void UpdatePlayerCamera()
     {
-        playerCamera.transform.position = Vector3.Lerp(playerCamera.transform.position, transform.position + cameraPosition, camFollowSpeed * Time.deltaTime);
+        if (rotateAroundPlayer) {
+            Quaternion camTurnAngle = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * rotationSpeed, Vector3.up);
+            cameraOffset = camTurnAngle * cameraOffset;
+            transform.rotation *= camTurnAngle;
+        }
+
+        Vector3 newPosition = transform.position + cameraOffset;
+
+        playerCamera.transform.position = Vector3.Lerp(playerCamera.transform.position, newPosition, camFollowSpeed * Time.deltaTime);
+
+        if (rotateAroundPlayer) {
+            playerCamera.transform.LookAt(transform);
+        }
     }
 
     // void OnDrawGizmos()

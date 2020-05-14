@@ -89,4 +89,8 @@ public class PlayerInput : MonoBehaviour
     {
         return canJump;
     }
+
+    private void OnApplicationFocus(bool focusStatus) {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 }
