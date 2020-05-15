@@ -99,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
             pc.animator.SetBool("IsJumping", isJumping);
             jumpVelocity = Mathf.Sqrt(2 * gravity * jumpHeight);
             rb.AddForce(Vector3.up * jumpVelocity, ForceMode.VelocityChange);
-            Debug.Log("Jumping");
         }
 
         // Update model facing direction ----------------------------------------------------------
