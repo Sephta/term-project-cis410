@@ -8,7 +8,7 @@ public class PlayerHitDetection : MonoBehaviour
     private PlayerMovement pm;
     private PlayerController pc;
 
-    private float knockback = 2f;
+    private float knockback = 3f;
 
     //[SerializeField] private float damageModifier = 1f;
     //[SerializeField] private float baseDamage = 25f;
@@ -32,7 +32,7 @@ public class PlayerHitDetection : MonoBehaviour
         if (startTimer)
             timer += Time.deltaTime;
 
-        if (timer >= 0.5f)
+        if (timer >= 0.65f)
         {
             startTimer = false;
             timer = 0f;
@@ -59,7 +59,7 @@ public class PlayerHitDetection : MonoBehaviour
                 enemyAgent.enabled = false;
                 enemyRB.isKinematic = false;
 
-                enemyRB.AddForce(pm.directionVector * knockback, ForceMode.VelocityChange);
+                enemyRB.AddForce(pm.transform.forward * knockback, ForceMode.VelocityChange);
                 enemyRB.AddForce(Vector3.up * knockback, ForceMode.VelocityChange);
                 startTimer = true;
             }
