@@ -21,9 +21,9 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public float gravity = 9.8f;
 
     [Header("Stamina")]
-    [Range(0, 250)] public float stamina = 100;
-    [Range(1, 10)] public float drainRate = 1f;
-    [Range(1, 10)] public float regenRate = 1f;
+    [Range(0, 100)] public float stamina = 100;
+    [Range(0, 2)] public float drainRate = 1f;
+    [Range(0, 5)] public float regenRate = 1f;
 
     [Header("Hit Detection")]
     public BoxCollider hitBox;

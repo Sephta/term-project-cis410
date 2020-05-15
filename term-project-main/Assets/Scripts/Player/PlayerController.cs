@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 
+
+// ! The bellow code caused issues when compiling the project into a playable build
 // ------------------------------------------------------------------
 // THIS CODE ALLOWS FOR READ ONLY VARIABLES VISIBLE WITHIN THE EDITOR
 // Credit: It3ration on the Unity Forums
@@ -29,6 +31,8 @@ using UnityEngine.SceneManagement;
 //      }
 //  }
 // ------------------------------------------------------------------
+// ! ----------------------------------------------------------------------------
+
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerInput))]
