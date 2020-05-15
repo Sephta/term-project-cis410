@@ -82,6 +82,9 @@ public class PlayerMovement : MonoBehaviour
             pc.animator.SetBool("IsFalling", false);
             pc.animator.SetBool("IsJumping", false);
             isJumping = false;
+            Vector3 vel = rb.velocity;
+            vel.y = 0.0f;
+            rb.velocity = vel;
         }
 
         if (transform.position.y <= desiredHeight + 0.1f && transform.position.y >= desiredHeight - 0.1f) {
@@ -90,12 +93,13 @@ public class PlayerMovement : MonoBehaviour
             pc.animator.SetBool("IsFalling", true);
         }
 
-        if (pc.GroundCheck() && pi.jumpKey && pc.currentState != PlayerController.PlayerState.attacking) {
+        if (pc.GroundCheck() && pi.jumpKey && pc.currentState != PlayerController.PlayerState.attacking && Mathf.Approximately(rb.velocity.y, 0.0f)) {
             desiredHeight = transform.position.y + jumpHeight;
             isJumping = true;
             pc.animator.SetBool("IsJumping", isJumping);
             jumpVelocity = Mathf.Sqrt(2 * gravity * jumpHeight);
             rb.AddForce(Vector3.up * jumpVelocity, ForceMode.VelocityChange);
+            Debug.Log("Jumping");
         }
 
         // Update model facing direction ----------------------------------------------------------
