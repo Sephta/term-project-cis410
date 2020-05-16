@@ -126,8 +126,8 @@ public class PlayerController : MonoBehaviour
         UpdateStamina(pm.stamina);
 
         // TEST: testing HP system functionality
-        //if (Input.GetKeyDown(KeyCode.L))
-        //    TakeDamage(15);
+        if (Input.GetKeyDown(KeyCode.L))
+            TakeDamage(15);
 
         // Stamina Regen
         if (currentState != PlayerState.running && pm.stamina < maxStamina)

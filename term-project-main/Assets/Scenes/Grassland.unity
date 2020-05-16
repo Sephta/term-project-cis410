@@ -13975,8 +13975,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c86a81270c11244be8c2862db431d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 0
-  playerWallet: 0
+  playerHealth: 100
+  playerWallet: 55
 --- !u!4 &573349591
 Transform:
   m_ObjectHideFlags: 0
