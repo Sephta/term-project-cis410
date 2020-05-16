@@ -94,41 +94,42 @@ public class PlayerController : MonoBehaviour
 
     void Start() 
     {
-        // Get Player Input Script
+        // Getters
         if (gameObject.GetComponent<PlayerInput>() != null)
             pi = gameObject.GetComponent<PlayerInput>();
 
-        // Get Player Movement Script
         if (gameObject.GetComponent<PlayerMovement>() != null)
             pm = gameObject.GetComponent<PlayerMovement>();
-
+        
         if (gameObject.GetComponent<Rigidbody>() != null)
             rb = gameObject.GetComponent<Rigidbody>();
 
+        // States
         currentState = PlayerState.idle;
         prevState = PlayerState.idle;
 
+        // Cam
         playerCamera.transform.eulerAngles = cameraAngle;
         cameraOffset = playerCamera.transform.position - transform.position;
-
-        currentHealth = maxHealth;
+        
+        // Stats
         healthbar.setMax(maxHealth);
-
         currentStamina = pm.stamina;
+        LoadPlayer();
+
     }
 
     void Update()
     {
         UpdateMovementState();
         UpdateAttackState();
-        
         UpdateStamina(pm.stamina);
 
         // TEST: testing HP system functionality
-        // if (Input.GetKeyDown(KeyCode.P))
-        //     TakeDamage(15);
+        //if (Input.GetKeyDown(KeyCode.L))
+        //    TakeDamage(15);
 
-        // stamina regen
+        // Stamina Regen
         if (currentState != PlayerState.running && pm.stamina < maxStamina)
             pm.stamina += pm.regenRate;
     }
@@ -310,6 +311,19 @@ public class PlayerController : MonoBehaviour
             Debug.Log("not enough cash!");
             return false;
         }
+    }
+
+    public void SavePlayer()
+    {
+        GlobalControl.Instance.playerHealth = currentHealth;
+        GlobalControl.Instance.playerWallet = wallet;
+    }
+
+    public void LoadPlayer()
+    {
+        currentHealth = GlobalControl.Instance.playerHealth;
+        wallet = GlobalControl.Instance.playerWallet;
+        healthbar.setValue(currentHealth);
     }
 
     void OnCollisionEnter(Collision collision) {
