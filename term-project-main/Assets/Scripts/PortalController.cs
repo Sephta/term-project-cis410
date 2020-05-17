@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PortalController : MonoBehaviour
 {
     public PlayerInput playerInput;
+    public PlayerController playerController;
 
     public bool canTransport = false;
     public bool toGrassland = false;
@@ -15,6 +16,7 @@ public class PortalController : MonoBehaviour
     {
         if (canTransport && playerInput.interactKey)
         {
+            playerController.SavePlayer();
             UsePortal();
         }
     }
