@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: DefaultSword
   m_EditorClassIdentifier: 
   weaponName: Default Sword
-  weaponIcon: {fileID: 0}
-  weaponModel: {fileID: 0}
-  weaponDamage: 0
-  weaponCost: 0
+  weaponIcon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  weaponModel: {fileID: 3078520723586606605, guid: 7a028cbeb9aa77e4ab874d82396433e2,
+    type: 3}
+  weaponDamage: 25
+  weaponCost: 50
