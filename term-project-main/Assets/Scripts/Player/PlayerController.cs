@@ -315,12 +315,18 @@ public class PlayerController : MonoBehaviour
 
     public void SavePlayer()
     {
+        if (GlobalControl.Instance == null)
+            return;
+
         GlobalControl.Instance.playerHealth = currentHealth;
         GlobalControl.Instance.playerWallet = wallet;
     }
 
     public void LoadPlayer()
     {
+        if (GlobalControl.Instance == null)
+            return;
+        
         currentHealth = GlobalControl.Instance.playerHealth;
         wallet = GlobalControl.Instance.playerWallet;
         healthbar.setValue(currentHealth);

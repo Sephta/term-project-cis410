@@ -5654,6 +5654,11 @@ PrefabInstance:
       propertyPath: rotationSpeed
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 1844433958990582124, guid: ca0fde06b2b2efd41889141986c5a36e,
+        type: 3}
+      propertyPath: drainRate
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1773467385990149832, guid: ca0fde06b2b2efd41889141986c5a36e,
         type: 3}
       propertyPath: playerCamera
