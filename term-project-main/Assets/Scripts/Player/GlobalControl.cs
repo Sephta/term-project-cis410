@@ -8,6 +8,7 @@ public class GlobalControl : MonoBehaviour
 
     public float playerHealth = 100;
     public int playerWallet = 55;
+    public GameObject playerWeapon = null;
 
     private void Awake()
     {

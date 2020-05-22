@@ -13,6 +13,7 @@ public class ShopTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             shop.DisplayShop();
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -21,6 +22,7 @@ public class ShopTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             shop.HideShop();
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }

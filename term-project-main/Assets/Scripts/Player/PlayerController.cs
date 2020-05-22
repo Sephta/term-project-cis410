@@ -38,6 +38,10 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
 {
+    // TESTING: weapon equip
+    public GameObject hand;
+    public GameObject equippedWeapon = null;
+
     // Public Vars
     [Header("Animators")]
     public Animator animator;
@@ -116,7 +120,6 @@ public class PlayerController : MonoBehaviour
         healthbar.setMax(maxHealth);
         currentStamina = pm.stamina;
         LoadPlayer();
-
     }
 
     void Update()
@@ -292,10 +295,19 @@ public class PlayerController : MonoBehaviour
         staminabar.setValue(value);
     }
 
-    public void EquipItem()
+    public void EquipItem(GameObject weapon)
     {
-        damageModifier += 0.2f;
-        Debug.Log("Upgrade equipped! Current attack power: " + (damageModifier * baseDamage));
+        // disable currently equipped weapon
+        if (equippedWeapon != null)
+            equippedWeapon.SetActive(false);
+
+        // equip new weapon
+        WeaponController wc = weapon.GetComponent<WeaponController>();
+        weapon.transform.parent = hand.transform;
+        weapon.transform.localPosition = wc.wepPosition;
+        weapon.transform.localEulerAngles = wc.wepRotation;
+        equippedWeapon = weapon;
+        equippedWeapon.SetActive(true);
     }
     
     public bool SpendCurrency(int amount)
@@ -320,6 +332,7 @@ public class PlayerController : MonoBehaviour
 
         GlobalControl.Instance.playerHealth = currentHealth;
         GlobalControl.Instance.playerWallet = wallet;
+        GlobalControl.Instance.playerWeapon = equippedWeapon;
     }
 
     public void LoadPlayer()
@@ -327,8 +340,9 @@ public class PlayerController : MonoBehaviour
         if (GlobalControl.Instance == null)
             return;
         
-        currentHealth = GlobalControl.Instance.playerHealth;
+        EquipItem(GlobalControl.Instance.playerWeapon);
         wallet = GlobalControl.Instance.playerWallet;
+        currentHealth = GlobalControl.Instance.playerHealth;
         healthbar.setValue(currentHealth);
     }
 
