@@ -38,6 +38,8 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
 {
+    // TESTING: weapon equip
+
     // Public Vars
     [Header("Animators")]
     public Animator animator;
@@ -56,6 +58,11 @@ public class PlayerController : MonoBehaviour
     /* [ReadOnly] */ public float currentStamina;
     public float damageModifier = 1f;
     public float baseDamage = 25f;
+    
+    [Header("Equipment")]
+    public GameObject hand;
+    public GameObject activeWeapon = null;      // persistent global weapon
+    public GameObject equippedWeapon = null;    // instance of activeWeapon
     
     [Header("Camera Settings")]
     /* Player Camera Vars
@@ -114,9 +121,10 @@ public class PlayerController : MonoBehaviour
         
         // Stats
         healthbar.setMax(maxHealth);
+        currentHealth = GlobalControl.Instance.playerHealth;
         currentStamina = pm.stamina;
-        LoadPlayer();
 
+        LoadPlayer();
     }
 
     void Update()
@@ -126,8 +134,8 @@ public class PlayerController : MonoBehaviour
         UpdateStamina(pm.stamina);
 
         // TEST: testing HP system functionality
-        if (Input.GetKeyDown(KeyCode.L))
-            TakeDamage(15);
+        //if (Input.GetKeyDown(KeyCode.L))
+        //    TakeDamage(15);
 
         // Stamina Regen
         if (currentState != PlayerState.running && pm.stamina < maxStamina)
@@ -174,7 +182,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsGrounded", GroundCheck());
 
         UpdatePlayerCamera();
-        // GroundCheck();
     }
 
 
@@ -292,12 +299,25 @@ public class PlayerController : MonoBehaviour
         staminabar.setValue(value);
     }
 
-    public void EquipItem()
+    public void EquipItem(GameObject weapon)
     {
-        damageModifier += 0.2f;
-        Debug.Log("Upgrade equipped! Current attack power: " + (damageModifier * baseDamage));
+        // disable currently equipped weapon
+        if (equippedWeapon != null)
+            equippedWeapon.SetActive(false);
+
+        activeWeapon = weapon;
+        GameObject newWep = Instantiate(weapon);
+        WeaponController wc = newWep.GetComponent<WeaponController>();
+
+        newWep.transform.parent = hand.transform;
+        newWep.transform.localPosition = wc.wepPosition;
+        newWep.transform.localEulerAngles = wc.wepRotation;
+        
+        equippedWeapon = newWep;
+        damageModifier = wc.damageMod;
+        equippedWeapon.SetActive(true);
     }
-    
+
     public bool SpendCurrency(int amount)
     {
         if (wallet >= amount)
@@ -320,16 +340,20 @@ public class PlayerController : MonoBehaviour
 
         GlobalControl.Instance.playerHealth = currentHealth;
         GlobalControl.Instance.playerWallet = wallet;
+        GlobalControl.Instance.playerWeapon = activeWeapon;
     }
 
     public void LoadPlayer()
     {
         if (GlobalControl.Instance == null)
             return;
-        
-        currentHealth = GlobalControl.Instance.playerHealth;
+
+        activeWeapon = GlobalControl.Instance.playerWeapon;
         wallet = GlobalControl.Instance.playerWallet;
+        currentHealth = GlobalControl.Instance.playerHealth;
+        
         healthbar.setValue(currentHealth);
+        EquipItem(activeWeapon);
     }
 
     void OnCollisionEnter(Collision collision) {

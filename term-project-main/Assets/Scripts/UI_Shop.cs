@@ -11,6 +11,10 @@ public class UI_Shop : MonoBehaviour
     private GameObject player;
     private PlayerController pc;
 
+    public GameObject sword;
+    public GameObject scimitar;
+    public GameObject axe;
+
     private void Awake()
     {
         container = transform.Find("Container");
@@ -23,59 +27,79 @@ public class UI_Shop : MonoBehaviour
 
     private void Start()
     {
-        // generate shop item buttons
-        CreateItemButton("Sword Upgrade", 50, 0);
-
+        // get references to persistent weapons
+        sword = GlobalControl.Instance.sword;
+        scimitar = GlobalControl.Instance.scimitar;
+        axe = GlobalControl.Instance.axe;
+        
         HideShop();
     }
 
-    private void CreateItemButton(string itemName, int itemCost, int positionIndex)
+
+    public void DisplayShop() { gameObject.SetActive(true); }
+
+    public void HideShop() { gameObject.SetActive(false); }
+
+    public void BuySword()
     {
-        // ^^ WILL NEED TO EDIT DECLARATION TO TAKE SPRITES IF WE DECIDE TO HAVE EQUIPMENT SPRITES LATER ^^
 
-        // create item template inside of container; get RectTransform data
-        Transform shopItemTransform = Instantiate(shopItemTemplate, container);
-        RectTransform shopItemRectTransform = shopItemTransform.GetComponent<RectTransform>();
-        
-        // define button color behavior
-        Button button = shopItemTransform.GetComponent<Button>();
-        ColorBlock cb = button.colors;
-        cb.highlightedColor = Color.grey;
-        cb.pressedColor = Color.cyan;
-        button.colors = cb;
-
-        // populate shop item buttons
-        float shopItemSpace = -100f;
-        shopItemRectTransform.anchoredPosition = new Vector2(0, (shopItemSpace * positionIndex));
-
-        // assign parameters to shop items
-        shopItemTransform.Find("ItemName").GetComponent<Text>().text = itemName;
-        shopItemTransform.Find("ItemCost").GetComponent<Text>().text = itemCost.ToString();
-        // ~ shopItemTransform.Find("ItemIcon").GetComponent<Image>().sprite = itemSprite;
-
-
-        shopItemTransform.gameObject.SetActive(true);
-    }
-
-    public void DisplayShop()
-    {
-        gameObject.SetActive(true);
-    }
-
-    public void HideShop()
-    {
-        gameObject.SetActive(false);
-    }
-
-    public void BuyItem(int cost)
-    {
         if (player != null && pc != null)
         {
-            if (pc.SpendCurrency(cost))
+            if (pc.SpendCurrency(sword.GetComponent<WeaponController>().cost))
             {
-                pc.EquipItem();
+                pc.EquipItem(sword);
             }
         }
     }
+
+    public void BuyScimitar()
+    {
+
+        if (player != null && pc != null)
+        {
+            if (pc.SpendCurrency(scimitar.GetComponent<WeaponController>().cost))
+            {
+                pc.EquipItem(scimitar);
+            }
+        }
+    }
+
+    public void BuyAxe()
+    {
+
+        if (player != null && pc != null)
+        {
+            if (pc.SpendCurrency(axe.GetComponent<WeaponController>().cost))
+            {
+                pc.EquipItem(axe);
+            }
+        }
+    }
+    
+    // Not currently in use, buttons are created manually
+    //private void CreateItemButton(GameObject item, string itemName, int itemCost, int positionIndex)
+    //{
+
+    //    // create item template inside of container; get RectTransform data
+    //    Transform shopItemTransform = Instantiate(shopItemTemplate, container);
+    //    RectTransform shopItemRectTransform = shopItemTransform.GetComponent<RectTransform>();
+        
+    //    // define button color behavior
+    //    Button button = shopItemTransform.GetComponent<Button>();
+    //    ColorBlock cb = button.colors;
+    //    cb.highlightedColor = Color.grey;
+    //    cb.pressedColor = Color.cyan;
+    //    button.colors = cb;
+
+    //    // populate shop item buttons
+    //    float shopItemSpace = -100f;
+    //    shopItemRectTransform.anchoredPosition = new Vector2(0, (shopItemSpace * positionIndex));
+
+    //    // assign parameters to shop items
+    //    shopItemTransform.Find("ItemName").GetComponent<Text>().text = itemName;
+    //    shopItemTransform.Find("ItemCost").GetComponent<Text>().text = itemCost.ToString();
+
+    //    shopItemTransform.gameObject.SetActive(true);
+    //}
 }
 

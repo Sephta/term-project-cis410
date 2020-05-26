@@ -6,8 +6,15 @@ public class GlobalControl : MonoBehaviour
 {
     public static GlobalControl Instance;
 
+    // player stats
     public float playerHealth = 100;
     public int playerWallet = 55;
+    public GameObject playerWeapon;
+
+    // persistent weapons
+    public GameObject sword;
+    public GameObject axe;
+    public GameObject scimitar;
 
     private void Awake()
     {
