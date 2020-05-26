@@ -23,28 +23,13 @@ public class WeaponData : ScriptableObject
     /*                Get / Set                */
     /* --------------------------------------- */
     
-    public string WeaponName
-    {
-        get { return weaponName; }
-    }
+    public string WeaponName { get { return weaponName; } }
 
-    public Sprite WeaponIcon
-    {
-        get { return weaponIcon; }
-    }
+    public Sprite WeaponIcon { get { return weaponIcon; } }
 
-    public GameObject WeaponModel
-    {
-        get { return weaponModel; }
-    }
+    public GameObject WeaponModel { get { return weaponModel; } }
 
-    public int WeaponDamage
-    {
-        get { return weaponDamage; }
-    }
+    public int WeaponDamage { get { return weaponDamage; } }
 
-    public int WeaponCost
-    {
-        get { return weaponCost; }
-    }
+    public int WeaponCost { get { return weaponCost; } }
 }
