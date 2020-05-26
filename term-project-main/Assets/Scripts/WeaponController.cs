@@ -9,4 +9,5 @@ public class WeaponController : MonoBehaviour
     public Vector3 wepRotation;
 
     public int cost;
+    public float damageMod;
 }

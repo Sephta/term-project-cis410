@@ -833,11 +833,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1258328297}
-        m_MethodName: BuyItem
-        m_Mode: 2
+        m_MethodName: BuySword
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1517760309}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 50
           m_FloatArgument: 0
           m_StringArgument: Test_Weapon
@@ -1095,12 +1095,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 351247942263326283, guid: 3f43156ce25d0cf49ae0682bfe69ae30,
     type: 3}
   m_PrefabInstance: {fileID: 915503481}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &363556149 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 96c044abe9fd086449842ffe01c45e87,
-    type: 3}
-  m_PrefabInstance: {fileID: 1102541425}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &370191107
 GameObject:
@@ -1421,7 +1415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &477225171
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2385,7 +2379,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2076192891}
+    m_TransformParent: {fileID: 1301549235}
     m_Modifications:
     - target: {fileID: -927199367670048503, guid: 02136fa83b32363439525356e3d8f2ea,
         type: 3}
@@ -2395,22 +2389,22 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 02136fa83b32363439525356e3d8f2ea,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.202
+      value: 10.520447
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 02136fa83b32363439525356e3d8f2ea,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.79
+      value: 1.1873655
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 02136fa83b32363439525356e3d8f2ea,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.14
+      value: -6.1799273
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 02136fa83b32363439525356e3d8f2ea,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 02136fa83b32363439525356e3d8f2ea,
         type: 3}
@@ -2785,12 +2779,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db1b21e441951624b8b6e3fbb3512f67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &958727341 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 4d0c102d92b576349a49779656aebb29,
-    type: 3}
-  m_PrefabInstance: {fileID: 1672917153}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &987204757 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 4d0c102d92b576349a49779656aebb29,
@@ -2812,6 +2800,13 @@ MonoBehaviour:
   wepPosition: {x: 0.236, y: -0.079, z: -0.111}
   wepRotation: {x: -25.901, y: -177.088, z: 264.942}
   cost: 10
+  damageMod: 2
+--- !u!4 &987204760 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 4d0c102d92b576349a49779656aebb29,
+    type: 3}
+  m_PrefabInstance: {fileID: 1672917153}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &995251153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2970,7 +2965,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2076192891}
+    m_TransformParent: {fileID: 1301549235}
     m_Modifications:
     - target: {fileID: -927199367670048503, guid: 96c044abe9fd086449842ffe01c45e87,
         type: 3}
@@ -2980,22 +2975,22 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 96c044abe9fd086449842ffe01c45e87,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.64
+      value: 10.082446
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 96c044abe9fd086449842ffe01c45e87,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.79
+      value: 1.1873655
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 96c044abe9fd086449842ffe01c45e87,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.14
+      value: -6.1799273
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 96c044abe9fd086449842ffe01c45e87,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 96c044abe9fd086449842ffe01c45e87,
         type: 3}
@@ -3604,11 +3599,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1258328297}
-        m_MethodName: BuyItem
-        m_Mode: 2
+        m_MethodName: BuyAxe
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 987204757}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 50
           m_FloatArgument: 0
           m_StringArgument: Test_Weapon
@@ -3780,6 +3775,9 @@ MonoBehaviour:
   playerHealth: 100
   playerWallet: 55
   playerWeapon: {fileID: 1517760309}
+  sword: {fileID: 1517760309}
+  axe: {fileID: 987204757}
+  scimitar: {fileID: 1901932299}
 --- !u!4 &1301549235
 Transform:
   m_ObjectHideFlags: 0
@@ -3788,9 +3786,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301549233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.654466, y: -0.24194813, z: 3.1613064}
+  m_LocalPosition: {x: -11.654466, y: -3.87, z: 3.1613064}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 987204760}
+  - {fileID: 1901932302}
+  - {fileID: 1517760312}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4164,12 +4165,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7778135750776295324}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1487964991 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 02136fa83b32363439525356e3d8f2ea,
-    type: 3}
-  m_PrefabInstance: {fileID: 788594219}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1494806872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4340,6 +4335,13 @@ MonoBehaviour:
   wepPosition: {x: 0.1392003, y: 0.14305, z: 0.09219195}
   wepRotation: {x: 167.929, y: -177.809, z: -88.41299}
   cost: 0
+  damageMod: 1
+--- !u!4 &1517760312 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 96c044abe9fd086449842ffe01c45e87,
+    type: 3}
+  m_PrefabInstance: {fileID: 1102541425}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1583052031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6596446198732657682, guid: 564d51bc3400145439b20f6397b39929,
@@ -4436,11 +4438,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1258328297}
-        m_MethodName: BuyItem
-        m_Mode: 2
+        m_MethodName: BuyScimitar
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1901932299}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 50
           m_FloatArgument: 0
           m_StringArgument: Test_Weapon
@@ -4538,7 +4540,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2076192891}
+    m_TransformParent: {fileID: 1301549235}
     m_Modifications:
     - target: {fileID: -927199367670048503, guid: 4d0c102d92b576349a49779656aebb29,
         type: 3}
@@ -4548,22 +4550,22 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 4d0c102d92b576349a49779656aebb29,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.61
+      value: 11.112446
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4d0c102d92b576349a49779656aebb29,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.79
+      value: 1.1873655
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4d0c102d92b576349a49779656aebb29,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.14
+      value: -6.1799273
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4d0c102d92b576349a49779656aebb29,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4d0c102d92b576349a49779656aebb29,
         type: 3}
@@ -5016,6 +5018,13 @@ MonoBehaviour:
   wepPosition: {x: 0.1392003, y: 0.14305, z: 0.09219195}
   wepRotation: {x: 167.929, y: -177.809, z: -88.41299}
   cost: 10
+  damageMod: 1.5
+--- !u!4 &1901932302 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 02136fa83b32363439525356e3d8f2ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 788594219}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1905278198 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2300040320155383844, guid: d78fe9c3a568a974d90d1ed2310d723a,
@@ -5272,7 +5281,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2069201696}
   - component: {fileID: 2069201695}
-  - component: {fileID: 2069201694}
   - component: {fileID: 2069201697}
   m_Layer: 0
   m_Name: ShopTrigger
@@ -5281,21 +5289,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2069201694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2069201693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0180e4a68be39c4583a548d84af5cce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sword: {fileID: 0}
-  scimitar: {fileID: 0}
-  axe: {fileID: 0}
 --- !u!65 &2069201695
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5336,39 +5329,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shop: {fileID: 1258328297}
---- !u!1 &2076192890
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2076192891}
-  m_Layer: 0
-  m_Name: Weapons
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2076192891
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2076192890}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0679805, y: -1.8445826, z: 1.1213789}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 958727341}
-  - {fileID: 1487964991}
-  - {fileID: 363556149}
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2119343604
 PrefabInstance:
   m_ObjectHideFlags: 0

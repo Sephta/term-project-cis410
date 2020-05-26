@@ -27,9 +27,55 @@ public class UI_Shop : MonoBehaviour
 
     private void Start()
     {
+        // get references to persistent weapons
+        sword = GlobalControl.Instance.sword;
+        scimitar = GlobalControl.Instance.scimitar;
+        axe = GlobalControl.Instance.axe;
+        
         HideShop();
     }
 
+
+    public void DisplayShop() { gameObject.SetActive(true); }
+
+    public void HideShop() { gameObject.SetActive(false); }
+
+    public void BuySword()
+    {
+
+        if (player != null && pc != null)
+        {
+            if (pc.SpendCurrency(sword.GetComponent<WeaponController>().cost))
+            {
+                pc.EquipItem(sword);
+            }
+        }
+    }
+
+    public void BuyScimitar()
+    {
+
+        if (player != null && pc != null)
+        {
+            if (pc.SpendCurrency(scimitar.GetComponent<WeaponController>().cost))
+            {
+                pc.EquipItem(scimitar);
+            }
+        }
+    }
+
+    public void BuyAxe()
+    {
+
+        if (player != null && pc != null)
+        {
+            if (pc.SpendCurrency(axe.GetComponent<WeaponController>().cost))
+            {
+                pc.EquipItem(axe);
+            }
+        }
+    }
+    
     // Not currently in use, buttons are created manually
     //private void CreateItemButton(GameObject item, string itemName, int itemCost, int positionIndex)
     //{
@@ -55,21 +101,5 @@ public class UI_Shop : MonoBehaviour
 
     //    shopItemTransform.gameObject.SetActive(true);
     //}
-
-    public void DisplayShop() { gameObject.SetActive(true); }
-
-    public void HideShop() { gameObject.SetActive(false); }
-
-    public void BuyItem(GameObject item)
-    {
-
-        if (player != null && pc != null)
-        {
-            if (pc.SpendCurrency(item.GetComponent<WeaponController>().cost))
-            {
-                pc.EquipItem(item);
-            }
-        }
-    }
 }
 
