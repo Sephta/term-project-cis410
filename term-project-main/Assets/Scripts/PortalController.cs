@@ -9,8 +9,10 @@ public class PortalController : MonoBehaviour
     public PlayerController playerController;
 
     public bool canTransport = false;
-    public bool toGrassland = false;
     public bool toHub = false;
+    public bool toGrassland = false;
+    public bool toDesert = false;
+    public bool toTundra = false;
 
     void Update()
     {

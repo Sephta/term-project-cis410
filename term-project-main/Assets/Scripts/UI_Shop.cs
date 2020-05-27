@@ -21,6 +21,8 @@ public class UI_Shop : MonoBehaviour
         shopItemTemplate = container.Find("ShopItemTemplate");
         shopItemTemplate.gameObject.SetActive(false);
 
+        // gameObject.SetActive(false);
+
         player = GameObject.FindGameObjectWithTag("Player");
         pc = player.GetComponent<PlayerController>();
     }
