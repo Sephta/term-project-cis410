@@ -13977,6 +13977,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: 100
   playerWallet: 55
+  playerWeapon: {fileID: 0}
+  sword: {fileID: 0}
+  axe: {fileID: 0}
+  scimitar: {fileID: 0}
 --- !u!4 &573349591
 Transform:
   m_ObjectHideFlags: 0
@@ -30033,6 +30037,11 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 856224992}
+    - target: {fileID: 1773467385990149832, guid: ca0fde06b2b2efd41889141986c5a36e,
+        type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 1184199319}
     - target: {fileID: 8989556380430014131, guid: ca0fde06b2b2efd41889141986c5a36e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -30088,6 +30097,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2948099999176480332, guid: ca0fde06b2b2efd41889141986c5a36e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca0fde06b2b2efd41889141986c5a36e, type: 3}
 --- !u!114 &1184199318 stripped
@@ -30102,6 +30116,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db1b21e441951624b8b6e3fbb3512f67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1184199319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1575621805446001910, guid: ca0fde06b2b2efd41889141986c5a36e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1184199317}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1184458001
 PrefabInstance:
   m_ObjectHideFlags: 0
