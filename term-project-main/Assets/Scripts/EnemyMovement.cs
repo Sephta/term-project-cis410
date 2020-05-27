@@ -64,6 +64,9 @@ public class EnemyMovement : MonoBehaviour
     {
         if (health <= 0)
         {
+            PlayerController pc = player.gameObject.GetComponent<PlayerController>();
+            if (pc != null)
+                pc.wallet += 50;
             Destroy(gameObject);
         }
     }

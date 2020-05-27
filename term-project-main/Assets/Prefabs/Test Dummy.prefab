@@ -118,6 +118,19 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &6901497124587620591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9214069165776033010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052583ab4e849a84bb318d61ed89053c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
 --- !u!1001 &665577897356262610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130,6 +143,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: skeleton
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: e1321f1eaac875548bf68d5f43c1edd6,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ed3de3aba1a01d044b73f0a032fedd78, type: 2}
     - target: {fileID: -4216859302048453862, guid: e1321f1eaac875548bf68d5f43c1edd6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -200,11 +218,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: e1321f1eaac875548bf68d5f43c1edd6,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: ed3de3aba1a01d044b73f0a032fedd78, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1321f1eaac875548bf68d5f43c1edd6, type: 3}
 --- !u!4 &5496132470654687176 stripped
@@ -348,6 +361,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e329d1fa080f66b4680c906825598b05, type: 3}
+--- !u!1 &9214069165776033010 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6339582151417620415, guid: e329d1fa080f66b4680c906825598b05,
+    type: 3}
+  m_PrefabInstance: {fileID: 2892519832036750157}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &9214069165776033009 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6339582151417620412, guid: e329d1fa080f66b4680c906825598b05,

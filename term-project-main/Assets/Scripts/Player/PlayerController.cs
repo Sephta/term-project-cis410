@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 // ! The bellow code caused issues when compiling the project into a playable build
@@ -54,6 +55,7 @@ public class PlayerController : MonoBehaviour
     public float maxHealth = 100;
     public float maxStamina = 100;
     public int wallet = 500;
+    public Text money;
     /* [ReadOnly] */ public float currentHealth;
     /* [ReadOnly] */ public float currentStamina;
     public float damageModifier = 1f;
@@ -140,6 +142,8 @@ public class PlayerController : MonoBehaviour
         // Stamina Regen
         if (currentState != PlayerState.running && pm.stamina < maxStamina)
             pm.stamina += pm.regenRate;
+
+        money.text = "$" + wallet.ToString();
     }
 
     void FixedUpdate()
@@ -158,7 +162,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("IsWalking", true);
                 animator.SetBool("IsIdle", false);
                 animator.SetBool("HasAttacked", false);
-                animator.SetFloat("AnimationSpeed", pm.currentSpeed - 0.5f);
+                animator.SetFloat("AnimationSpeed", pm.currentSpeed - 1f);
                 pm.PlayerMove(pi.runKey);
                 break;
 
@@ -166,7 +170,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("IsWalking", true);
                 animator.SetBool("IsIdle", false);
                 animator.SetBool("HasAttacked", false);
-                animator.SetFloat("AnimationSpeed", pm.currentSpeed - 1f);
+                animator.SetFloat("AnimationSpeed", pm.currentSpeed - 1.5f);
                 pm.PlayerMove(pi.runKey);
                 break;
 
@@ -267,7 +271,8 @@ public class PlayerController : MonoBehaviour
             Quaternion newRotation = Quaternion.LookRotation(transform.position - playerCamera.transform.position);
             playerCamera.transform.rotation = Quaternion.Slerp(playerCamera.transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
 
-            Vector3 newPosition = transform.position + transform.forward * cameraOffset.z + transform.up * cameraOffset.y;
+            // Vector3 newPosition = transform.position + transform.forward * cameraOffset.z + transform.up * cameraOffset.y;
+            Vector3 newPosition = transform.position + transform.forward * cameraPosition.z + transform.up * cameraPosition.y;
             playerCamera.transform.position = Vector3.Slerp(playerCamera.transform.position, newPosition, rotationSpeed * Time.deltaTime);
         } 
         else 

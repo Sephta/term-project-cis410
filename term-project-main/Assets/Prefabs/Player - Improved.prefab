@@ -142,6 +142,7 @@ MonoBehaviour:
   maxHealth: 100
   maxStamina: 100
   wallet: 500
+  money: {fileID: 0}
   currentHealth: 0
   currentStamina: 0
   damageModifier: 1
@@ -150,7 +151,7 @@ MonoBehaviour:
   activeWeapon: {fileID: 0}
   equippedWeapon: {fileID: 0}
   playerCamera: {fileID: 0}
-  cameraPosition: {x: 0, y: 5, z: -6}
+  cameraPosition: {x: 0, y: 4, z: -6}
   cameraAngle: {x: 32, y: 0, z: 0}
   camFollowSpeed: 5
   rotateAroundPlayer: 1
@@ -172,13 +173,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isJumping: 0
   currentSpeed: 0
-  walkSpeed: 2.5
-  runSpeed: 4
+  walkSpeed: 3
+  runSpeed: 5
   jumpHeight: 1.25
   rotationSpeed: 20
   gravity: 9.8
   stamina: 100
-  drainRate: 1
+  drainRate: 0.25
   regenRate: 2
   hitBox: {fileID: 641072703}
   directionVector: {x: 0, y: 0, z: 0}

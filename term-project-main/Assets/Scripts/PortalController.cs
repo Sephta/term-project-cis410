@@ -40,13 +40,21 @@ public class PortalController : MonoBehaviour
 
     void UsePortal()
     {
+        if (toHub)
+        {
+            SceneManager.LoadScene("Hub");
+        }
         if (toGrassland)
         {
             SceneManager.LoadScene("Grassland");
         }
-        if (toHub)
+        if (toDesert)
         {
-            SceneManager.LoadScene("Hub");
+            SceneManager.LoadScene("Desert");
+        }
+        if (toTundra)
+        {
+            SceneManager.LoadScene("Tundra");
         }
     }
 }
