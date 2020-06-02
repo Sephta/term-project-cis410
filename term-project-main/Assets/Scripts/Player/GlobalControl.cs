@@ -50,7 +50,7 @@ public class GlobalControl : MonoBehaviour
 
     private void Start()
     {
-        timer = timeLimit;
+        timer = timeLimit * 60;
     }
 
     private void Update()
