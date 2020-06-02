@@ -37,7 +37,6 @@ public class GlobalControl : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        // InitShop();
     }
 
     private void InitWeapons()
@@ -57,16 +56,5 @@ public class GlobalControl : MonoBehaviour
 
         // Set Player default weapon
         playerWeapon = sword;
-    }
-
-    private void InitShop()
-    {
-        if (shop != null)
-        {
-            UI_Shop ui = shop.GetComponent<UI_Shop>();
-            ui.sword = sword;
-            ui.scimitar = scimitar;
-            ui.axe = axe;
-        }
     }
 }
