@@ -39,7 +39,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
 {
-    // TESTING: weapon equip
+    // TESTING: score system & timer
 
     // Public Vars
     [Header("Animators")]
@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     public float maxHealth = 100;
     public float maxStamina = 100;
     public int wallet = 500;
+    public int score;
     public Text money;
     /* [ReadOnly] */ public float currentHealth;
     /* [ReadOnly] */ public float currentStamina;
@@ -345,6 +346,7 @@ public class PlayerController : MonoBehaviour
 
         GlobalControl.Instance.playerHealth = currentHealth;
         GlobalControl.Instance.playerWallet = wallet;
+        GlobalControl.Instance.playerScore = score;
         GlobalControl.Instance.playerWeapon = activeWeapon;
     }
 
@@ -356,6 +358,7 @@ public class PlayerController : MonoBehaviour
         activeWeapon = GlobalControl.Instance.playerWeapon;
         wallet = GlobalControl.Instance.playerWallet;
         currentHealth = GlobalControl.Instance.playerHealth;
+        score = GlobalControl.Instance.playerScore;
         
         healthbar.setValue(currentHealth);
         EquipItem(activeWeapon);

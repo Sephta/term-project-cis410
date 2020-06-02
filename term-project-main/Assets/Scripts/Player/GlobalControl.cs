@@ -9,9 +9,10 @@ public class GlobalControl : MonoBehaviour
     // player stats
     public float playerHealth = 100;
     public int playerWallet = 500;
-    public GameObject playerWeapon;
+    public int playerScore = 0;
 
     // persistent weapons
+    public GameObject playerWeapon;
     public GameObject sword;
     public GameObject axe;
     public GameObject scimitar;

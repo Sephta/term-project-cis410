@@ -68,6 +68,7 @@ public class EnemyMovement : MonoBehaviour
             if (pc != null)
                 pc.wallet += 50;
             Destroy(gameObject);
+            pc.score += 10;
         }
     }
 
