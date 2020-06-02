@@ -83,15 +83,15 @@ public class GlobalControl : MonoBehaviour
     private void InitWeapons()
     {
         // Instantiate the weapons into the scene
-        sword = Instantiate(_sword.WeaponModel, transform.position, Quaternion.Euler(_sword.WeaponRotation));
+        sword = Instantiate(_sword.WeaponModel, transform.position - new Vector3(0f, 1000.0f, 0f), Quaternion.Euler(_sword.WeaponRotation));
         sword.name = "Sword";
         sword.transform.SetParent(transform);
 
-        scimitar = Instantiate(_scimitar.WeaponModel, transform.position, Quaternion.Euler(_scimitar.WeaponRotation));
+        scimitar = Instantiate(_scimitar.WeaponModel, transform.position - new Vector3(0f, 1000.0f, 0f), Quaternion.Euler(_scimitar.WeaponRotation));
         scimitar.name = "Scimitar";
         scimitar.transform.SetParent(transform);
 
-        axe = Instantiate(_axe.WeaponModel, transform.position, Quaternion.Euler(_axe.WeaponRotation));
+        axe = Instantiate(_axe.WeaponModel, transform.position - new Vector3(0f, 1000.0f, 0f), Quaternion.Euler(_axe.WeaponRotation));
         axe.name = "Axe";
         axe.transform.SetParent(transform);
 
