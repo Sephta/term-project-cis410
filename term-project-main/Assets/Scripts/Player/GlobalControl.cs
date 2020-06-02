@@ -30,7 +30,8 @@ public class GlobalControl : MonoBehaviour
     // timer stuff
     public Text timerText;
     public float timeLimit;
-    private float timer;
+    public float timer;
+    [SerializeField] private static bool timeSet = false;
 
     private void Awake()
     {
@@ -45,13 +46,16 @@ public class GlobalControl : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (timeSet == false)
+        {
+            timer = timeLimit * 60;
+            timeSet = true;
+        }
     }
 
 
-    private void Start()
-    {
-        timer = timeLimit * 60;
-    }
+    private void Start() {}
 
     private void Update()
     {
@@ -98,7 +102,7 @@ public class GlobalControl : MonoBehaviour
     public void GameOver()
     {
         playerHealth = 100;
-        playerWallet = 500;
+        playerWallet = 0;
         playerScore = 0;
         playerWeapon = sword;
         timer = timeLimit;
