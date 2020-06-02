@@ -7255,6 +7255,11 @@ PrefabInstance:
       propertyPath: shop
       value: 
       objectReference: {fileID: 1258328295}
+    - target: {fileID: 4736090031040698031, guid: 901f9735a5ea64541a859dadf1b6795f,
+        type: 3}
+      propertyPath: playerWallet
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 901f9735a5ea64541a859dadf1b6795f, type: 3}
 --- !u!1001 &4924626370073914717

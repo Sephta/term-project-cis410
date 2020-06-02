@@ -19,6 +19,7 @@ public class GlobalControl : MonoBehaviour
     public GameObject playerWeapon;
 
     // persistent weapons
+    public GameObject playerWeapon;
     public GameObject sword;
     public GameObject scimitar;
     public GameObject axe;
