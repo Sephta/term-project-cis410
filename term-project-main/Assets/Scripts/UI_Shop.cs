@@ -15,6 +15,8 @@ public class UI_Shop : MonoBehaviour
     public GameObject scimitar;
     public GameObject axe;
 
+    public GlobalControl gcRef;
+
     private void Awake()
     {
         container = transform.Find("Container");
@@ -29,10 +31,13 @@ public class UI_Shop : MonoBehaviour
 
     private void Start()
     {
+        if (GlobalControl.Instance != null)
+            gcRef = GlobalControl.Instance;
+
         // get references to persistent weapons
-        sword = GlobalControl.Instance.sword;
-        scimitar = GlobalControl.Instance.scimitar;
-        axe = GlobalControl.Instance.axe;
+        sword = gcRef.sword;
+        scimitar = gcRef.scimitar;
+        axe = gcRef.axe;
         
         HideShop();
     }
@@ -47,7 +52,7 @@ public class UI_Shop : MonoBehaviour
 
         if (player != null && pc != null)
         {
-            if (pc.SpendCurrency(sword.GetComponent<WeaponController>().cost))
+            if (pc.SpendCurrency(gcRef._sword.WeaponCost))
             {
                 pc.EquipItem(sword);
             }
@@ -59,7 +64,7 @@ public class UI_Shop : MonoBehaviour
 
         if (player != null && pc != null)
         {
-            if (pc.SpendCurrency(scimitar.GetComponent<WeaponController>().cost))
+            if (pc.SpendCurrency(gcRef._scimitar.WeaponCost))
             {
                 pc.EquipItem(scimitar);
             }
@@ -71,7 +76,7 @@ public class UI_Shop : MonoBehaviour
 
         if (player != null && pc != null)
         {
-            if (pc.SpendCurrency(axe.GetComponent<WeaponController>().cost))
+            if (pc.SpendCurrency(gcRef._axe.WeaponCost))
             {
                 pc.EquipItem(axe);
             }

@@ -1595,6 +1595,16 @@ PrefabInstance:
       propertyPath: hand
       value: 
       objectReference: {fileID: 583489340}
+    - target: {fileID: 1773467385990149832, guid: ca0fde06b2b2efd41889141986c5a36e,
+        type: 3}
+      propertyPath: cameraPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773467385990149832, guid: ca0fde06b2b2efd41889141986c5a36e,
+        type: 3}
+      propertyPath: cameraPosition.z
+      value: -4
+      objectReference: {fileID: 0}
     - target: {fileID: 8989556380430014131, guid: ca0fde06b2b2efd41889141986c5a36e,
         type: 3}
       propertyPath: m_LocalPosition.x

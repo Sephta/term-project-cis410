@@ -14,7 +14,11 @@ public class WeaponData : ScriptableObject
 
     [SerializeField] private GameObject weaponModel = null;
 
-    [SerializeField] private int weaponDamage = 0;
+    [SerializeField] private Vector3 weaponPosition = Vector3.zero;
+
+    [SerializeField] private Vector3 weaponRotation = Vector3.zero;
+
+    [SerializeField] private float weaponDamageMod = 0;
 
     [SerializeField] private int weaponCost = 0;
 
@@ -29,7 +33,11 @@ public class WeaponData : ScriptableObject
 
     public GameObject WeaponModel { get { return weaponModel; } }
 
-    public int WeaponDamage { get { return weaponDamage; } }
+    public Vector3 WeaponPosition { get { return weaponPosition; } }
+
+    public Vector3 WeaponRotation { get { return weaponRotation; } }
+
+    public float WeaponDamageMod { get { return weaponDamageMod; } }
 
     public int WeaponCost { get { return weaponCost; } }
 }

@@ -123,7 +123,6 @@ public class PlayerController : MonoBehaviour
         
         // Stats
         healthbar.setMax(maxHealth);
-        currentHealth = GlobalControl.Instance.playerHealth;
         currentStamina = pm.stamina;
 
         LoadPlayer();
@@ -143,7 +142,8 @@ public class PlayerController : MonoBehaviour
         if (currentState != PlayerState.running && pm.stamina < maxStamina)
             pm.stamina += pm.regenRate;
 
-        money.text = "$" + wallet.ToString();
+        if (money.text != null)
+            money.text = "$" + wallet.ToString();
     }
 
     void FixedUpdate()
@@ -308,18 +308,41 @@ public class PlayerController : MonoBehaviour
     {
         // disable currently equipped weapon
         if (equippedWeapon != null)
-            equippedWeapon.SetActive(false);
+        {
+            // equippedWeapon.SetActive(false);
+            Destroy(equippedWeapon);
+        }
 
         activeWeapon = weapon;
         GameObject newWep = Instantiate(weapon);
-        WeaponController wc = newWep.GetComponent<WeaponController>();
+        // WeaponController wc = newWep.GetComponent<WeaponController>();
 
         newWep.transform.parent = hand.transform;
-        newWep.transform.localPosition = wc.wepPosition;
-        newWep.transform.localEulerAngles = wc.wepRotation;
+        // newWep.transform.localPosition = wc.wepPosition;
+        // newWep.transform.localEulerAngles = wc.wepRotation;
+
+        switch(weapon.name)
+        {
+            case "Sword":
+                newWep.transform.localPosition = GlobalControl.Instance._sword.WeaponPosition;
+                newWep.transform.localEulerAngles = GlobalControl.Instance._sword.WeaponRotation;
+                damageModifier = GlobalControl.Instance._sword.WeaponDamageMod;
+                break;
+            
+            case "Scimitar":
+                newWep.transform.localPosition = GlobalControl.Instance._scimitar.WeaponPosition;
+                newWep.transform.localEulerAngles = GlobalControl.Instance._scimitar.WeaponRotation;
+                damageModifier = GlobalControl.Instance._scimitar.WeaponDamageMod;
+                break;
+
+            case "Axe":
+                newWep.transform.localPosition = GlobalControl.Instance._axe.WeaponPosition;
+                newWep.transform.localEulerAngles = GlobalControl.Instance._axe.WeaponRotation;
+                damageModifier = GlobalControl.Instance._axe.WeaponDamageMod;
+                break;
+        }
         
         equippedWeapon = newWep;
-        damageModifier = wc.damageMod;
         equippedWeapon.SetActive(true);
     }
 
