@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GlobalControl : MonoBehaviour
 {
@@ -24,6 +26,12 @@ public class GlobalControl : MonoBehaviour
     public GameObject scimitar;
     public GameObject axe;
 
+    [Header("Timer Vars")]
+    // timer stuff
+    public Text timerText;
+    public float timeLimit;
+    private float timer;
+
     private void Awake()
     {
         if (Instance == null)
@@ -37,6 +45,35 @@ public class GlobalControl : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+
+    private void Start()
+    {
+        timer = timeLimit;
+    }
+
+    private void Update()
+    {
+        if (timer >= 0.0f)
+        {
+            timer -= Time.deltaTime;
+            UpdateTimer();
+        }
+
+        else if (timer <= 0.0f)
+        {
+            timer = 0.0f;
+            UpdateTimer();
+            GameOver();
+        }
+    }
+
+    private void UpdateTimer()
+    {
+        string minutes = Mathf.Floor(timer / 60).ToString("00");
+        string seconds = Mathf.Floor(timer % 60).ToString("00");
+        timerText.text = minutes + ":" + seconds;
     }
 
     private void InitWeapons()
@@ -57,4 +94,16 @@ public class GlobalControl : MonoBehaviour
         // Set Player default weapon
         playerWeapon = sword;
     }
+
+    public void GameOver()
+    {
+        playerHealth = 100;
+        playerWallet = 500;
+        playerScore = 0;
+        playerWeapon = sword;
+        timer = timeLimit;
+
+        SceneManager.LoadScene(0);
+    }
 }
+
