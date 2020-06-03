@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6973816103115091386}
   - component: {fileID: 6973816103115091385}
   - component: {fileID: 6973816103115091384}
-  - component: {fileID: 6973816103115091387}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -84,25 +83,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6973816103115091391}
   m_Enabled: 1
---- !u!95 &6973816103115091387
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6973816103115091391}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e47ab58e3f935234db0cfe27b5ca3a2a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6973816104740150606
 GameObject:
   m_ObjectHideFlags: 0

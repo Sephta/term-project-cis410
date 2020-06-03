@@ -19,9 +19,11 @@ public class PlayerController : MonoBehaviour
     public AudioSource stepSource;
     public AudioSource attackSource;
 
-    [Header("StatBars")]
+    [Header("UI")]
     public Bartender healthbar;
     public Bartender staminabar;
+    public Image controlsUI;
+    public Text money;
 
     // HP & Stamina
     [Header("Player Stats")]
@@ -64,10 +66,6 @@ public class PlayerController : MonoBehaviour
 
     // [Header("Particle System")]
     // public ParticleSystem ps;
-
-    [Header("UI")]
-    public Image controlsUI;
-    public Text money;
 
 
     // Private Vars
@@ -324,7 +322,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!stepSource.isPlaying)
             {
-                stepSource.pitch = 1.3f;
+                stepSource.pitch = 0.75f;
                 stepSource.PlayOneShot(stepSource.clip, 0.5f);
             }
         }
@@ -332,7 +330,7 @@ public class PlayerController : MonoBehaviour
         else if (currentState == PlayerState.running && grounded)
             if (!stepSource.isPlaying)
             {
-                stepSource.pitch = 2f;
+                stepSource.pitch = 1.3f;
                 stepSource.PlayOneShot(stepSource.clip, 0.5f);
             }
 
