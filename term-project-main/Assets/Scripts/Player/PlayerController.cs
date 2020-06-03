@@ -6,35 +6,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-// ! The bellow code caused issues when compiling the project into a playable build
-// ------------------------------------------------------------------
-// THIS CODE ALLOWS FOR READ ONLY VARIABLES VISIBLE WITHIN THE EDITOR
-// Credit: It3ration on the Unity Forums
-// Link: https://answers.unity.com/questions/489942/how-to-make-a-readonly-property-in-inspector.html
-// public class ReadOnlyAttribute : PropertyAttribute {}
- 
-//  [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
-//  public class ReadOnlyDrawer : PropertyDrawer
-//  {
-//      public override float GetPropertyHeight(SerializedProperty property,
-//                                              GUIContent label)
-//      {
-//          return EditorGUI.GetPropertyHeight(property, label, true);
-//      }
- 
-//      public override void OnGUI(Rect position,
-//                                 SerializedProperty property,
-//                                 GUIContent label)
-//      {
-//          GUI.enabled = false;
-//          EditorGUI.PropertyField(position, property, label, true);
-//          GUI.enabled = true;
-//      }
-//  }
-// ------------------------------------------------------------------
-// ! ----------------------------------------------------------------------------
-
-
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
@@ -57,8 +28,8 @@ public class PlayerController : MonoBehaviour
     public int wallet = 500;
     public int score;
     public Text money;
-    /* [ReadOnly] */ public float currentHealth;
-    /* [ReadOnly] */ public float currentStamina;
+    public float currentHealth;
+    public float currentStamina;
     public float damageModifier = 1f;
     public float baseDamage = 25f;
     
