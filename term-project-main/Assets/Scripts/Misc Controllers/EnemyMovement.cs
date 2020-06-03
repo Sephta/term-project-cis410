@@ -141,11 +141,4 @@ public class EnemyMovement : MonoBehaviour
         health -= amount;
         enemyHealth.setValue(health);
     }
-
-    public void DealDamage()
-    {
-        int amount = 0;
-        Debug.Log("Event Triggered: Enemy Attack: " + amount + " damage dealt.");
-    }
 }
-

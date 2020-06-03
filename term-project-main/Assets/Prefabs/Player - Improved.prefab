@@ -124,6 +124,7 @@ MonoBehaviour:
   maxHealth: 100
   maxStamina: 100
   wallet: 500
+  score: 0
   money: {fileID: 0}
   currentHealth: 0
   currentStamina: 0

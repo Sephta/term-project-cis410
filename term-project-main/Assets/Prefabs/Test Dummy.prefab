@@ -118,6 +118,18 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4217988076861855819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8799319557606614491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f601432d10b8b94882f27e95dc5ec0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6901497124587620591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +232,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1321f1eaac875548bf68d5f43c1edd6, type: 3}
+--- !u!1 &8799319557606614491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: e1321f1eaac875548bf68d5f43c1edd6,
+    type: 3}
+  m_PrefabInstance: {fileID: 665577897356262610}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5496132470654687176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: e1321f1eaac875548bf68d5f43c1edd6,
@@ -243,6 +261,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy WorldSpace HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986825119829347679, guid: e329d1fa080f66b4680c906825598b05,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986825119829347679, guid: e329d1fa080f66b4680c906825598b05,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6339582151417620412, guid: e329d1fa080f66b4680c906825598b05,
         type: 3}
@@ -348,16 +376,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6986825119829347679, guid: e329d1fa080f66b4680c906825598b05,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6986825119829347679, guid: e329d1fa080f66b4680c906825598b05,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e329d1fa080f66b4680c906825598b05, type: 3}

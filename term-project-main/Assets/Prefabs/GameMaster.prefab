@@ -260,6 +260,21 @@ PrefabInstance:
       propertyPath: m_Text
       value: TIMER
       objectReference: {fileID: 0}
+    - target: {fileID: 2549660944869729370, guid: c413e0d0dbdf5844b8dea13305dff80a,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.92941177
+      objectReference: {fileID: 0}
+    - target: {fileID: 2549660944869729370, guid: c413e0d0dbdf5844b8dea13305dff80a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.92941177
+      objectReference: {fileID: 0}
+    - target: {fileID: 2549660944869729370, guid: c413e0d0dbdf5844b8dea13305dff80a,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.92941177
+      objectReference: {fileID: 0}
     - target: {fileID: 2549660944869729372, guid: c413e0d0dbdf5844b8dea13305dff80a,
         type: 3}
       propertyPath: m_LocalPosition.x

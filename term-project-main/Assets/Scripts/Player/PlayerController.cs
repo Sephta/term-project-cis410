@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
     public float maxStamina = 100;
     public int wallet = 500;
     public int score;
-    public Text money;
     public float currentHealth;
     public float currentStamina;
     public float damageModifier = 1f;
@@ -60,6 +59,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("Grounded State")]
     public bool grounded;
+
+    // [Header("Particle System")]
+    // public ParticleSystem ps;
+
+    [Header("UI")]
+    public Image controlsUI;
+    public Text money;
 
 
     // Private Vars
@@ -102,9 +108,22 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (startIdleTimer)
+        {
+            idleLookTimer -= Time.deltaTime;
+            if (idleLookTimer <= 0f)
+                idleLookTimer = 0f;
+
+            animator.SetFloat("IdleLookTimer", idleLookTimer);
+        }
+
         UpdateMovementState();
         UpdateAttackState();
         UpdateStamina(pm.stamina);
+
+        // Disable Controls UI
+        if (Input.GetKeyDown(KeyCode.P))
+            ToggleUI();
 
         // TEST: testing HP system functionality
         //if (Input.GetKeyDown(KeyCode.L))
@@ -118,12 +137,15 @@ public class PlayerController : MonoBehaviour
             money.text = "$" + wallet.ToString();
     }
 
+    private float idleLookTimer = 1.5f;
+    private bool startIdleTimer = false;
     void FixedUpdate()
     {
         // Update Player State
         switch(currentState)
         {
             case PlayerState.idle:
+                startIdleTimer = true;
                 animator.SetBool("IsIdle", true);
                 animator.SetBool("IsWalking", false);
                 animator.SetBool("HasAttacked", false);
@@ -131,22 +153,28 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case PlayerState.walking:
+                startIdleTimer = false;
+                idleLookTimer = 1.5f;
                 animator.SetBool("IsWalking", true);
                 animator.SetBool("IsIdle", false);
                 animator.SetBool("HasAttacked", false);
-                animator.SetFloat("AnimationSpeed", pm.currentSpeed - 1f);
+                animator.SetFloat("AnimationSpeed", 1f);
                 pm.PlayerMove(pi.runKey);
                 break;
 
             case PlayerState.running:
+                startIdleTimer = false;
+                idleLookTimer = 1.5f;
                 animator.SetBool("IsWalking", true);
                 animator.SetBool("IsIdle", false);
                 animator.SetBool("HasAttacked", false);
-                animator.SetFloat("AnimationSpeed", pm.currentSpeed - 1.5f);
+                animator.SetFloat("AnimationSpeed", 2f);
                 pm.PlayerMove(pi.runKey);
                 break;
 
             case PlayerState.attacking:
+                startIdleTimer = false;
+                idleLookTimer = 1.5f;
                 animator.SetBool("IsIdle", false);
                 animator.SetBool("IsWalking", false);
                 animator.SetBool("HasAttacked", true);
@@ -333,6 +361,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void ToggleUI()
+    {
+        controlsUI.enabled = !controlsUI.enabled;
+        controlsUI.gameObject.SetActive(controlsUI.enabled);
+    }
+
     public void SavePlayer()
     {
         if (GlobalControl.Instance == null)
@@ -342,6 +376,7 @@ public class PlayerController : MonoBehaviour
         GlobalControl.Instance.playerWallet = wallet;
         GlobalControl.Instance.playerScore = score;
         GlobalControl.Instance.playerWeapon = activeWeapon;
+        GlobalControl.Instance.controlsUIEnabled = controlsUI.enabled;
     }
 
     public void LoadPlayer()
@@ -353,6 +388,8 @@ public class PlayerController : MonoBehaviour
         wallet = GlobalControl.Instance.playerWallet;
         currentHealth = GlobalControl.Instance.playerHealth;
         score = GlobalControl.Instance.playerScore;
+        controlsUI.enabled = GlobalControl.Instance.controlsUIEnabled;
+        controlsUI.gameObject.SetActive(controlsUI.enabled);
         
         healthbar.setValue(currentHealth);
         EquipItem(activeWeapon);
