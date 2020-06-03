@@ -20,13 +20,13 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 1, g: 0.94890404, b: 0.6367924, a: 1}
+  m_AmbientSkyColor: {r: 0.8867924, g: 0.8007187, b: 0.56470275, a: 1}
   m_AmbientEquatorColor: {r: 0.990566, g: 0.9562232, b: 0.7989943, a: 1}
   m_AmbientGroundColor: {r: 0.8962264, g: 0.5745628, b: 0.41006586, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 1
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: d2f24bfdb0a758e41813bbc7ae4f978f, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 3dd17ef8b3eba264ea4b016ffd09e334, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 530712276}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.0067193964, g: 0.010072281, b: 0.020321239, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -50,9 +50,9 @@ LightmapSettings:
     m_BounceScale: 1
     m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
-    m_EnvironmentLightingMode: 0
-    m_EnableBakedLightmaps: 1
-    m_EnableRealtimeLightmaps: 1
+    m_EnvironmentLightingMode: 1
+    m_EnableBakedLightmaps: 0
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 12
     m_Resolution: 2
@@ -96,7 +96,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: b33118ed1e49afa489deca680a8fda38,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -554,7 +555,7 @@ PrefabInstance:
     - target: {fileID: 2045004830725702278, guid: aed7fee6f13826541b587f22932b6d49,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1929983350537507871, guid: aed7fee6f13826541b587f22932b6d49,
         type: 3}
@@ -807,7 +808,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -846,7 +847,7 @@ PrefabInstance:
     - target: {fileID: 1844433958990582124, guid: ca0fde06b2b2efd41889141986c5a36e,
         type: 3}
       propertyPath: regenRate
-      value: 0.2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1844433958990582124, guid: ca0fde06b2b2efd41889141986c5a36e,
         type: 3}

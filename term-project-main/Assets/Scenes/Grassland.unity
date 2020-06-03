@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.6431373, g: 0.101960786, b: 0.27450982, a: 1}
   m_AmbientGroundColor: {r: 0.019607844, g: 0.0009803922, b: 0.005882353, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 1
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: e1466517f0324e543bdaa4af82c4cad0, type: 2}
   m_HaloStrength: 0.5
@@ -34,11 +34,11 @@ RenderSettings:
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
-  m_ReflectionBounces: 1
+  m_ReflectionBounces: 5
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2062570528}
-  m_IndirectSpecularColor: {r: 0.16788135, g: 0.2107364, b: 0.28994074, a: 1}
+  m_IndirectSpecularColor: {r: 0.22169487, g: 0.25960618, b: 0.2803478, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -52,7 +52,7 @@ LightmapSettings:
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 0
     m_EnableBakedLightmaps: 0
-    m_EnableRealtimeLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 12
     m_Resolution: 2
@@ -14068,6 +14068,7 @@ MonoBehaviour:
   axe: {fileID: 0}
   timerText: {fileID: 0}
   timeLimit: 0
+  timer: 0
 --- !u!4 &573349591
 Transform:
   m_ObjectHideFlags: 0
@@ -25687,6 +25688,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraRig
       objectReference: {fileID: 0}
+    - target: {fileID: 6973816103115091385, guid: e81f7858b9b170042a53de4c620d7082,
+        type: 3}
+      propertyPath: m_HDR
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6973816103115091386, guid: e81f7858b9b170042a53de4c620d7082,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -25696,11 +25702,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6973816103115091385, guid: e81f7858b9b170042a53de4c620d7082,
-        type: 3}
-      propertyPath: m_HDR
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6973816104740150607, guid: e81f7858b9b170042a53de4c620d7082,
         type: 3}
@@ -33291,42 +33292,30 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2045004830725702278, guid: aed7fee6f13826541b587f22932b6d49,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2045004830725702279, guid: aed7fee6f13826541b587f22932b6d49,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1184199320}
+    - target: {fileID: 580193860, guid: aed7fee6f13826541b587f22932b6d49, type: 3}
+      propertyPath: timerText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2045004830725702278, guid: aed7fee6f13826541b587f22932b6d49,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1929983350537507871, guid: aed7fee6f13826541b587f22932b6d49,
         type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 580193860, guid: aed7fee6f13826541b587f22932b6d49, type: 3}
-      propertyPath: timerText
-      value: 
-      objectReference: {fileID: 1300206941}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aed7fee6f13826541b587f22932b6d49, type: 3}
 --- !u!114 &1300206940 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8040198060115005065, guid: aed7fee6f13826541b587f22932b6d49,
-    type: 3}
-  m_PrefabInstance: {fileID: 1300206939}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1300206941 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1929983350537507865, guid: aed7fee6f13826541b587f22932b6d49,
     type: 3}
   m_PrefabInstance: {fileID: 1300206939}
   m_PrefabAsset: {fileID: 0}
