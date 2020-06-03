@@ -87,8 +87,8 @@ public class PlayerController : MonoBehaviour
         if (gameObject.GetComponent<Rigidbody>() != null)
             rb = gameObject.GetComponent<Rigidbody>();
 
-        if (gameObject.GetComponent<AudioSource>() != null)
-            stepSource = gameObject.GetComponent<AudioSource>();
+        //if (gameObject.GetComponent<AudioSource>() != null)
+        //    stepSource = gameObject.GetComponent<AudioSource>();
 
         // States
         currentState = PlayerState.idle;
