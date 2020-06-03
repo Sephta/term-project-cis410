@@ -286,27 +286,32 @@ public class PlayerController : MonoBehaviour
 
     void PlaySounds()
     {
+        // JUMP
+        //if (!grounded)
+        //    stepSource.Stop();
+
+
         // FOOTSTEPS
-        if (currentState == PlayerState.walking)
+        if (currentState == PlayerState.walking && grounded)
         {
             if (!stepSource.isPlaying)
             {
-                stepSource.pitch = 1.2f;
-                stepSource.PlayOneShot(stepSource.clip, 0.7f);
+                stepSource.pitch = 1.3f;
+                stepSource.PlayOneShot(stepSource.clip, 0.5f);
             }
         }
 
-        else if (currentState == PlayerState.running)
+        else if (currentState == PlayerState.running && grounded)
             if (!stepSource.isPlaying)
             {
                 stepSource.pitch = 2f;
-                stepSource.PlayOneShot(stepSource.clip, 0.7f);
+                stepSource.PlayOneShot(stepSource.clip, 0.5f);
             }
 
         // ATTACK
         if (currentState == PlayerState.attacking)
             if (!attackSource.isPlaying)
-                attackSource.PlayOneShot(attackSource.clip, 0.6f);
+                attackSource.PlayOneShot(attackSource.clip, 0.5f);
     }
 
     public void EquipItem(GameObject weapon)

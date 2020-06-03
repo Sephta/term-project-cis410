@@ -22,7 +22,7 @@ public class ShopTrigger : MonoBehaviour
             if (shouldPlay)
             {
                 shouldPlay = false;
-                enterSound.PlayOneShot(enterSound.clip, 0.7f);
+                enterSound.PlayOneShot(enterSound.clip, 0.4f);
             }
 
             Cursor.lockState = CursorLockMode.None;
@@ -35,7 +35,7 @@ public class ShopTrigger : MonoBehaviour
         {
             shop.HideShop();
             
-            exitSound.PlayOneShot(exitSound.clip, 0.7f);
+            exitSound.PlayOneShot(exitSound.clip, 0.4f);
             
             Cursor.lockState = CursorLockMode.Locked;
             
