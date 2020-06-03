@@ -10,13 +10,15 @@ using UnityEngine.UI;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
 {
-    // TESTING: score system & timer
-
     // Public Vars
     [Header("Animators")]
     public Animator animator;
     public Animator cameraAnimator;
     
+    [Header("Audio Sources")]
+    public AudioSource stepSource;
+    public AudioSource attackSource;
+
     [Header("StatBars")]
     public Bartender healthbar;
     public Bartender staminabar;
@@ -91,6 +93,9 @@ public class PlayerController : MonoBehaviour
         if (gameObject.GetComponent<Rigidbody>() != null)
             rb = gameObject.GetComponent<Rigidbody>();
 
+        //if (gameObject.GetComponent<AudioSource>() != null)
+        //    stepSource = gameObject.GetComponent<AudioSource>();
+
         // States
         currentState = PlayerState.idle;
         prevState = PlayerState.idle;
@@ -120,6 +125,7 @@ public class PlayerController : MonoBehaviour
         UpdateMovementState();
         UpdateAttackState();
         UpdateStamina(pm.stamina);
+        PlaySounds();
 
         // Disable Controls UI
         if (Input.GetKeyDown(KeyCode.P))
@@ -160,6 +166,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("HasAttacked", false);
                 animator.SetFloat("AnimationSpeed", 1f);
                 pm.PlayerMove(pi.runKey);
+                //audioManager.Play("footstep");
                 break;
 
             case PlayerState.running:
@@ -170,6 +177,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("HasAttacked", false);
                 animator.SetFloat("AnimationSpeed", 2f);
                 pm.PlayerMove(pi.runKey);
+                //audioManager.Play("footstep");
                 break;
 
             case PlayerState.attacking:
@@ -302,6 +310,36 @@ public class PlayerController : MonoBehaviour
     void UpdateStamina(float value)
     {
         staminabar.setValue(value);
+    }
+
+    void PlaySounds()
+    {
+        // JUMP
+        //if (!grounded)
+        //    stepSource.Stop();
+
+
+        // FOOTSTEPS
+        if (currentState == PlayerState.walking && grounded)
+        {
+            if (!stepSource.isPlaying)
+            {
+                stepSource.pitch = 1.3f;
+                stepSource.PlayOneShot(stepSource.clip, 0.5f);
+            }
+        }
+
+        else if (currentState == PlayerState.running && grounded)
+            if (!stepSource.isPlaying)
+            {
+                stepSource.pitch = 2f;
+                stepSource.PlayOneShot(stepSource.clip, 0.5f);
+            }
+
+        // ATTACK
+        if (currentState == PlayerState.attacking)
+            if (!attackSource.isPlaying)
+                attackSource.PlayOneShot(attackSource.clip, 0.5f);
     }
 
     public void EquipItem(GameObject weapon)
