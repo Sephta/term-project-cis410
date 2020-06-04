@@ -13,8 +13,6 @@ public class GlobalControl : MonoBehaviour
     public WeaponData _sword;
     public WeaponData _scimitar;
     public WeaponData _axe;
-    public WeaponData _buster;
-    public WeaponData _lightsaber;
 
     [Header("Player Stats")]
     // player stats
@@ -27,8 +25,6 @@ public class GlobalControl : MonoBehaviour
     public GameObject sword;
     public GameObject scimitar;
     public GameObject axe;
-    public GameObject buster;
-    public GameObject lightsaber;
 
     [Header("Timer Vars")]
     // timer stuff
@@ -98,14 +94,6 @@ public class GlobalControl : MonoBehaviour
         axe = Instantiate(_axe.WeaponModel, transform.position - new Vector3(0f, 1000.0f, 0f), Quaternion.Euler(_axe.WeaponRotation));
         axe.name = "Axe";
         axe.transform.SetParent(transform);
-
-        buster = Instantiate(_buster.WeaponModel, transform.position - new Vector3(0f, 1000.0f, 0f), Quaternion.Euler(_buster.WeaponRotation));
-        buster.name = "Buster";
-        buster.transform.SetParent(transform);
-
-        lightsaber = Instantiate(_lightsaber.WeaponModel, transform.position - new Vector3(0f, 1000.0f, 0f), Quaternion.Euler(_lightsaber.WeaponRotation));
-        lightsaber.name = "Lightsaber";
-        lightsaber.transform.SetParent(transform);
 
         // Set Player default weapon
         playerWeapon = sword;
