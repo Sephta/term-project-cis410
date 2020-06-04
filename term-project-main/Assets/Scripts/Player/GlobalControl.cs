@@ -26,6 +26,9 @@ public class GlobalControl : MonoBehaviour
     public GameObject scimitar;
     public GameObject axe;
 
+    [Header("UI")]
+    public bool controlsUIEnabled = true;
+
     [Header("Timer Vars")]
     // timer stuff
     public Text timerText;
