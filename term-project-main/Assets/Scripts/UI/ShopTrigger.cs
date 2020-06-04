@@ -25,6 +25,7 @@ public class ShopTrigger : MonoBehaviour
                 enterSound.PlayOneShot(enterSound.clip, 0.4f);
             }
 
+            Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
     }
@@ -37,6 +38,7 @@ public class ShopTrigger : MonoBehaviour
             
             exitSound.PlayOneShot(exitSound.clip, 0.4f);
             
+            Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             
             shouldPlay = true;

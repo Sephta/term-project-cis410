@@ -13,8 +13,10 @@ public class EnemyMovement : MonoBehaviour
     [Header("Stats")]
     /* [ReadOnly] */ public bool isHit = false;
     public Bartender enemyHealth;
-    [Range(0, 100)] public float health = 100;
+    public float health = 0;
     public int damageAmount;
+    public int rewardMoney;
+    public int rewardScore;
 
     [Header("Nav Agent Vars")]
     [Range(2, 5)] public float agentSpeed;
@@ -39,6 +41,8 @@ public class EnemyMovement : MonoBehaviour
 
     void Awake()
     {
+        enemyHealth.setMax(health);
+
         if (gameObject.GetComponent<NavMeshAgent>() != null)
         {
             agent = gameObject.GetComponent<NavMeshAgent>();
@@ -67,9 +71,9 @@ public class EnemyMovement : MonoBehaviour
         {
             PlayerController pc = player.gameObject.GetComponent<PlayerController>();
             if (pc != null)
-                pc.wallet += 50;
+                pc.wallet += rewardMoney;
             Destroy(gameObject);
-            pc.score += 10;
+            pc.score += rewardScore;
         }
     }
 

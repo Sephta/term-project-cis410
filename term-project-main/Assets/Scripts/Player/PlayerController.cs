@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     /* ------------------- */
 
     public enum PlayerState { idle, walking, running, attacking };
-    [HideInInspector] public PlayerState prevState;
+    public PlayerState prevState;
     /* [ReadOnly] */ public PlayerState currentState;
 
     [Header("Grounded State")]
@@ -81,6 +81,9 @@ public class PlayerController : MonoBehaviour
 
     void Start() 
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         // Getters
         if (gameObject.GetComponent<PlayerInput>() != null)
             pi = gameObject.GetComponent<PlayerInput>();
@@ -140,6 +143,13 @@ public class PlayerController : MonoBehaviour
 
         if (money.text != null)
             money.text = "$" + wallet.ToString();
+
+        // GameOver Conditions
+        if (currentHealth <= 0 || GlobalControl.Instance.timeOut)
+        {
+            SavePlayer();
+            GlobalControl.Instance.GameOver();
+        }
     }
 
     private float idleLookTimer = 1.5f;
@@ -258,7 +268,7 @@ public class PlayerController : MonoBehaviour
     */
     void UpdateAttackState()
     {
-        if (pi.attackKey && GroundCheck() && !pm.isJumping) {
+        if (pi.attackKey && GroundCheck() && !pm.isJumping && !animator.GetBool("IsFalling")) {
             ChangeState(PlayerState.attacking);
         }
     }
@@ -286,7 +296,6 @@ public class PlayerController : MonoBehaviour
             Quaternion newRotation = Quaternion.LookRotation(transform.position - playerCamera.transform.position);
             playerCamera.transform.rotation = Quaternion.Slerp(playerCamera.transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
 
-            // Vector3 newPosition = transform.position + transform.forward * cameraOffset.z + transform.up * cameraOffset.y;
             Vector3 newPosition = transform.position + transform.forward * cameraPosition.z + transform.up * cameraPosition.y;
             playerCamera.transform.position = Vector3.Slerp(playerCamera.transform.position, newPosition, rotationSpeed * Time.deltaTime);
         } 
@@ -384,6 +393,18 @@ public class PlayerController : MonoBehaviour
                 newWep.transform.localPosition = GlobalControl.Instance._axe.WeaponPosition;
                 newWep.transform.localEulerAngles = GlobalControl.Instance._axe.WeaponRotation;
                 damageModifier = GlobalControl.Instance._axe.WeaponDamageMod;
+                break;
+            
+            case "Buster":
+                newWep.transform.localPosition = GlobalControl.Instance._buster.WeaponPosition;
+                newWep.transform.localEulerAngles = GlobalControl.Instance._buster.WeaponRotation;
+                damageModifier = GlobalControl.Instance._axe.WeaponDamageMod;
+                break;
+            
+            case "Lightsaber":
+                newWep.transform.localPosition = GlobalControl.Instance._lightsaber.WeaponPosition;
+                newWep.transform.localEulerAngles = GlobalControl.Instance._lightsaber.WeaponRotation;
+                damageModifier = GlobalControl.Instance._lightsaber.WeaponDamageMod;
                 break;
         }
         

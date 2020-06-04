@@ -18,5 +18,5 @@ MonoBehaviour:
     type: 3}
   weaponPosition: {x: 0.12, y: 0.143, z: 0.098}
   weaponRotation: {x: 161.562, y: -177.761, z: -85.621}
-  weaponDamageMod: 1.5
+  weaponDamageMod: 1.2
   weaponCost: 100

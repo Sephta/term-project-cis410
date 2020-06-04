@@ -10,6 +10,9 @@ public class ScoreScreen : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         scoreText.text = "SCORE: " + GlobalControl.Instance.playerScore;
     }
 }

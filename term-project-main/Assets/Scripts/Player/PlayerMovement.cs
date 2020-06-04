@@ -193,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    float currAtkTime = 0f;
+    // float currAtkTime = 0f;
     public void CombatState()
     {
         if (pc.animator.GetBool("HasAttacked"))

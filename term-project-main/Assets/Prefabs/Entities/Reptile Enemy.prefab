@@ -123,6 +123,8 @@ MonoBehaviour:
   enemyHealth: {fileID: 4619617034653372166}
   health: 100
   damageAmount: 20
+  rewardMoney: 15
+  rewardScore: 15
   agentSpeed: 0
   patrolTime: 2
   aggroRange: 5
@@ -352,16 +354,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8305566230182587666}
     m_Modifications:
-    - target: {fileID: 6339582151417620415, guid: e329d1fa080f66b4680c906825598b05,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy WorldSpace HUD
-      objectReference: {fileID: 0}
-    - target: {fileID: 6339582151417620415, guid: e329d1fa080f66b4680c906825598b05,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 6339582151417620412, guid: e329d1fa080f66b4680c906825598b05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -466,6 +458,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339582151417620415, guid: e329d1fa080f66b4680c906825598b05,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy WorldSpace HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339582151417620415, guid: e329d1fa080f66b4680c906825598b05,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6986825119231686128, guid: e329d1fa080f66b4680c906825598b05,
         type: 3}

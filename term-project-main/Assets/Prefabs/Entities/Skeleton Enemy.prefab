@@ -97,6 +97,8 @@ MonoBehaviour:
   enemyHealth: {fileID: 1771486794430679110}
   health: 100
   damageAmount: 10
+  rewardMoney: 10
+  rewardScore: 10
   agentSpeed: 0
   patrolTime: 2
   aggroRange: 5
@@ -176,12 +178,12 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 8911229900548856697, guid: e1321f1eaac875548bf68d5f43c1edd6,
+    - target: {fileID: -7725814111615737854, guid: e1321f1eaac875548bf68d5f43c1edd6,
         type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 7469484624682501897, guid: e1321f1eaac875548bf68d5f43c1edd6,
+    - target: {fileID: -6288907929385596766, guid: e1321f1eaac875548bf68d5f43c1edd6,
         type: 3}
       propertyPath: m_Layer
       value: 8
@@ -191,6 +193,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: ed3de3aba1a01d044b73f0a032fedd78, type: 2}
+    - target: {fileID: -4724776721049864942, guid: e1321f1eaac875548bf68d5f43c1edd6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e1321f1eaac875548bf68d5f43c1edd6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -261,6 +268,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -1440803519002283555, guid: e1321f1eaac875548bf68d5f43c1edd6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715405412418411784, guid: e1321f1eaac875548bf68d5f43c1edd6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946884471015319763, guid: e1321f1eaac875548bf68d5f43c1edd6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2068679244700881850, guid: e1321f1eaac875548bf68d5f43c1edd6,
         type: 3}
       propertyPath: m_Layer
@@ -271,17 +293,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 9027124049610543990, guid: e1321f1eaac875548bf68d5f43c1edd6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1715405412418411784, guid: e1321f1eaac875548bf68d5f43c1edd6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: -6288907929385596766, guid: e1321f1eaac875548bf68d5f43c1edd6,
+    - target: {fileID: 3209771854330150841, guid: e1321f1eaac875548bf68d5f43c1edd6,
         type: 3}
       propertyPath: m_Layer
       value: 8
@@ -296,22 +308,12 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: -4724776721049864942, guid: e1321f1eaac875548bf68d5f43c1edd6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1946884471015319763, guid: e1321f1eaac875548bf68d5f43c1edd6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: -7725814111615737854, guid: e1321f1eaac875548bf68d5f43c1edd6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 5085544327347355916, guid: e1321f1eaac875548bf68d5f43c1edd6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7469484624682501897, guid: e1321f1eaac875548bf68d5f43c1edd6,
         type: 3}
       propertyPath: m_Layer
       value: 8
@@ -321,17 +323,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: -1440803519002283555, guid: e1321f1eaac875548bf68d5f43c1edd6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3209771854330150841, guid: e1321f1eaac875548bf68d5f43c1edd6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 7702732181415879588, guid: e1321f1eaac875548bf68d5f43c1edd6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8911229900548856697, guid: e1321f1eaac875548bf68d5f43c1edd6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027124049610543990, guid: e1321f1eaac875548bf68d5f43c1edd6,
         type: 3}
       propertyPath: m_Layer
       value: 8
@@ -363,16 +365,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3155603415184108114}
     m_Modifications:
-    - target: {fileID: 6339582151417620415, guid: e329d1fa080f66b4680c906825598b05,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy WorldSpace HUD
-      objectReference: {fileID: 0}
-    - target: {fileID: 6339582151417620415, guid: e329d1fa080f66b4680c906825598b05,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 6339582151417620412, guid: e329d1fa080f66b4680c906825598b05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -477,6 +469,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339582151417620415, guid: e329d1fa080f66b4680c906825598b05,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy WorldSpace HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339582151417620415, guid: e329d1fa080f66b4680c906825598b05,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6986825119231686128, guid: e329d1fa080f66b4680c906825598b05,
         type: 3}
