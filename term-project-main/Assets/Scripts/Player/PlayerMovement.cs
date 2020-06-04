@@ -196,24 +196,36 @@ public class PlayerMovement : MonoBehaviour
     float currAtkTime = 0f;
     public void CombatState()
     {
-        if (pc.animator.GetBool("HasAttacked"))
-            pc.animator.SetTrigger("DoCombo");
-        // currAtkTime += Time.deltaTime;
-        // DetectEnemies();
+        pc.animator.SetTrigger("DoCombo");
+        currAtkTime += Time.deltaTime;
+        DetectEnemies();
 
-        // if (currAtkTime >= 0.2f) {
-            // hitBox.enabled = false;
-            // currAtkTime = 0f;
-            // pc.UpdatePlayerState(pc.prevState);
-            // comboCounter++;
+
+        // AnimatorStateInfo currState = pc.animator.GetCurrentAnimatorStateInfo(0);
+        // Trigger New Attack - was used for the now scrapped combo system
+        // if (pi.attackKey) {
+        //     // pc.animator.SetTrigger("DoCombo");
+
+        //     // Hit Detection
+        //     // PlayerAttack();
+        //     // DetectEnemies();
+
+        //     currAtkTime = 0f;
         // }
+
+        if (currAtkTime >= 0.2f) {
+            hitBox.enabled = false;
+            currAtkTime = 0f;
+            pc.UpdatePlayerState(pc.prevState);
+            // comboCounter++;
+        }
     }
 
     // This fuction doesnt do much now but Im planning on adding stuff here for JUICE
-    // public void DetectEnemies()
-    // {
-    //     hitBox.enabled = true;
-    // }
+    public void DetectEnemies()
+    {
+        hitBox.enabled = true;
+    }
 
     // public void PlayerAttack()
     // {

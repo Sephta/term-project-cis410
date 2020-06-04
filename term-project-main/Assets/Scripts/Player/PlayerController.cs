@@ -19,11 +19,9 @@ public class PlayerController : MonoBehaviour
     public AudioSource stepSource;
     public AudioSource attackSource;
 
-    [Header("UI")]
+    [Header("StatBars")]
     public Bartender healthbar;
     public Bartender staminabar;
-    public Image controlsUI;
-    public Text money;
 
     // HP & Stamina
     [Header("Player Stats")]
@@ -31,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public float maxStamina = 100;
     public int wallet = 500;
     public int score;
+    public Text money;
     public float currentHealth;
     public float currentStamina;
     public float damageModifier = 1f;
@@ -63,9 +62,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Grounded State")]
     public bool grounded;
-
-    // [Header("Particle System")]
-    // public ParticleSystem ps;
 
 
     // Private Vars
@@ -111,28 +107,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (startIdleTimer)
-        {
-            idleLookTimer -= Time.deltaTime;
-            if (idleLookTimer <= 0f)
-                idleLookTimer = 0f;
-
-            animator.SetFloat("IdleLookTimer", idleLookTimer);
-        }
-
         UpdateMovementState();
         UpdateAttackState();
         UpdateStamina(pm.stamina);
-        if (stepSource != null && attackSource != null)
-            PlaySounds();
+        PlaySounds();
 
-        // Disable Controls UI
-        if (Input.GetKeyDown(KeyCode.P))
-            ToggleUI();
-        
         // TEST: testing HP system functionality
-        if (Input.GetKeyDown(KeyCode.L))
-           TakeDamage(15);
+        //if (Input.GetKeyDown(KeyCode.L))
+        //    TakeDamage(15);
 
         // Stamina Regen
         if (currentState != PlayerState.running && pm.stamina < maxStamina)
@@ -142,15 +124,12 @@ public class PlayerController : MonoBehaviour
             money.text = "$" + wallet.ToString();
     }
 
-    private float idleLookTimer = 1.5f;
-    private bool startIdleTimer = false;
     void FixedUpdate()
     {
         // Update Player State
         switch(currentState)
         {
             case PlayerState.idle:
-                startIdleTimer = true;
                 animator.SetBool("IsIdle", true);
                 animator.SetBool("IsWalking", false);
                 animator.SetBool("HasAttacked", false);
@@ -158,53 +137,35 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case PlayerState.walking:
-                startIdleTimer = false;
-                idleLookTimer = 1.5f;
                 animator.SetBool("IsWalking", true);
                 animator.SetBool("IsIdle", false);
                 animator.SetBool("HasAttacked", false);
-                animator.SetFloat("AnimationSpeed", 1f);
+                animator.SetFloat("AnimationSpeed", pm.currentSpeed - 1f);
                 pm.PlayerMove(pi.runKey);
                 //audioManager.Play("footstep");
                 break;
 
             case PlayerState.running:
-                startIdleTimer = false;
-                idleLookTimer = 1.5f;
                 animator.SetBool("IsWalking", true);
                 animator.SetBool("IsIdle", false);
                 animator.SetBool("HasAttacked", false);
-                animator.SetFloat("AnimationSpeed", 2f);
+                animator.SetFloat("AnimationSpeed", pm.currentSpeed - 1.5f);
                 pm.PlayerMove(pi.runKey);
                 //audioManager.Play("footstep");
                 break;
 
             case PlayerState.attacking:
-                startIdleTimer = false;
-                idleLookTimer = 1.5f;
                 animator.SetBool("IsIdle", false);
                 animator.SetBool("IsWalking", false);
+                animator.SetBool("HasAttacked", true);
                 animator.SetFloat("AnimationSpeed", 1.0f);
                 pm.CombatState();
-                animator.SetBool("HasAttacked", true);
-
                 break;
         }
             
         animator.SetBool("IsGrounded", GroundCheck());
 
         UpdatePlayerCamera();
-    }
-
-    void OnCollisionEnter(Collision collision) {
-        rb.angularVelocity = Vector3.zero;
-    }
-
-    void OnCollisionStay(Collision collision) {
-        rb.angularVelocity = Vector3.zero;
-    }
-    void OnCollisionExit(Collision collision) {
-        rb.angularVelocity = Vector3.zero;
     }
 
 
@@ -258,7 +219,11 @@ public class PlayerController : MonoBehaviour
     */
     void UpdateAttackState()
     {
+        // ! Removed canCombo check
         if (pi.attackKey && GroundCheck() && !pm.isJumping) {
+            // animator.SetTrigger("DoCombo");
+            // pm.PlayerAttack();
+            // pm.DetectEnemies();
             ChangeState(PlayerState.attacking);
         }
     }
@@ -308,7 +273,7 @@ public class PlayerController : MonoBehaviour
     //     Gizmos.DrawWireSphere(transform.position, 1.25f);
     // }
 
-    public void TakeDamage(int damage)
+    void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthbar.setValue(currentHealth);
@@ -331,7 +296,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!stepSource.isPlaying)
             {
-                stepSource.pitch = 0.75f;
+                stepSource.pitch = 1.3f;
                 stepSource.PlayOneShot(stepSource.clip, 0.5f);
             }
         }
@@ -339,7 +304,7 @@ public class PlayerController : MonoBehaviour
         else if (currentState == PlayerState.running && grounded)
             if (!stepSource.isPlaying)
             {
-                stepSource.pitch = 1.3f;
+                stepSource.pitch = 2f;
                 stepSource.PlayOneShot(stepSource.clip, 0.5f);
             }
 
@@ -406,23 +371,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ToggleUI()
-    {
-        controlsUI.enabled = !controlsUI.enabled;
-        controlsUI.gameObject.SetActive(controlsUI.enabled);
-    }
-
     public void SavePlayer()
     {
         if (GlobalControl.Instance == null)
             return;
 
-        GlobalControl.Instance.playerCurrentHealth = currentHealth;
-        GlobalControl.Instance.playerMaxHealth = maxHealth;
+        GlobalControl.Instance.playerHealth = currentHealth;
         GlobalControl.Instance.playerWallet = wallet;
         GlobalControl.Instance.playerScore = score;
         GlobalControl.Instance.playerWeapon = activeWeapon;
-        GlobalControl.Instance.controlsUIEnabled = controlsUI.enabled;
     }
 
     public void LoadPlayer()
@@ -432,14 +389,21 @@ public class PlayerController : MonoBehaviour
 
         activeWeapon = GlobalControl.Instance.playerWeapon;
         wallet = GlobalControl.Instance.playerWallet;
-        currentHealth = GlobalControl.Instance.playerCurrentHealth;
-        maxHealth = GlobalControl.Instance.playerMaxHealth;
+        currentHealth = GlobalControl.Instance.playerHealth;
         score = GlobalControl.Instance.playerScore;
-        controlsUI.enabled = GlobalControl.Instance.controlsUIEnabled;
-        controlsUI.gameObject.SetActive(controlsUI.enabled);
         
-        healthbar.setMax(maxHealth);
         healthbar.setValue(currentHealth);
         EquipItem(activeWeapon);
+    }
+
+    void OnCollisionEnter(Collision collision) {
+        rb.angularVelocity = Vector3.zero;
+    }
+
+    void OnCollisionStay(Collision collision) {
+        rb.angularVelocity = Vector3.zero;
+    }
+    void OnCollisionExit(Collision collision) {
+        rb.angularVelocity = Vector3.zero;
     }
 }

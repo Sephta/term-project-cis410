@@ -18,8 +18,7 @@ public class GlobalControl : MonoBehaviour
 
     [Header("Player Stats")]
     // player stats
-    public float playerMaxHealth = 0;
-    public float playerCurrentHealth = 0;
+    public float playerHealth = 100;
     public int playerWallet = 0;
     public int playerScore = 0;
 
@@ -30,9 +29,6 @@ public class GlobalControl : MonoBehaviour
     public GameObject axe;
     public GameObject buster;
     public GameObject lightsaber;
-
-    [Header("UI")]
-    public bool controlsUIEnabled = true;
 
     [Header("Timer Vars")]
     // timer stuff
@@ -117,7 +113,7 @@ public class GlobalControl : MonoBehaviour
 
     public void GameOver()
     {
-        playerCurrentHealth = 100;
+        playerHealth = 100;
         playerWallet = 0;
         playerScore = 0;
         playerWeapon = sword;

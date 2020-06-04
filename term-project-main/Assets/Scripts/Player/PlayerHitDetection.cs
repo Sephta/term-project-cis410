@@ -46,12 +46,12 @@ public class PlayerHitDetection : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy" && pc.currentState == PlayerController.PlayerState.attacking && other.GetType() == typeof(CapsuleCollider))
+        if (other.gameObject.tag == "Enemy")
         {
             em = other.gameObject.GetComponent<EnemyMovement>();
             em.isHit = true;
             pc.cameraAnimator.SetTrigger("CamShake");
-            Debug.Log("Player hit: " + other.gameObject.name);
+            Debug.Log("I hit: " + other.gameObject.name);
             enemyRB = other.gameObject.GetComponent<Rigidbody>();
             enemyAgent = other.gameObject.GetComponent<NavMeshAgent>();
             if (enemyRB != null && enemyAgent != null)
@@ -63,7 +63,7 @@ public class PlayerHitDetection : MonoBehaviour
                 enemyRB.AddForce(Vector3.up * knockback, ForceMode.VelocityChange);
                 startTimer = true;
             }
-            em.EnemyTakeDamage(pc.baseDamage * pc.damageModifier);
+            em.TakeDamage(pc.baseDamage * pc.damageModifier);
         }
     }
 
