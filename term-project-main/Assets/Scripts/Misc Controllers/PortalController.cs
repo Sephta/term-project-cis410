@@ -7,12 +7,21 @@ public class PortalController : MonoBehaviour
 {
     public PlayerInput playerInput;
     public PlayerController playerController;
+    public Canvas worldSpaceUI;
 
     public bool canTransport = false;
     public bool toHub = false;
     public bool toGrassland = false;
     public bool toDesert = false;
     public bool toTundra = false;
+
+    public void Awake()
+    {
+        if (worldSpaceUI.enabled)
+        {
+            worldSpaceUI.enabled = false;
+        }
+    }
 
     void Update()
     {
@@ -24,6 +33,7 @@ public class PortalController : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
+        worldSpaceUI.enabled = true;
         if (other.gameObject.tag == "Player") {
             canTransport = true;
         } else {
@@ -33,6 +43,7 @@ public class PortalController : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        worldSpaceUI.enabled = false;
         if (other.gameObject.tag == "Player") {
             canTransport = false;
         }

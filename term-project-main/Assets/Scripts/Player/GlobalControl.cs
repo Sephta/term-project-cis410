@@ -16,7 +16,8 @@ public class GlobalControl : MonoBehaviour
 
     [Header("Player Stats")]
     // player stats
-    public float playerHealth = 100;
+    public float playerMaxHealth = 0;
+    public float playerCurrentHealth = 0;
     public int playerWallet = 0;
     public int playerScore = 0;
 
@@ -104,7 +105,7 @@ public class GlobalControl : MonoBehaviour
 
     public void GameOver()
     {
-        playerHealth = 100;
+        playerCurrentHealth = 100;
         playerWallet = 0;
         playerScore = 0;
         playerWeapon = sword;
