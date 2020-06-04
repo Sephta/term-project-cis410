@@ -14,6 +14,7 @@ public class EnemyMovement : MonoBehaviour
     /* [ReadOnly] */ public bool isHit = false;
     public Bartender enemyHealth;
     [Range(0, 100)] public float health = 100;
+    public int damageAmount;
 
     [Header("Nav Agent Vars")]
     [Range(2, 5)] public float agentSpeed;
@@ -136,9 +137,19 @@ public class EnemyMovement : MonoBehaviour
             return false;
     }
 
-    public void TakeDamage(float amount)
+    public void EnemyTakeDamage(float amount)
     {
         health -= amount;
         enemyHealth.setValue(health);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player" && other.GetType() == typeof(CapsuleCollider))
+        {
+            Debug.Log("enemy hit: " + other.gameObject.tag);
+            PlayerController pc = other.gameObject.GetComponent<PlayerController>();
+            pc.TakeDamage(damageAmount);
+        }
     }
 }

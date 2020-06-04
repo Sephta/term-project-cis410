@@ -123,15 +123,16 @@ public class PlayerController : MonoBehaviour
         UpdateMovementState();
         UpdateAttackState();
         UpdateStamina(pm.stamina);
-        PlaySounds();
+        if (stepSource != null && attackSource != null)
+            PlaySounds();
 
         // Disable Controls UI
         if (Input.GetKeyDown(KeyCode.P))
             ToggleUI();
-
+        
         // TEST: testing HP system functionality
-        //if (Input.GetKeyDown(KeyCode.L))
-        //    TakeDamage(15);
+        if (Input.GetKeyDown(KeyCode.L))
+           TakeDamage(15);
 
         // Stamina Regen
         if (currentState != PlayerState.running && pm.stamina < maxStamina)
@@ -183,15 +184,27 @@ public class PlayerController : MonoBehaviour
                 idleLookTimer = 1.5f;
                 animator.SetBool("IsIdle", false);
                 animator.SetBool("IsWalking", false);
-                animator.SetBool("HasAttacked", true);
                 animator.SetFloat("AnimationSpeed", 1.0f);
                 pm.CombatState();
+                animator.SetBool("HasAttacked", true);
+
                 break;
         }
             
         animator.SetBool("IsGrounded", GroundCheck());
 
         UpdatePlayerCamera();
+    }
+
+    void OnCollisionEnter(Collision collision) {
+        rb.angularVelocity = Vector3.zero;
+    }
+
+    void OnCollisionStay(Collision collision) {
+        rb.angularVelocity = Vector3.zero;
+    }
+    void OnCollisionExit(Collision collision) {
+        rb.angularVelocity = Vector3.zero;
     }
 
 
@@ -245,11 +258,7 @@ public class PlayerController : MonoBehaviour
     */
     void UpdateAttackState()
     {
-        // ! Removed canCombo check
         if (pi.attackKey && GroundCheck() && !pm.isJumping) {
-            // animator.SetTrigger("DoCombo");
-            // pm.PlayerAttack();
-            // pm.DetectEnemies();
             ChangeState(PlayerState.attacking);
         }
     }
@@ -299,7 +308,7 @@ public class PlayerController : MonoBehaviour
     //     Gizmos.DrawWireSphere(transform.position, 1.25f);
     // }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthbar.setValue(currentHealth);
@@ -408,7 +417,8 @@ public class PlayerController : MonoBehaviour
         if (GlobalControl.Instance == null)
             return;
 
-        GlobalControl.Instance.playerHealth = currentHealth;
+        GlobalControl.Instance.playerCurrentHealth = currentHealth;
+        GlobalControl.Instance.playerMaxHealth = maxHealth;
         GlobalControl.Instance.playerWallet = wallet;
         GlobalControl.Instance.playerScore = score;
         GlobalControl.Instance.playerWeapon = activeWeapon;
@@ -422,23 +432,14 @@ public class PlayerController : MonoBehaviour
 
         activeWeapon = GlobalControl.Instance.playerWeapon;
         wallet = GlobalControl.Instance.playerWallet;
-        currentHealth = GlobalControl.Instance.playerHealth;
+        currentHealth = GlobalControl.Instance.playerCurrentHealth;
+        maxHealth = GlobalControl.Instance.playerMaxHealth;
         score = GlobalControl.Instance.playerScore;
         controlsUI.enabled = GlobalControl.Instance.controlsUIEnabled;
         controlsUI.gameObject.SetActive(controlsUI.enabled);
         
+        healthbar.setMax(maxHealth);
         healthbar.setValue(currentHealth);
         EquipItem(activeWeapon);
-    }
-
-    void OnCollisionEnter(Collision collision) {
-        rb.angularVelocity = Vector3.zero;
-    }
-
-    void OnCollisionStay(Collision collision) {
-        rb.angularVelocity = Vector3.zero;
-    }
-    void OnCollisionExit(Collision collision) {
-        rb.angularVelocity = Vector3.zero;
     }
 }

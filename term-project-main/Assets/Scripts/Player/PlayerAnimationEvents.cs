@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class PlayerAnimationEvents : MonoBehaviour
 {
-    public void DealDamage()
+    public BoxCollider playerHitBox;
+    public PlayerController pc;
+
+    public void EnablePlayerHitBox()
     {
-        Debug.Log("Player has Attacked.");
+        playerHitBox.enabled = !playerHitBox.enabled;
+    }
+
+    public void DisablePlayerHitBox()
+    {
+        playerHitBox.enabled = !playerHitBox.enabled;
+        pc.UpdatePlayerState(pc.prevState);
     }
 }

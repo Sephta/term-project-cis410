@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class EnemyHitDetection : MonoBehaviour
 {
-    public void DealDamage()
+    [Header("HitBox")]
+    public BoxCollider enemyHitBox;
+
+
+    private PlayerController pc;
+
+
+    public void HitBoxStartFrame()
     {
-        int amount = 0;
-        Debug.Log("Event Triggered: Enemy Attack: " + amount + " damage dealt.");
+        enemyHitBox.enabled = true;
+    }
+
+    public void HitBoxEndFrame()
+    {
+        enemyHitBox.enabled = false;
     }
 }
