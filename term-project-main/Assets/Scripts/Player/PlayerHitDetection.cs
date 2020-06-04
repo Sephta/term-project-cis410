@@ -8,6 +8,8 @@ public class PlayerHitDetection : MonoBehaviour
     private PlayerMovement pm;
     private PlayerController pc;
 
+    public AudioSource hitSource;
+
     private float knockback = 3f;
 
     //[SerializeField] private float damageModifier = 1f;
@@ -50,6 +52,7 @@ public class PlayerHitDetection : MonoBehaviour
         {
             em = other.gameObject.GetComponent<EnemyMovement>();
             em.isHit = true;
+            hitSource.PlayOneShot(hitSource.clip, 0.7f);
             pc.cameraAnimator.SetTrigger("CamShake");
             Debug.Log("Player hit: " + other.gameObject.name);
             enemyRB = other.gameObject.GetComponent<Rigidbody>();
