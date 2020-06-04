@@ -14,6 +14,8 @@ public class UI_Shop : MonoBehaviour
     public GameObject sword;
     public GameObject scimitar;
     public GameObject axe;
+    public GameObject buster;
+    public GameObject lightsaber;
 
     public GlobalControl gcRef;
 
@@ -38,6 +40,8 @@ public class UI_Shop : MonoBehaviour
         sword = gcRef.sword;
         scimitar = gcRef.scimitar;
         axe = gcRef.axe;
+        buster = gcRef.buster;
+        lightsaber = gcRef.lightsaber;
         
         HideShop();
     }
@@ -79,6 +83,30 @@ public class UI_Shop : MonoBehaviour
             if (pc.SpendCurrency(gcRef._axe.WeaponCost))
             {
                 pc.EquipItem(axe);
+            }
+        }
+    }
+
+    public void BuyBuster()
+    {
+
+        if (player != null && pc != null)
+        {
+            if (pc.SpendCurrency(gcRef._buster.WeaponCost))
+            {
+                pc.EquipItem(buster);
+            }
+        }
+    }
+
+    public void BuyLightsaber()
+    {
+
+        if (player != null && pc != null)
+        {
+            if (pc.SpendCurrency(gcRef._lightsaber.WeaponCost))
+            {
+                pc.EquipItem(lightsaber);
             }
         }
     }

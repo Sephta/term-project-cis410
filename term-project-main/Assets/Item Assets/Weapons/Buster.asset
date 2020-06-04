@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4da9c38d738810a4db53d186da78bfec, type: 3}
-  m_Name: Axe
+  m_Name: Buster
   m_EditorClassIdentifier: 
-  weaponName: Axe
-  weaponIcon: {fileID: -4766591091461310143, guid: d41829f05b4eab342943081e619b610f,
+  weaponName: Buster
+  weaponIcon: {fileID: 0}
+  weaponModel: {fileID: -927199367670048503, guid: 4a25b8c2ad8a0c84cb3fe0fd7a0916f7,
     type: 3}
-  weaponModel: {fileID: -927199367670048503, guid: 4d0c102d92b576349a49779656aebb29,
-    type: 3}
-  weaponPosition: {x: 0.21, y: -0.064, z: -0.11}
-  weaponRotation: {x: -24.373, y: -176.555, z: 254.236}
-  weaponDamageMod: 2
-  weaponCost: 150
+  weaponPosition: {x: 0, y: 0, z: 0}
+  weaponRotation: {x: 0, y: 0, z: 0}
+  weaponDamageMod: 0
+  weaponCost: 0

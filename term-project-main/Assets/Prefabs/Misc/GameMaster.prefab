@@ -222,13 +222,19 @@ MonoBehaviour:
   _sword: {fileID: 11400000, guid: 9138a0077a623504d8b3cdc64cf720ed, type: 2}
   _scimitar: {fileID: 11400000, guid: d254d15652dec804daf14266f56cde0b, type: 2}
   _axe: {fileID: 11400000, guid: cd8c8240eb50e634fadb92606eb0c1a4, type: 2}
-  playerHealth: 100
+  _buster: {fileID: 11400000, guid: 04795921312a28444a55661b816da0dc, type: 2}
+  _lightsaber: {fileID: 11400000, guid: b31dd168943137746b5e42bd03c2fd90, type: 2}
+  playerMaxHealth: 0
+  playerCurrentHealth: 0
   playerWallet: 0
   playerScore: 0
   playerWeapon: {fileID: 0}
   sword: {fileID: 0}
   scimitar: {fileID: 0}
   axe: {fileID: 0}
+  buster: {fileID: 0}
+  lightsaber: {fileID: 0}
+  controlsUIEnabled: 1
   timerText: {fileID: 7237904151270380475}
   timeLimit: 5
   timer: 0
