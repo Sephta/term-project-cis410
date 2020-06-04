@@ -9,4 +9,10 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void RestartGame()
+    {
+        Destroy(GlobalControl.Instance);
+        SceneManager.LoadScene(0);
+    }
 }
