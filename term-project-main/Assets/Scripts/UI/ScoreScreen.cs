@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ScoreScreen : MonoBehaviour
 {
     //public GameObject globalObject;
+    public Text tallyText;
     public Text scoreText;
 
     void Start()
@@ -13,6 +14,7 @@ public class ScoreScreen : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        scoreText.text = "SCORE: " + GlobalControl.Instance.playerScore;
+        tallyText.text = "Your Score: " + GlobalControl.Instance.playerScore.ToString() + " + $" + GlobalControl.Instance.playerWallet.ToString();
+        scoreText.text = "Total: " + (GlobalControl.Instance.playerScore + GlobalControl.Instance.playerWallet);
     }
 }
