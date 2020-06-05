@@ -28,10 +28,49 @@ The core concept of the game involves the player venturing out into an open envi
 
 #### Alpha Build
 ---
+###### [Submission Doc](https://docs.google.com/document/d/1FsvF2y2CYJakNLRJwXa8PLaylf8zNB9MSuff8_3QaPA/edit?usp=sharing/ "Submission Doc")
    * Seth Tal
-      > TODO
+      * Refined player movement
+      * Implemented attack functionality
+      * Updated enemy AI
    * Zack Johnson
-      > TODO
+      * Backend for shop system
+      * Default UI layout/design
+      * Implemented health and stamina bars
    * Brennan Holmes
-      > TODO
+      * Modelled/rigged all visual assets
+      * Animated player and enemies
+      * Wrote Ladder script
+---
+
+#### Beta Build
+---
+###### [Submission Doc](https://docs.google.com/document/d/1D1FWi0pLlPOgqZPpa7UbMqJQkDZxoE9wEvQ3TFmQG_0/edit?usp=sharing "Submission Doc")
+   * Seth Tal
+      * Managed working game systems
+      * Tweaked various CS files
+      * Improved performance for WebGL
+      * Helped design new backend systems for item management/player progression
+   * Zack Johnson
+      * Designed/implemented a Global Instance to maintain data between scenes
+      * Designed/implemented backend and frontend for shop system
+   * Brennan Holmes
+      * Designed/implemented all environment and item assets
+      * Revamped camera system
+---
+
+#### Final Build
+---
+###### [Submission Doc](https://docs.google.com/document/d/1QkCFrbJpfTDdzsa_6U_H69IOdSK1CRZET2SDe8eg8ks/edit?usp=sharingg "Submission Doc")
+   * Seth Tal
+      * Added enemies two the tundra and desert biomes
+      * Created UI elements for the score and money systems and helped implement them
+      * Added post-processing effects to each of the scenes
+   * Zack Johnson
+      * Created and implemented the intro and game over screens
+      * Designed and implemented the score system and money system
+      * Added music and sfx
+   * Brennan Holmes
+      * Designed/rigged/animated two new enemy models
+      * Designed two new weapon models
 ---
