@@ -3325,7 +3325,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: -4766591091461310143, guid: d41829f05b4eab342943081e619b610f,
+  m_Sprite: {fileID: -5415535847388067963, guid: 44362413a870b1a43982997e67bb571a,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -7273,6 +7273,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1844433958990582124, guid: ca0fde06b2b2efd41889141986c5a36e,
+        type: 3}
+      propertyPath: regenRate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1773467385990149832, guid: ca0fde06b2b2efd41889141986c5a36e,
         type: 3}
       propertyPath: playerCamera
@@ -8475,7 +8480,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: -4766591091461310143, guid: d41829f05b4eab342943081e619b610f,
+  m_Sprite: {fileID: -7078357608467066157, guid: 44362413a870b1a43982997e67bb571a,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -10712,6 +10717,11 @@ PrefabInstance:
         type: 3}
       propertyPath: timeLimit
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736090031040698031, guid: 901f9735a5ea64541a859dadf1b6795f,
+        type: 3}
+      propertyPath: playerWallet
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4736090031040698030, guid: 901f9735a5ea64541a859dadf1b6795f,
         type: 3}

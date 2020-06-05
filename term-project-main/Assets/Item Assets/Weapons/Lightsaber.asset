@@ -16,7 +16,7 @@ MonoBehaviour:
   weaponIcon: {fileID: 0}
   weaponModel: {fileID: -927199367670048503, guid: 160b2757af966c344bee144a42c7ea03,
     type: 3}
-  weaponPosition: {x: 0, y: 0, z: 0}
-  weaponRotation: {x: 0, y: 0, z: 0}
+  weaponPosition: {x: 0.09, y: 0.06, z: 0.03}
+  weaponRotation: {x: 0, y: 0, z: 90}
   weaponDamageMod: 4
   weaponCost: 500
