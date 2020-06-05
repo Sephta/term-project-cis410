@@ -110,6 +110,18 @@ public class UI_Shop : MonoBehaviour
             }
         }
     }
+
+    public void BuyHealth()
+    {
+        if (player != null && pc != null)
+        {
+            if (pc.SpendCurrency(25))
+            {
+                pc.currentHealth = pc.maxHealth;
+                pc.healthbar.setValue(pc.maxHealth);
+            }
+        }
+    }
     
     // Not currently in use, buttons are created manually
     //private void CreateItemButton(GameObject item, string itemName, int itemCost, int positionIndex)

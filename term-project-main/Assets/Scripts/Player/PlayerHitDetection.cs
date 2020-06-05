@@ -52,7 +52,8 @@ public class PlayerHitDetection : MonoBehaviour
         {
             em = other.gameObject.GetComponent<EnemyMovement>();
             em.isHit = true;
-            hitSource.PlayOneShot(hitSource.clip, 0.7f);
+            if (hitSource != null)
+                hitSource.PlayOneShot(hitSource.clip, 0.7f);
             pc.cameraAnimator.SetTrigger("CamShake");
             Debug.Log("Player hit: " + other.gameObject.name);
             enemyRB = other.gameObject.GetComponent<Rigidbody>();

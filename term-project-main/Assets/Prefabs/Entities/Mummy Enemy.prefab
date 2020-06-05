@@ -105,10 +105,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5bf67d2d8f69b48b08aaeb2bc0603a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 3518921232292345493}
   isHit: 0
   enemyHealth: {fileID: 8743748021272606598}
-  health: 100
+  health: 115
   damageAmount: 30
   rewardMoney: 25
   rewardScore: 25
@@ -116,6 +116,7 @@ MonoBehaviour:
   patrolTime: 2
   aggroRange: 5
   attackRange: 1
+  waypointActivationRange: 0.5
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -188,6 +189,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 4dc6766041234804e8a30abc3187dc9e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ed3de3aba1a01d044b73f0a032fedd78, type: 2}
     - target: {fileID: -4724776721049864942, guid: 4dc6766041234804e8a30abc3187dc9e,
         type: 3}
       propertyPath: m_Layer
@@ -344,6 +350,12 @@ GameObject:
 --- !u!4 &6800360631167474671 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 4dc6766041234804e8a30abc3187dc9e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1955986347777880309}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3518921232292345493 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 4dc6766041234804e8a30abc3187dc9e,
     type: 3}
   m_PrefabInstance: {fileID: 1955986347777880309}
   m_PrefabAsset: {fileID: 0}

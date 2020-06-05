@@ -95,7 +95,7 @@ MonoBehaviour:
   animator: {fileID: 2507428145658362546}
   isHit: 0
   enemyHealth: {fileID: 1771486794430679110}
-  health: 100
+  health: 65
   damageAmount: 10
   rewardMoney: 10
   rewardScore: 10
@@ -103,6 +103,7 @@ MonoBehaviour:
   patrolTime: 2
   aggroRange: 5
   attackRange: 1
+  waypointActivationRange: 0.5
   waypoints:
   - {fileID: 0}
   - {fileID: 0}

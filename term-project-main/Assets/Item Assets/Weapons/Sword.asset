@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   weaponName: Sword
-  weaponIcon: {fileID: 0}
+  weaponIcon: {fileID: 8655224662556751764, guid: d41829f05b4eab342943081e619b610f,
+    type: 3}
   weaponModel: {fileID: -927199367670048503, guid: 96c044abe9fd086449842ffe01c45e87,
     type: 3}
   weaponPosition: {x: 0.1298, y: 0.1045, z: 0.0611}
   weaponRotation: {x: 22.082, y: 3.025, z: 91.189}
-  weaponDamageMod: 0.5
+  weaponDamageMod: 0.8
   weaponCost: 0

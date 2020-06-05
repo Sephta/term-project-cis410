@@ -95,12 +95,15 @@ MonoBehaviour:
   animator: {fileID: 3447441352905195520}
   isHit: 0
   enemyHealth: {fileID: 1553316234353079028}
-  health: 250
-  damageAmount: 50
+  health: 125
+  damageAmount: 20
+  rewardMoney: 25
+  rewardScore: 50
   agentSpeed: 0
   patrolTime: 2
   aggroRange: 5
   attackRange: 1.25
+  waypointActivationRange: 1.25
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -492,6 +495,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986825119829347679, guid: e329d1fa080f66b4680c906825598b05,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 11.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986825119829347679, guid: e329d1fa080f66b4680c906825598b05,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -24.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986825119829347679, guid: e329d1fa080f66b4680c906825598b05,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986825119829347679, guid: e329d1fa080f66b4680c906825598b05,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -10.54
       objectReference: {fileID: 0}
     - target: {fileID: 6986825118829267693, guid: e329d1fa080f66b4680c906825598b05,
         type: 3}

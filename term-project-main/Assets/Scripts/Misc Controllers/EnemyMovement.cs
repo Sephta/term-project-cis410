@@ -20,9 +20,10 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Nav Agent Vars")]
     [Range(2, 5)] public float agentSpeed;
-    public float patrolTime;
-    public float aggroRange;
-    public float attackRange;
+    public float patrolTime = 0f;
+    public float aggroRange = 0f;
+    public float attackRange = 0f;
+    public float waypointActivationRange = 0f;
 
     [Header("Waypoints")]
     public Transform[] waypoints;
@@ -90,8 +91,14 @@ public class EnemyMovement : MonoBehaviour
 
     void UpdateEnemyMovement()
     {
+        if (transform.position.x == agent.destination.x && transform.position.z == agent.destination.z)
+        {
+            animator.SetBool("IsIdle", true);
+            animator.SetBool("IsWalking", false);
+        }
+
         // Patrol behavior
-        if (Vector3.Distance(agent.transform.position, waypoints[currWaypoint].position) < 0.5f)
+        if (Vector3.Distance(agent.transform.position, waypoints[currWaypoint].position) < waypointActivationRange)
         {
             animator.SetBool("IsIdle", false);
             animator.SetBool("IsWalking", true);

@@ -145,10 +145,13 @@ public class PlayerController : MonoBehaviour
             money.text = "$" + wallet.ToString();
 
         // GameOver Conditions
-        if (currentHealth <= 0 || GlobalControl.Instance.timeOut)
+        if (GlobalControl.Instance != null)
         {
-            SavePlayer();
-            GlobalControl.Instance.GameOver();
+            if (currentHealth <= 0 || GlobalControl.Instance.timeOut)
+            {
+                SavePlayer();
+                GlobalControl.Instance.GameOver();
+            }
         }
     }
 

@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
 
     public void RestartGame()
     {
-        Destroy(GlobalControl.Instance);
+        Destroy(GlobalControl.Instance.gameObject);
         SceneManager.LoadScene(0);
     }
 }

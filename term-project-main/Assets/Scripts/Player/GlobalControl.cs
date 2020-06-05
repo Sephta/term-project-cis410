@@ -40,7 +40,7 @@ public class GlobalControl : MonoBehaviour
     public float timeLimit;
     public float timer;
     public bool timeOut = false;
-    [SerializeField] private static bool timeSet = false;
+    [SerializeField] private bool timeSet = false;
 
     private void Awake()
     {
@@ -118,13 +118,7 @@ public class GlobalControl : MonoBehaviour
 
     public void GameOver()
     {
-        // playerCurrentHealth = 100;
-        // playerWallet = 0;
-        // playerScore = 0;
-        // playerWeapon = sword;
-        // timer = timeLimit;
         timerText.enabled = false;
-
         SceneManager.LoadScene(5);
     }
 }

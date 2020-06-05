@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Scimitar
   m_EditorClassIdentifier: 
   weaponName: Scimitar
-  weaponIcon: {fileID: 0}
+  weaponIcon: {fileID: 8305150399763243091, guid: d41829f05b4eab342943081e619b610f,
+    type: 3}
   weaponModel: {fileID: -927199367670048503, guid: 02136fa83b32363439525356e3d8f2ea,
     type: 3}
   weaponPosition: {x: 0.12, y: 0.143, z: 0.098}
   weaponRotation: {x: 161.562, y: -177.761, z: -85.621}
-  weaponDamageMod: 1.2
+  weaponDamageMod: 1.4
   weaponCost: 100
