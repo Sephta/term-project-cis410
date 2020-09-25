@@ -14,6 +14,7 @@ The core concept of the game involves the player venturing out into an open envi
 #### Proof of Concept Build
 ---
 ###### [Submission Doc](https://docs.google.com/document/d/1zmiD56hhCFNOTp7yyA7xTGTJVNLScY67CEVMH6y1p7I/edit?usp=sharing "Submission Doc")
+###### [Browser Demo - Prototype](https://sephta.github.io/evermorn.github.io/ "Prototype Build")
    * Seth Tal
       * Player Controller
       * Camera Controller
@@ -29,6 +30,7 @@ The core concept of the game involves the player venturing out into an open envi
 #### Alpha Build
 ---
 ###### [Submission Doc](https://docs.google.com/document/d/1FsvF2y2CYJakNLRJwXa8PLaylf8zNB9MSuff8_3QaPA/edit?usp=sharing/ "Submission Doc")
+###### [Browser Demo - Alpha](https://sephta.github.io/evermorn-alpha-demo/ "Alpha Demo")
    * Seth Tal
       * Refined player movement
       * Implemented attack functionality
@@ -46,6 +48,7 @@ The core concept of the game involves the player venturing out into an open envi
 #### Beta Build
 ---
 ###### [Submission Doc](https://docs.google.com/document/d/1D1FWi0pLlPOgqZPpa7UbMqJQkDZxoE9wEvQ3TFmQG_0/edit?usp=sharing "Submission Doc")
+###### [Browser Demo - Beta](https://sephta.github.io/evermorn-beta-demo/ "Beta Demo")
    * Seth Tal
       * Managed working game systems
       * Tweaked various CS files
@@ -62,6 +65,7 @@ The core concept of the game involves the player venturing out into an open envi
 #### Final Build
 ---
 ###### [Submission Doc](https://docs.google.com/document/d/1QkCFrbJpfTDdzsa_6U_H69IOdSK1CRZET2SDe8eg8ks/edit?usp=sharingg "Submission Doc")
+###### [Browser Demo - Final Build](https://sephta.github.io/evermorn-final-demo/ "Final Build Demo")
    * Seth Tal
       * Added enemies two the tundra and desert biomes
       * Created UI elements for the score and money systems and helped implement them
